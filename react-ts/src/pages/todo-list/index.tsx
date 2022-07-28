@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Header from './Header';
 import List from './List';
 import { Todo } from './type';
+// 添加css module 样式表: https://www.html.cn/create-react-app/docs/adding-a-css-modules-stylesheet/
+import styles from './index.module.css';
 
 export default function TodoList() {
   const [list, setList] = useState<Todo[]>([]);
@@ -37,7 +39,8 @@ export default function TodoList() {
   }
 
   return (
-    <div>
+    // 类名渲染为： todo-list_TodoList__SG1T0
+    <div className={styles.TodoList}>
       <Header addTodo={addTodo}></Header>
       <List list={list} deleteTodo={deleteTodo} setCheck={setCheck}></List>
     </div>
