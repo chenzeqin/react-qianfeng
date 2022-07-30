@@ -1,7 +1,8 @@
 import React from 'react';
-import TodoList from './pages/todo-list';
-import CreateRefDemo from './pages/createRef';
-import DangerouslySetInnerHTML from './pages/dangerouslySetInnerHTML'
+import TodoList from './demos/todo-list';
+import CreateRefDemo from './demos/createRef';
+import DangerouslySetInnerHTML from './demos/dangerouslySetInnerHTML'
+import Tabs from './demos/tabs';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
       <CreateRefDemo></CreateRefDemo>
       {/* 3. 渲染富文本 */}
       <DangerouslySetInnerHTML></DangerouslySetInnerHTML>
+      {/* 4. 实现tabs功能 */}
+      <Tabs></Tabs>
     </div>
   );
 }
