@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function InnerHtml() {
   const html = `<div>
-   danerouslySetInnerHTML
+   <p>danerouslySetInnerHTML</p>
    <p>用于替代innerHtml,类似vue中的v-html</p>
   </div>`;
 
