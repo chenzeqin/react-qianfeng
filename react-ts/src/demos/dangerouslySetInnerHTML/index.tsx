@@ -11,5 +11,11 @@ export default function InnerHtml() {
       __html: html,
     };
   }
-  return <div dangerouslySetInnerHTML={createMarkup()}></div>;
+  return (
+    <div>
+      <h3>3. dangerouslySetInnerHTML</h3>
+      {/* 只能写在空标签，不能有多个child */}
+      <p dangerouslySetInnerHTML={createMarkup()}></p>
+    </div>
+  );
 }

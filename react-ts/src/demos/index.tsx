@@ -2,7 +2,7 @@ import React from 'react';
 import TodoList from './todo-list';
 import CreateRefDemo from './createRef';
 import DangerouslySetInnerHTML from './dangerouslySetInnerHTML';
-import Tabs from './tabs';
+import MaiZuo from './maizuo';
 
 export default function Demos() {
   return (
@@ -14,8 +14,8 @@ export default function Demos() {
       <CreateRefDemo></CreateRefDemo>
       {/* 3. 渲染富文本 */}
       <DangerouslySetInnerHTML></DangerouslySetInnerHTML>
-      {/* 4. 实现tabs功能 */}
-      <Tabs></Tabs>
+      {/* 4. 实现MaiZuo功能 */}
+      <MaiZuo></MaiZuo>
     </div>
   );
 }

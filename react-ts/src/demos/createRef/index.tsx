@@ -15,7 +15,7 @@ export default function CreateRefDemo() {
   }, [inputRef2]);
   return (
     <div>
-      <h3>CreateRefDemo</h3>
+      <h3>2. createRef Demo</h3>
       <input type="text" ref={inputRef1} />
 
       {/* 通过 ref转发，获取组件内input元素 */}
