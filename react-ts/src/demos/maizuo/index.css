@@ -23,3 +23,9 @@ ul.tab-list li {
 ul.tab-list li.active{
   color: red;
 }
+
+
+ul.cinema-list li{
+  border: 1px solid #ccc;
+  margin-bottom: 5px;
+}

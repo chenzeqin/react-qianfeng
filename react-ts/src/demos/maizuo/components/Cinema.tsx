@@ -37,7 +37,7 @@ interface CinemaItem {
 export default function Cinema() {
   const [list, setList] = useState<CinemaItem[]>([]);
   const [allList, setAllList] = useState<CinemaItem[]>([]);
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>('北京首都');
 
   useEffect(() => {
     axios
@@ -72,9 +72,14 @@ export default function Cinema() {
       <div>
         <input type="text" value={value} onChange={handleChange} />
       </div>
-      <ul>
+      <ul className='cinema-list'>
         {list.map((item) => {
-          return <li key={item.cinemaId}>{item.name}</li>;
+          return (
+            <li key={item.cinemaId}>
+              <p>{item.name}</p>
+              <p>地址：{item.address}</p>
+            </li>
+          );
         })}
       </ul>
     </div>
