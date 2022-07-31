@@ -1,9 +1,11 @@
 import React from 'react';
+import './index.css';
 import TodoList from './todo-list';
 import CreateRefDemo from './createRef';
 import DangerouslySetInnerHTML from './dangerouslySetInnerHTML';
 import MaiZuo from './maizuo';
 import SetStateDemo from './setState/index'
+import BetterScroll from './better-scroll'
 
 export default function Demos() {
   return (
@@ -19,6 +21,8 @@ export default function Demos() {
       <MaiZuo></MaiZuo>
       {/* 5. setState， 可能是异步的 */}
       <SetStateDemo></SetStateDemo>
+      {/* 6. betterScroll demo */}
+      <BetterScroll></BetterScroll>
     </div>
   );
 }

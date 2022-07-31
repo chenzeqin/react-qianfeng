@@ -1,38 +1,6 @@
-import React, {
-  ChangeEvent,
-  createRef,
-  FormEvent,
-  FormEventHandler,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Result } from '../type';
-
-interface CinemaItem {
-  Distance: number;
-  address: string;
-  businessTime: string;
-  cinemaId: number;
-  cityId: number;
-  cityName: string;
-  district: { districtId: number; name: string };
-  districtId: number;
-  districtName: string;
-  eTicketFlag: number;
-  gpsAddress: string;
-  isVisited: number;
-  latitude: number;
-  logoUrl: string;
-  longitude: number;
-  lowPrice: number;
-  name: string;
-  notice: '';
-  phone: string;
-  seatFlag: number;
-  telephones: string[];
-  ticketTypes: null;
-}
+import { Result, CinemaItem } from '../type';
 
 export default function Cinema() {
   const [list, setList] = useState<CinemaItem[]>([]);
@@ -72,7 +40,7 @@ export default function Cinema() {
       <div>
         <input type="text" value={value} onChange={handleChange} />
       </div>
-      <ul className='cinema-list'>
+      <ul className="cinema-list">
         {list.map((item) => {
           return (
             <li key={item.cinemaId}>

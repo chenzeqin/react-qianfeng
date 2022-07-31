@@ -29,3 +29,9 @@ ul.cinema-list li{
   border: 1px solid #ccc;
   margin-bottom: 5px;
 }
+
+.wrapper{
+  background-color: aqua;
+  height: 200px;
+  overflow: hidden;
+}

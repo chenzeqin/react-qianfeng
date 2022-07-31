@@ -1,7 +1,6 @@
 
 /* TODO: tabs耦合性太强了，需要改装成不需要判断的使用方式 */
 import React, { useState } from 'react';
-import './index.css';
 
 import Film from './components/Film';
 import Cinema from './components/Cinema';
