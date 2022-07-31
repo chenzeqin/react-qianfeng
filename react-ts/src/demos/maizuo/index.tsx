@@ -1,3 +1,5 @@
+
+/* TODO: tabs耦合性太强了，需要改装成不需要判断的使用方式 */
 import React, { useState } from 'react';
 import './index.css';
 
@@ -23,7 +25,7 @@ export default function MaiZuo() {
     setActiveId(id);
   }
 
-  function BodyRender() {
+  function bodyRender() {
     switch (activeId) {
       case 1:
         return <Film></Film>;
@@ -50,7 +52,7 @@ export default function MaiZuo() {
           </li>
         ))}
       </ul>
-      <div className="tabs-body">{BodyRender()}</div>
+      <div className="tabs-body">{bodyRender()}</div>
     </div>
   );
 }
