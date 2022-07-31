@@ -28,13 +28,16 @@ export default function Cinema() {
   useEffect(() => {
     const newList = allList.filter((item) => item.name.indexOf(value) > -1);
     setList(newList);
-    // 数据更新结束再调用
+    // TODO: 应该有更优雅的方法
     setTimeout(() => {
+      console.log('newList', newList);
+      // console.log('list', list);
+      // 数据更新结束再调用
       let wrapper = document.querySelector(
         '.cinema-list-wrapper'
       ) as HTMLDivElement;
       let bs = new BScroll(wrapper, {});
-    }, 1000);
+    }, 0);
   }, [value, allList]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
