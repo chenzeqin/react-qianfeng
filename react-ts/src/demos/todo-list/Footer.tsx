@@ -31,8 +31,13 @@ export default class Footer extends Component<FooterProps, FooterState> {
     const { checked } = this.state;
     return (
       <div>
-        <label htmlFor='ck'>{checked ? '取消全选' : '全选'}</label>
-        <input type="checkbox" id="ck" checked={checked} onChange={this.handleChagne} />
+        <label htmlFor="ck">{checked ? '取消全选' : '全选'}</label>
+        <input
+          type="checkbox"
+          id="ck"
+          checked={checked}
+          onChange={this.handleChagne}
+        />
       </div>
     );
   }

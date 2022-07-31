@@ -3,6 +3,7 @@ import TodoList from './todo-list';
 import CreateRefDemo from './createRef';
 import DangerouslySetInnerHTML from './dangerouslySetInnerHTML';
 import MaiZuo from './maizuo';
+import SetStateDemo from './setState/index'
 
 export default function Demos() {
   return (
@@ -16,6 +17,8 @@ export default function Demos() {
       <DangerouslySetInnerHTML></DangerouslySetInnerHTML>
       {/* 4. 实现MaiZuo功能 */}
       <MaiZuo></MaiZuo>
+      {/* 5. setState， 可能是异步的 */}
+      <SetStateDemo></SetStateDemo>
     </div>
   );
 }
