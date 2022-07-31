@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-ul{
+ul {
   list-style: none;
 }
 ul.tab-list {
@@ -20,17 +20,22 @@ ul.tab-list li {
   height: 50;
   flex: 1;
 }
-ul.tab-list li.active{
+ul.tab-list li.active {
   color: red;
 }
 
-
-ul.cinema-list li{
+ul.cinema-list li {
   border: 1px solid #ccc;
   margin-bottom: 5px;
 }
 
-.wrapper{
+.cinema-list-wrapper {
+  background-color: aquamarine;
+  height: 200px;
+  overflow: hidden;
+}
+
+.wrapper {
   background-color: aqua;
   height: 200px;
   overflow: hidden;

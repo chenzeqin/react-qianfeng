@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Result, CinemaItem } from '../type';
+import BScroll from '@better-scroll/core';
 
 export default function Cinema() {
   const [list, setList] = useState<CinemaItem[]>([]);
@@ -27,6 +28,13 @@ export default function Cinema() {
   useEffect(() => {
     const newList = allList.filter((item) => item.name.indexOf(value) > -1);
     setList(newList);
+    // 数据更新结束再调用
+    setTimeout(() => {
+      let wrapper = document.querySelector(
+        '.cinema-list-wrapper'
+      ) as HTMLDivElement;
+      let bs = new BScroll(wrapper, {});
+    }, 1000);
   }, [value, allList]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
@@ -40,16 +48,19 @@ export default function Cinema() {
       <div>
         <input type="text" value={value} onChange={handleChange} />
       </div>
-      <ul className="cinema-list">
-        {list.map((item) => {
-          return (
-            <li key={item.cinemaId}>
-              <p>{item.name}</p>
-              <p>地址：{item.address}</p>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="cinema-list-wrapper">
+        {/* betterScroll 保证只用一个子节点，才能有效果 */}
+        <ul className="cinema-list">
+          {list.map((item) => {
+            return (
+              <li key={item.cinemaId}>
+                <p>{item.name}</p>
+                <p>地址：{item.address}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
