@@ -41,7 +41,7 @@ export default function MaiZuo() {
   return (
     <div>
       <h3>4. 卖座电影 demo</h3>
-      <ul>
+      <ul className='tab-list'>
         {list.map((item) => (
           <li
             key={item.id}

@@ -3,21 +3,23 @@
   padding: 0;
   box-sizing: border-box;
 }
-ul {
-  display: flex;
+ul{
   list-style: none;
+}
+ul.tab-list {
+  display: flex;
   /* position: fixed;
   bottom: 0;
   left: 0; */
   width: 100%;
-  line-height: 50px;
-  height: 50;
   background-color: aliceblue;
   cursor: pointer;
 }
-ul li {
+ul.tab-list li {
+  line-height: 50px;
+  height: 50;
   flex: 1;
 }
-ul li.active{
+ul.tab-list li.active{
   color: red;
 }
