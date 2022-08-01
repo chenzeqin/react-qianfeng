@@ -6,6 +6,7 @@ interface SidebarProps {
 }
 
 function Siderbar(props: SidebarProps) {
+  console.log(props)
   return (
     <div>
       <ul style={{ backgroundColor: props.bg }}>
@@ -17,10 +18,11 @@ function Siderbar(props: SidebarProps) {
     </div>
   );
 }
-
+// 属性类型检查
 Siderbar.propTypes = {
   bg: propTypes.string,
 };
+// 默认属性
 Siderbar.defaultProps = {
   bg: 'pink',
 };

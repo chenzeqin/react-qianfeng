@@ -6,6 +6,8 @@ import DangerouslySetInnerHTML from './dangerouslySetInnerHTML';
 import MaiZuo from './maizuo';
 import SetStateDemo from './setState/index'
 import BetterScroll from './better-scroll'
+import Login1 from './login/Login1';
+import Login2 from './login/Login2';
 
 export default function Demos() {
   return (
@@ -23,6 +25,10 @@ export default function Demos() {
       <SetStateDemo></SetStateDemo>
       {/* 6. betterScroll demo */}
       <BetterScroll></BetterScroll>
+      {/* 7. 非受控表单 */}
+      <Login1></Login1>
+      {/* 8. 受控表单 */}
+      <Login2></Login2>
     </div>
   );
 }
