@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export default function PersonalCenter() {
-  return (
-    <div>PersonalCenter</div>
-  )
+  function onClick() {
+    console.log('onclick');
+  }
+  return <div onClick={onClick}>PersonalCenter</div>;
 }
