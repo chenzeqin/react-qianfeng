@@ -23,7 +23,7 @@ export default class Login extends Component {
     const { name, pwd } = this.state;
     return (
       <div>
-        <h3>非受控表单</h3>
+        <h3>受控表单</h3>
         <p>
           name:
           <input
