@@ -10,6 +10,7 @@ export default class Login extends Component {
     name: '',
     pwd: '',
   };
+  // react中，onchange和原生oninput事件行为一致
   handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // console.log(e);
     this.setState({
