@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 
 import Navbar, { NavbarItem } from './components/Navbar';
+import Siderbar from './components/Sidebar';
 import Film from './components/Film';
 import Cinema from './components/Cinema';
 import PersonalCenter from './components/PersonalCenter';
@@ -36,6 +37,7 @@ export default function MaiZuo() {
   return (
     <div>
       <h3>4. 卖座电影 demo</h3>
+      <Siderbar></Siderbar>
       <ul className="tab-list">
         {list.map((item) => (
           <Navbar
