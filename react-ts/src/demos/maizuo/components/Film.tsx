@@ -11,7 +11,7 @@ export default function Film() {
   useEffect(() => {
     axios
       .get<Result<Record<'films', FilmItem[]>>>(
-        'https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=10&type=2&k=1178624',
+        'https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=2&type=2&k=1178624',
         {
           headers: {
             'X-Client-Info': `{"a":"3000","ch":"1002","v":"5.2.0","e":"16592753012062937216778241","bc":"110100"}`,
@@ -28,11 +28,12 @@ export default function Film() {
   return (
     <div>
       <h4>Film</h4>
-      <ul>
+      <ul className='film-list'>
         {list.map((item) => {
           return <FilmListItem key={item.filmId} {...item}></FilmListItem>;
         })}
       </ul>
+      {/* 详情 */}
       <FileItemDetail></FileItemDetail>
     </div>
   );

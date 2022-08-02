@@ -40,3 +40,10 @@ ul.cinema-list li {
   height: 200px;
   overflow: hidden;
 }
+
+.film-list{
+  display: flex;
+}
+.film-list li{
+  width: 50%;
+}
