@@ -10,10 +10,7 @@ function Siderbar(props: SidebarProps) {
   return (
     <div>
       <ul style={{ backgroundColor: props.bg }}>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
+        <li>Siderbar,demo: 函数组件props</li>
       </ul>
     </div>
   );

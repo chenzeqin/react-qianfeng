@@ -28,3 +28,36 @@ export interface CinemaItem {
   telephones: string[];
   ticketTypes: null;
 }
+
+interface Actor {
+  name: string,
+  role: string
+}
+interface FilmType {
+  name: string,
+  value: string
+}
+interface Item {
+  name: string
+  type: number
+}
+export interface FilmItem {
+  actors: Actor[]
+  category: string
+  director: string
+  filmId: number
+  filmType: FilmType
+  grade: string
+  isPresale: boolean
+  isSale: boolean
+  item: Item
+  language: ""
+  name: string
+  nation: string
+  poster: string
+  premiereAt: number
+  runtime: number
+  synopsis: string
+  timeType: number
+  videoId: string
+}
