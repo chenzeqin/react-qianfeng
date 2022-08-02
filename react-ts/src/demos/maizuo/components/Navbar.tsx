@@ -9,10 +9,10 @@ export interface NavbarItem {
 interface NavbarProps {
   data: NavbarItem;
   className: string;
-  onClick: (id: string) => void;
+  onClick: (id: number) => void;
 }
 
-export default class Navbar extends Component<any, NavbarProps> {
+export default class Navbar extends Component<NavbarProps, any> {
   // 属性类型
   static propTypes = {
     data: propTypes.object.isRequired,

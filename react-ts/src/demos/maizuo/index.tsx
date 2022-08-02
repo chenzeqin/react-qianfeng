@@ -46,7 +46,7 @@ export default function MaiZuo() {
             key={item.id}
             onClick={handleClick}
             /* 没有定义也可以传 */
-            notDefinedprops={item.id + item.text}
+            // notDefinedprops={item.id + item.text}
             // 传入一个object,（不是解构），全部传入简写jsx语法
             {...item}
           ></Navbar>
