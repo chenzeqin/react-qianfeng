@@ -8,11 +8,9 @@ export default class GrandSon extends Component<GrandSonProps> {
   render() {
     console.log(this.props);
     return (
-      <div>
+      <div style={{ background: 'pink' }}>
         <h5>GrandSon接收index数据</h5>
-        <div>
-          {this.props.children()}
-        </div>
+        <div>{this.props.children()}</div>
         <myContext.Consumer>
           {(value) => {
             return <div>{value.info}</div>;

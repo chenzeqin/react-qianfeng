@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import GrandSon from './GrandSon';
+import { myContext } from './myContext';
 
 export default class Son extends Component {
+  static contextType = myContext; // 指定具体contextType，也可以获取共享数据
+  context!: React.ContextType<typeof myContext>;
   render() {
+    console.log(this.context);
     return (
-      <div>
+      <div style={{ background: '#ccc' }}>
         <h5>Son</h5>
+        <p>指定具体contextType，也可以获取共享数据:</p>
+        <p>{this.context.info}</p>
         <GrandSon>
           {() => {
             console.log('GrandSon');
