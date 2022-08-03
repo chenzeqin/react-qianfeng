@@ -4,10 +4,11 @@ import TodoList from './todo-list';
 import CreateRefDemo from './createRef';
 import DangerouslySetInnerHTML from './dangerouslySetInnerHTML';
 import MaiZuo from './maizuo';
-import SetStateDemo from './setState/index'
-import BetterScroll from './better-scroll'
+import SetStateDemo from './setState/index';
+import BetterScroll from './better-scroll';
 import Login1 from './login/Login1';
 import Login2 from './login/Login2';
+import ContextDemo from './context';
 
 export default function Demos() {
   return (
@@ -29,6 +30,8 @@ export default function Demos() {
       <Login1></Login1>
       {/* 8. 受控表单 */}
       <Login2></Login2>
+      {/* 9. context demo */}
+      <ContextDemo></ContextDemo>
     </div>
   );
 }
