@@ -4,15 +4,31 @@ import Son from './Son';
 
 interface IState {
   count: number;
-  info: string;
-  provideValue: { info: string };
+  provideValue: {
+    info: string;
+    changeInfo: (info: string) => void;
+  };
 }
 export default class ContextDemo extends Component<any, IState> {
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  constructor(props: any) {
+    super(props);
+  }
+  changeInfo = (info: string) => {
+    this.setState((preState) => {
+      return {
+        provideValue: {
+          ...preState.provideValue,
+          info,
+        },
+      };
+    });
+  };
   state = {
     count: 1,
-    info: '',
     provideValue: {
       info: '父组件index提供的数据',
+      changeInfo: this.changeInfo,
     },
   };
   render() {
@@ -30,6 +46,7 @@ export default class ContextDemo extends Component<any, IState> {
         </myContext.Provider>
         <p>{this.state.count}</p>
         <button
+          // 用于修改状态，测试是否重新渲染son 和 grandson
           onClick={() => {
             this.setState((preState) => {
               return {
