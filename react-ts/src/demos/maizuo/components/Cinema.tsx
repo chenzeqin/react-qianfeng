@@ -29,7 +29,10 @@ export default function Cinema() {
     const newList = allList.filter((item) => item.name.indexOf(value) > -1);
     setList(newList);
   }, [value, allList]);
+
   // 重新初始化滚动功能
+  // class组件，setState,callback中执行
+  // class组件，可以在 componentDitUpdate 中执行， 但是，如果其他状态更新也会触发，需要做优化，麻烦
   useEffect(() => {
     let wrapper = document.querySelector(
       '.cinema-list-wrapper'

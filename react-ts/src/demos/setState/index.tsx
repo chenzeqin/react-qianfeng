@@ -45,7 +45,7 @@ export default class SetStateDemo extends Component {
     );
   };
   componentDidMount() {
-    console.log('componentDidMount')
+    // console.log('componentDidMount')
     // v18.2 新版本也是异步
     document.getElementById('add4')?.addEventListener('click', () => {
       this.setState({ count: Math.random() + 1 });
