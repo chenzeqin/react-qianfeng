@@ -9,6 +9,7 @@ import BetterScroll from './better-scroll';
 import Login1 from './login/Login1';
 import Login2 from './login/Login2';
 import ContextDemo from './context';
+import Slot from './slot';
 
 export default function Demos() {
   return (
@@ -32,6 +33,8 @@ export default function Demos() {
       <Login2></Login2>
       {/* 9. context demo */}
       <ContextDemo></ContextDemo>
+      {/* 10. slots */}
+      <Slot></Slot>
     </div>
   );
 }
