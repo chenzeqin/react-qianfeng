@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cinema from './Cinema';
 import FilmTab from './FilmTab';
+import KeepScrolltop from './KeepScrolltop';
 
 export default class LifeCircle extends Component {
   state = {
@@ -23,6 +24,8 @@ export default class LifeCircle extends Component {
         </button>
         {/* demo: getDerivedStateFromProps */}
         <FilmTab></FilmTab>
+        {/* demo: getSnapshotBeforeUpdate */}
+        <KeepScrolltop></KeepScrolltop>
       </div>
     );
   }

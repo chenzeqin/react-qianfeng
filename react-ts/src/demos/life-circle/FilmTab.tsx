@@ -14,7 +14,7 @@ export default class FilmTab extends Component {
     return (
       <div>
         <h4>getDerivedStateFromProps {type}</h4>
-        <ul className="tab">
+        <ul className="tab-list">
           <li onClick={() => this.setState({ type: 1 })}>正在热映</li>
           <li onClick={() => this.setState({ type: 2 })}>即将上映</li>
         </ul>
@@ -82,7 +82,7 @@ class FilmList extends Component<any, FilmListState> {
   }
   componentDidUpdate(prevProps: any, prevState: FilmListState, snapshot: any) {
     // console.log('film-tab: componentDidUpdate');
-    // console.log(prevProps, prevState, snapshot);
+    console.log(prevProps, prevState, snapshot);
     // 防止循环 getFilmList
     if (prevProps.type === this.props.type) {
       return;

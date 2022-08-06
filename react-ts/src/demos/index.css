@@ -55,3 +55,17 @@ ul.cinema-list li {
 .film-list li{
   width: 50%;
 }
+
+.fixed-btn{
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  background-color: aqua;
+  border: 1px solid #ccc;
+}
+
+.keep-scroll-top-wraper{
+  height: 100px;
+  overflow: auto;
+  background-color: bisque;
+}
