@@ -27,6 +27,9 @@ export default class Cinema extends Component<ChildPorps, ChildState> {
       return { count: preState.count + 1 };
     });
   };
+  // 废弃，因为新版react引入了fiber,优化性能
+  // 把渲染任务划成更小的任务（有优先级）
+  // 如果有优先级更高的任务需要执行，终止UNSAFE_componentWillMount，后续处理完其他任务后再重新调用
   UNSAFE_componentWillMount() {
     console.log('componentWillMount');
     axios
@@ -92,5 +95,4 @@ export default class Cinema extends Component<ChildPorps, ChildState> {
       </div>
     );
   }
-
 }

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { CinemaItem } from '../maizuo/type';
 import propTypes from 'prop-types';
-
+/* 
+ shouldComponentUpdate
+ demo: 点击高亮，性能优化
+*/
 interface IProps {
   item: CinemaItem;
   activeId?: number;

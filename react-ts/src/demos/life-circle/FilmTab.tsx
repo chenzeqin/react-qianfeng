@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import type { FilmItem, Result } from '../maizuo/type';
 import axios from 'axios';
+/* 
+getDerivedStateFromProps
+demo: props.type类型变化，重新发送请求
+*/
 export default class FilmTab extends Component {
   state = {
     type: 1,
@@ -83,7 +87,7 @@ class FilmList extends Component<any, FilmListState> {
     if (prevProps.type === this.props.type) {
       return;
     }
-    console.warn(prevProps.type)
+    console.warn(prevProps.type);
     this.getFilmList();
   }
   render() {

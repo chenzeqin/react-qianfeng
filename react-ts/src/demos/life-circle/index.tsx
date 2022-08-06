@@ -13,6 +13,7 @@ export default class LifeCircle extends Component {
       <div>
         <h3>LifeCircle</h3>
         {show && <Cinema name="影院列表"></Cinema>}
+        {/* demo： 组件销毁 */}
         <button
           onClick={() => {
             this.setState({ show: !show });
