@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cinema from './Cinema';
+import FilmTab from './FilmTab';
 
 export default class LifeCircle extends Component {
   state = {

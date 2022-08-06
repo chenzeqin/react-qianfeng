@@ -48,11 +48,21 @@ export default class Cinema extends Component<ChildPorps, ChildState> {
         });
       });
   }
+  // prevProps prevState
   componentDidMount() {
     console.log('componentDidMount');
   }
   shouldComponentUpdate(nextProps: ChildPorps, nextState: ChildState) {
     return nextState.count % 2 === 0;
+  }
+  UNSAFE_componentWillUpdate() {
+    console.log('componentWillUpdate');
+  }
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
   }
   updateActiveId = (id: number) => {
     this.setState({ activeId: id });
@@ -82,13 +92,5 @@ export default class Cinema extends Component<ChildPorps, ChildState> {
       </div>
     );
   }
-  UNSAFE_componentWillUpdate() {
-    console.log('componentWillUpdate');
-  }
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-  }
+
 }

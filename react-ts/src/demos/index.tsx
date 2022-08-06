@@ -11,6 +11,7 @@ import Login2 from './login/Login2';
 import ContextDemo from './context';
 import Slot from './slot';
 import LifeCircle from './life-circle';
+import FilmTab from './life-circle/FilmTab';
 
 export default function Demos() {
   return (
@@ -38,6 +39,7 @@ export default function Demos() {
       <Slot></Slot>
       {/* 11. 生命周期 */}
       <LifeCircle></LifeCircle>
+      <FilmTab></FilmTab>
     </div>
   );
 }
