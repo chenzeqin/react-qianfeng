@@ -13,7 +13,7 @@ import Slot from './slot';
 
 export default function Demos() {
   return (
-    <div>
+    <div className='demos'>
       <h2>demos</h2>
       {/* 1. todo list 案例 */}
       <TodoList></TodoList>
