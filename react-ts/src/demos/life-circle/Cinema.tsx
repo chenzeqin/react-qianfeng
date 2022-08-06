@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Result, CinemaItem } from '../maizuo/type';
 import BScroll from '@better-scroll/core';
+import CinemaLIstItem from './CinemaLIstItem';
 
 interface ChildState {
   count: number;
   list: CinemaItem[];
+  activeId?: number;
 }
 interface ChildPorps {
   name: string;
@@ -18,6 +20,7 @@ export default class Cinema extends Component<ChildPorps, ChildState> {
   state: ChildState = {
     count: 0,
     list: [],
+    activeId: undefined,
   };
   addCount = () => {
     this.setState((preState) => {
@@ -51,8 +54,11 @@ export default class Cinema extends Component<ChildPorps, ChildState> {
   shouldComponentUpdate(nextProps: ChildPorps, nextState: ChildState) {
     return nextState.count % 2 === 0;
   }
+  updateActiveId = (id: number) => {
+    this.setState({ activeId: id });
+  };
   render() {
-    const { count, list } = this.state;
+    const { count, list, activeId } = this.state;
     console.log('render');
     return (
       <div>
@@ -61,10 +67,12 @@ export default class Cinema extends Component<ChildPorps, ChildState> {
           <ul className="cinema-list">
             {list.map((item) => {
               return (
-                <li key={item.cinemaId}>
-                  <p>{item.name}</p>
-                  <p>地址：{item.address}</p>
-                </li>
+                <CinemaLIstItem
+                  activeId={activeId}
+                  item={item}
+                  key={item.cinemaId}
+                  updateActiveId={this.updateActiveId}
+                ></CinemaLIstItem>
               );
             })}
           </ul>
