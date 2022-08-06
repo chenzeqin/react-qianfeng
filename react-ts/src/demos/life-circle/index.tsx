@@ -21,6 +21,8 @@ export default class LifeCircle extends Component {
         >
           {show ? 'hide' : 'show'}
         </button>
+        {/* demo: getDerivedStateFromProps */}
+        <FilmTab></FilmTab>
       </div>
     );
   }

@@ -73,7 +73,7 @@ class FilmList extends Component<any, FilmListState> {
     this.getFilmList();
   }
   // 初始化、父组件setState，本组件setState都会触发
-  // 很少用，一般只用于转换数据
+  // 很少用，一般只用于把属性转化成自己的状态
   static getDerivedStateFromProps(props: any) {
     // 返回 patialState,覆盖state
     return {

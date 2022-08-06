@@ -39,7 +39,6 @@ export default function Demos() {
       <Slot></Slot>
       {/* 11. 生命周期 */}
       <LifeCircle></LifeCircle>
-      <FilmTab></FilmTab>
     </div>
   );
 }
