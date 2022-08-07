@@ -1,10 +1,12 @@
 import React from 'react';
-import Demos from './demos'
+import Demos from './demos';
+import HooksDemo from './demos/hooks-demo';
 
 function App() {
   return (
     <div className="App">
-      <Demos></Demos>
+      <HooksDemo></HooksDemo>
+      {/* <Demos></Demos> */}
     </div>
   );
 }
