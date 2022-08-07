@@ -27,7 +27,7 @@ export default function DemoUseCallback() {
 
   return (
     <div>
-      <h3>DemoUseCallback</h3>
+      <h3>useCallback</h3>
       <p>text: {text}</p>
       <input type="text" value={text} onChange={handleChange} />
       <p>name: {name}</p>

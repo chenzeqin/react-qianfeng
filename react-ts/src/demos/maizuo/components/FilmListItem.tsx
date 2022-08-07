@@ -8,7 +8,7 @@ export default class FilmListItem extends Component<FilmItem> {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { name, poster } = this.props;
     return (
       <li onClick={this.showDetail}>
