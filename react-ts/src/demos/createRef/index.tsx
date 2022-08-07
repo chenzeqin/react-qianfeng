@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import InputAInputAutoFocusRFCuto from './InputAutoFocusRFC';
+import InputAutoFocusRFC from './InputAutoFocusRFC';
 
 export default function CreateRefDemo() {
   // 通过createRef 获取当前input
@@ -33,7 +33,7 @@ export default function CreateRefDemo() {
       <button onClick={clearInputValue}>清空input值</button>
 
       {/* 通过 ref转发，获取组件内input元素 */}
-      <InputAInputAutoFocusRFCuto ref={inputRef3}></InputAInputAutoFocusRFCuto>
+      <InputAutoFocusRFC ref={inputRef3}></InputAutoFocusRFC>
     </div>
   );
 }
