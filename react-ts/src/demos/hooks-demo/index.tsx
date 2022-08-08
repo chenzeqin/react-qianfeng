@@ -4,7 +4,8 @@ import '../index.css';
 import DemoUseCallback from './DemoUseCallback';
 import DemoUseMemo from './DemoUseMemo';
 import DemoUseRef from './DemoUseRef';
-import DemoUseContext from './DemoUseContext'
+import DemoUseContext from './DemoUseContext';
+import Counter from './DemoUseReducer';
 export default function HooksDemo() {
   return (
     <div>
@@ -14,6 +15,8 @@ export default function HooksDemo() {
       <DemoUseMemo></DemoUseMemo>
       <DemoUseRef></DemoUseRef>
       <DemoUseContext></DemoUseContext>
+      {/* useReducer */}
+      <Counter initialCount={0}></Counter>
     </div>
   );
 }
