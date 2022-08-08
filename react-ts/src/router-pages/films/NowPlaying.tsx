@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Result, FilmItem } from '../type';
-import FilmListItem from './FilmListItem';
 
-export default function NowPlaying() {
+export default function NowPlaying(props: any) {
   console.log('NowPlaying render');
   const [list, setList] = useState<FilmItem[]>([]);
 
@@ -24,12 +23,22 @@ export default function NowPlaying() {
       });
   }, []);
 
+  function handleClick(id: number) {
+    console.log(id);
+    props.history.push(`/detail/${id}`);
+  }
+
   return (
     <div>
       <h4>正在热映</h4>
-      <ul className='film-list'>
+      <ul className="film-list">
         {list.map((item) => {
-          return <FilmListItem key={item.filmId} {...item}></FilmListItem>;
+          return (
+            <li key={item.filmId} onClick={() => handleClick(item.filmId)}>
+              <img style={{ width: '100px' }} src={item.poster} alt="" />
+              <span>{item.name}</span>
+            </li>
+          );
         })}
       </ul>
     </div>

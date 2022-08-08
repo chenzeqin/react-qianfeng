@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Result, FilmItem } from '../type';
-import FilmListItem from './FilmListItem';
 
 export default function ComingSoon() {
   console.log('ComingSoon render');
@@ -24,12 +23,21 @@ export default function ComingSoon() {
       });
   }, []);
 
+  function handleClick(id: number) {
+    console.log(id);
+  }
+  
   return (
     <div>
       <h4>即将上映</h4>
       <ul className="film-list">
         {list.map((item) => {
-          return <FilmListItem key={item.filmId} {...item}></FilmListItem>;
+          return (
+            <li key={item.filmId} onClick={() => handleClick(item.filmId)}>
+              <img style={{ width: '100px' }} src={item.poster} alt="" />
+              <span>{item.name}</span>
+            </li>
+          );
         })}
       </ul>
     </div>
