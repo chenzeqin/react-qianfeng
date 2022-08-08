@@ -1,4 +1,6 @@
 import React, { useReducer } from 'react';
+import { createContext } from 'react';
+import { useContext } from 'react';
 
 /* 
 demo: useRuducer
@@ -34,7 +36,16 @@ interface CounterProps {
   initialCount: number;
 }
 
-export default function Counter({ initialCount }: CounterProps) {
+const CountContext = createContext<{
+  state: IState;
+  dispatch: React.Dispatch<Action>;
+}>({
+  state: { count: 0 },
+  dispatch: () => {},
+});
+
+export default function DemoUseReducer({ initialCount }: CounterProps) {
+  // 每一个useReducer都创建一个新的state,和其他组件创建的state不相关
   const [state, dispatch] = useReducer(reducer, initialCount, init);
   return (
     <>
@@ -44,6 +55,26 @@ export default function Counter({ initialCount }: CounterProps) {
       </button>
       <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
       <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      {/* useReducer 结合 context，实现redux功能 */}
+      <CountContext.Provider
+        value={{
+          state,
+          dispatch,
+        }}
+      >
+        <CounterA></CounterA>
+      </CountContext.Provider>
     </>
+  );
+}
+
+function CounterA() {
+  const context = useContext(CountContext);
+  const { state, dispatch } = context;
+  return (
+    <p>
+      <span>CounterA ----- count:{state.count}</span>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+    </p>
   );
 }

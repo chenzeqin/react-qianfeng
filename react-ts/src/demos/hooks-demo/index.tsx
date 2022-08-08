@@ -5,7 +5,7 @@ import DemoUseCallback from './DemoUseCallback';
 import DemoUseMemo from './DemoUseMemo';
 import DemoUseRef from './DemoUseRef';
 import DemoUseContext from './DemoUseContext';
-import Counter from './DemoUseReducer';
+import DemoUseReducer from './DemoUseReducer';
 export default function HooksDemo() {
   return (
     <div>
@@ -16,7 +16,7 @@ export default function HooksDemo() {
       <DemoUseRef></DemoUseRef>
       <DemoUseContext></DemoUseContext>
       {/* useReducer */}
-      <Counter initialCount={0}></Counter>
+      <DemoUseReducer initialCount={0}></DemoUseReducer>
     </div>
   );
 }
