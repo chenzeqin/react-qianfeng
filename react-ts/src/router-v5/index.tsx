@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { HashRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Films from '../router-pages/films';
 import Cinemas from '../router-pages/cinemas';
 import Center from '../router-pages/center';
 import NotFound from '../router-pages/NotFound';
 
-function HomeRouter(props: any) {
-  console.log(props);
+interface HomeProps {
+  children: ReactNode;
+}
+
+function HomeRouter(props: HomeProps) {
   return (
     <HashRouter>
       {/* 写在 Switch 不会被渲染！ */}
