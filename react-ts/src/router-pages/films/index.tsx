@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import NowPlaying from './NowPlaying';
 import ComingSoon from './ComingSoon';
 
@@ -8,8 +8,11 @@ export default class Films extends Component {
     return (
       <div>
         <h3>Films</h3>
-        <Route path="/films/nowplaying" component={NowPlaying}></Route>
-        <Route path="/films/comingsoon" component={ComingSoon}></Route>
+        <Switch>
+          <Route path="/films/nowplaying" component={NowPlaying}></Route>
+          <Route path="/films/comingsoon" component={ComingSoon}></Route>
+          <Redirect from="/films" to="/films/nowplaying" exact></Redirect>
+        </Switch>
       </div>
     );
   }

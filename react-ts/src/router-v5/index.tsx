@@ -15,7 +15,7 @@ function HomeRouter() {
         <Route path="/center" component={Center}></Route>
         {/* 路由重定向 */}
         {/* exact： 精确匹配 */}
-        <Redirect to="/films" from="/" exact></Redirect>
+        <Redirect from="/" to="/films" exact></Redirect>
         {/* 404 路由兜底页面 */}
         <Route component={NotFound}></Route>
       </Switch>
