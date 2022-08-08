@@ -1,7 +1,8 @@
 import React from 'react';
 import Demos from './demos';
 import HooksDemo from './demos/hooks-demo';
-import HomeRouter from './router-v5';
+import Maizuo from './router-pages';
+
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       {/* <HooksDemo></HooksDemo> */}
       {/* <Demos></Demos> */}
       {/* react-router-dom v5 demo */}
-      <HomeRouter></HomeRouter>
+      <Maizuo></Maizuo>
     </div>
   );
 }
