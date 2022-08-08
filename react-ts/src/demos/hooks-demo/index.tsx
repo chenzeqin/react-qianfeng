@@ -6,6 +6,7 @@ import DemoUseMemo from './DemoUseMemo';
 import DemoUseRef from './DemoUseRef';
 import DemoUseContext from './DemoUseContext';
 import DemoUseReducer from './DemoUseReducer';
+import CustomHooks from './CustomHooks';
 export default function HooksDemo() {
   return (
     <div>
@@ -17,6 +18,7 @@ export default function HooksDemo() {
       <DemoUseContext></DemoUseContext>
       {/* useReducer */}
       <DemoUseReducer initialCount={0}></DemoUseReducer>
+      <CustomHooks></CustomHooks>
     </div>
   );
 }

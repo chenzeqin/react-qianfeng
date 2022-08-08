@@ -2,13 +2,9 @@ import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { Result, FilmItem } from '../maizuo/type';
 import FilmListItem from '../maizuo/components/FilmListItem';
-/*
-  demo: useMemo
-   返回第一个参数执行的结果，如果是返回函数，作用和useCallback类似
-  作用：类似vue计算属性
-*/
-export default function DemoUseMemo() {
-  const [text, setText] = useState('');
+import FileItemDetail from '../maizuo/components/FileItemDetail';
+
+function useList() {
   const [list, setList] = useState<FilmItem[]>([]);
 
   useEffect(() => {
@@ -27,25 +23,34 @@ export default function DemoUseMemo() {
         setList(res.data.data.films);
       });
   }, []);
+  return {
+    list,
+  };
+}
 
+function useFilterList(list: FilmItem[], text: string) {
   // 和vue的计算属性类型
   const filteredList = useMemo(() => {
     console.log('useMemo');
     return list.filter((item) => item.name.includes(text));
   }, [text, list]);
 
-  // 返回第一个参数执行的结果，如果是返回函数，作用和useCallback类似
-  const handleChange = useMemo(() => {
-    console.log('change');
-    return (e: ChangeEvent<HTMLInputElement>) => {
-      console.log(text);
-      setText(e.target.value);
-    };
-  }, [text]);
+  return {
+    filteredList,
+  };
+}
 
+export default function CunstomHooks() {
+  console.log('film render');
+  const [text, setText] = useState('');
+  const { list } = useList();
+  const { filteredList } = useFilterList(list, text);
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setText(e.target.value);
+  }
   return (
     <div>
-      <h3>demo: useMemo</h3>
+      <h4>Film</h4>
       <p>text: {text}</p>
       <input type="text" value={text} onChange={handleChange} />
       <ul className="film-list" style={{ flexWrap: 'wrap' }}>
