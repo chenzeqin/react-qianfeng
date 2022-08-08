@@ -13,7 +13,7 @@ function HomeRouter() {
         <Route path="/cinemas" component={Cinemas}></Route>
         <Route path="/center" component={Center}></Route>
         {/* 路由重定向 */}
-        {/* <Redirect to="/films" from="/"></Redirect> */}
+        <Redirect to="/films" from="/" exact></Redirect>
         {/* 404 路由兜底页面 */}
         <Route component={NotFound}></Route>
       </Switch>
