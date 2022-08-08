@@ -4,6 +4,7 @@ import '../index.css';
 import DemoUseCallback from './DemoUseCallback';
 import DemoUseMemo from './DemoUseMemo';
 import DemoUseRef from './DemoUseRef';
+import DemoUseContext from './DemoUseContext'
 export default function HooksDemo() {
   return (
     <div>
@@ -12,6 +13,7 @@ export default function HooksDemo() {
       <DemoUseCallback></DemoUseCallback>
       <DemoUseMemo></DemoUseMemo>
       <DemoUseRef></DemoUseRef>
+      <DemoUseContext></DemoUseContext>
     </div>
   );
 }
