@@ -3,7 +3,7 @@ import { HashRouter, Route, Redirect, Switch } from 'react-router-dom';
 import Films from '../router-pages/films';
 import Cinemas from '../router-pages/cinemas';
 import Center from '../router-pages/center';
-import NotFound from '../router-pages/NotFound';
+import NotFound from '../router-pages/404';
 
 interface HomeProps {
   children: ReactNode;
