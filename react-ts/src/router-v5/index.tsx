@@ -5,9 +5,14 @@ import Cinemas from '../router-pages/cinemas';
 import Center from '../router-pages/center';
 import NotFound from '../router-pages/404';
 import Detail from '../router-pages/films/Detail';
+import Login from '../router-pages/Login';
 
 interface HomeProps {
   children: ReactNode;
+}
+
+function hasAuth() {
+  return localStorage.getItem('token');
 }
 
 function HomeRouter(props: HomeProps) {
@@ -20,9 +25,21 @@ function HomeRouter(props: HomeProps) {
         {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
         <Route path="/films" component={Films}></Route>
         <Route path="/cinemas" component={Cinemas}></Route>
-        <Route path="/center" component={Center}></Route>
+        {/* 路由拦截： react没有路由拦截的概念，TODO: 需要自己封装拦截逐渐 */}
+        <Route
+          path="/center"
+          render={() => {
+            return hasAuth() ? (
+              <Center></Center>
+            ) : (
+              <Redirect to="/login"></Redirect>
+            );
+          }}
+        ></Route>
         <Route path="/detail/:id" component={Detail}></Route>
         {/* <Route path="/detail" component={Detail}></Route> */}
+
+        <Route path="/login" component={Login}></Route>
         {/* 路由重定向 */}
         {/* exact： 精确匹配 */}
         <Redirect from="/" to="/films" exact></Redirect>
