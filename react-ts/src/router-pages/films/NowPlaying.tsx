@@ -8,10 +8,14 @@ import {
   RouteComponentProps,
 } from 'react-router-dom';
 
-
-export default function NowPlaying(props: RouteComponentProps) {
+// test:通过联合类型，添加属性
+interface IProps {
+  name?: string;
+}
+export default function NowPlaying(props: RouteComponentProps & IProps) {
   console.log('NowPlaying render');
   const [list, setList] = useState<FilmItem[]>([]);
+  console.log(props.name); //test:通过联合类型，添加属性
   useEffect(() => {
     axios
       .get<Result<Record<'films', FilmItem[]>>>(
