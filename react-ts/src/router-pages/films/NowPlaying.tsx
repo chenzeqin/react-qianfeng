@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Result, FilmItem } from '../type';
+import { HashRouterProps, RouteProps, StaticRouterProps,RouteComponentProps } from 'react-router-dom';
 
-export default function NowPlaying(props: any) {
+export default function NowPlaying(props: RouteComponentProps) {
   console.log('NowPlaying render');
   const [list, setList] = useState<FilmItem[]>([]);
 
@@ -25,7 +26,7 @@ export default function NowPlaying(props: any) {
 
   function handleClick(id: number) {
     console.log(id);
-    props.history.push(`/detail/${id}`);
+    props.history.push({pathname:`/detail/${id}`});
   }
 
   return (

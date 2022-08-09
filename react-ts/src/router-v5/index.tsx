@@ -21,7 +21,7 @@ function HomeRouter(props: HomeProps) {
         <Route path="/films" component={Films}></Route>
         <Route path="/cinemas" component={Cinemas}></Route>
         <Route path="/center" component={Center}></Route>
-        <Route path="/detail" component={Detail}></Route>
+        <Route path="/detail/:id" component={Detail}></Route>
         {/* 路由重定向 */}
         {/* exact： 精确匹配 */}
         <Redirect from="/" to="/films" exact></Redirect>
