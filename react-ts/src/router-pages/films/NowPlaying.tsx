@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Result, FilmItem } from '../type';
-import {
-  HashRouterProps,
-  RouteProps,
-  StaticRouterProps,
-  RouteComponentProps,
-} from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
+import FilmListItem from './FilmListItem';
 
 // test:通过联合类型，添加属性
 interface IProps {
@@ -36,7 +32,7 @@ export default function NowPlaying(props: RouteComponentProps & IProps) {
   function handleClick(id: number) {
     console.log(id);
     // 1. 从match.params获取
-    props.history.push(`/detail/${id}`)
+    props.history.push(`/detail/${id}`);
     // 2. 从location.query获取（存在内存中）
     // props.history.push({ pathname: `/detail`, query: { id } }); // TODO: 类型检查报错
     // 3. 从location.search获取，通过qs等库转换
@@ -51,10 +47,10 @@ export default function NowPlaying(props: RouteComponentProps & IProps) {
       <ul className="film-list">
         {list.map((item) => {
           return (
-            <li key={item.filmId} onClick={() => handleClick(item.filmId)}>
-              <img style={{ width: '100px' }} src={item.poster} alt="" />
-              <span>{item.name}</span>
-            </li>
+            // 1. 非路由组件，可通过父组件（路由组件传入）
+            // <FilmListItem key={item.filmId} {...item} {...props}></FilmListItem>
+            // 2. 或者通过withRouter转成路由组件
+            <FilmListItem key={item.filmId} {...item}></FilmListItem>
           );
         })}
       </ul>
