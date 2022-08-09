@@ -28,9 +28,10 @@ function HomeRouter(props: HomeProps) {
         {/* 路由拦截： react没有路由拦截的概念，TODO: 需要自己封装拦截逐渐 */}
         <Route
           path="/center"
-          render={() => {
+          render={(props) => {
+            // 通过props可以获取路由组件属性
             return hasAuth() ? (
-              <Center></Center>
+              <Center {...props}></Center>
             ) : (
               <Redirect to="/login"></Redirect>
             );
