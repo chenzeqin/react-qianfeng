@@ -1,5 +1,11 @@
 import React, { ReactNode } from 'react';
-import { HashRouter, Route, Redirect, Switch } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  BrowserRouter as Router2,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 import Films from '../router-pages/films';
 import Cinemas from '../router-pages/cinemas';
 import Center from '../router-pages/center';
@@ -17,7 +23,7 @@ function hasAuth() {
 
 function HomeRouter(props: HomeProps) {
   return (
-    <HashRouter>
+    <Router2>
       {/* 写在 Switch 不会被渲染！ */}
       {/* Tabbar 渲染在这里， NavLink需要包含在Router中*/}
       {props.children}
@@ -47,7 +53,7 @@ function HomeRouter(props: HomeProps) {
         {/* 404 路由兜底页面 */}
         <Route component={NotFound}></Route>
       </Switch>
-    </HashRouter>
+    </Router2>
   );
 }
 
