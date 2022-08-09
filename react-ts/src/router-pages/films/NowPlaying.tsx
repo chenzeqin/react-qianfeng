@@ -19,7 +19,7 @@ export default function NowPlaying(props: RouteComponentProps & IProps) {
   useEffect(() => {
     axios
       .get<Result<Record<'films', FilmItem[]>>>(
-        'https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=2&type=2&k=1178624',
+        'https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=10&type=2&k=1178624',
         {
           headers: {
             'X-Client-Info': `{"a":"3000","ch":"1002","v":"5.2.0","e":"16592753012062937216778241","bc":"110100"}`,
@@ -36,11 +36,11 @@ export default function NowPlaying(props: RouteComponentProps & IProps) {
   function handleClick(id: number) {
     console.log(id);
     // 1. 从match.params获取
-    // props.history.push(`/detail/${id}`)
+    props.history.push(`/detail/${id}`)
     // 2. 从location.query获取（存在内存中）
     // props.history.push({ pathname: `/detail`, query: { id } }); // TODO: 类型检查报错
     // 3. 从location.search获取，通过qs等库转换
-    props.history.push({ pathname: `/detail?id=${id}` });
+    // props.history.push({ pathname: `/detail?id=${id}` });
     // 4. 从location.state获取（存在内存中）
     // props.history.push({ pathname: `/detail`, state: { id } });
   }
