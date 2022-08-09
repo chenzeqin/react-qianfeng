@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Result, FilmItem } from '../type';
-import { HashRouterProps, RouteProps, StaticRouterProps,RouteComponentProps } from 'react-router-dom';
+import {
+  HashRouterProps,
+  RouteProps,
+  StaticRouterProps,
+  RouteComponentProps,
+} from 'react-router-dom';
+
 
 export default function NowPlaying(props: RouteComponentProps) {
   console.log('NowPlaying render');
   const [list, setList] = useState<FilmItem[]>([]);
-
   useEffect(() => {
     axios
       .get<Result<Record<'films', FilmItem[]>>>(
@@ -26,7 +31,14 @@ export default function NowPlaying(props: RouteComponentProps) {
 
   function handleClick(id: number) {
     console.log(id);
-    props.history.push({pathname:`/detail/${id}`});
+    // 1. 从match.params获取
+    // props.history.push(`/detail/${id}`)
+    // 2. 从location.query获取（存在内存中）
+    // props.history.push({ pathname: `/detail`, query: { id } }); // TODO: 类型检查报错
+    // 3. 从location.search获取，通过qs等库转换
+    props.history.push({ pathname: `/detail?id=${id}` });
+    // 4. 从location.state获取（存在内存中）
+    // props.history.push({ pathname: `/detail`, state: { id } });
   }
 
   return (
