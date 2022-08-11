@@ -1,0 +1,37 @@
+/* css 模块化 文件名必须是 xxx.module.css */
+/* 支持id */
+#film-list-id {
+  padding: 10px;
+}
+/* 支持class */
+.maoyan-list {
+  font-size: 16px;
+}
+
+.film-item {
+  border: 1px solid #eee;
+}
+/* 同名的会合并样式 */
+.film-item {
+  color: #666;
+}
+.film-item:hover {
+  background-color: rgba(188, 205, 190, 0.2);
+}
+
+/* 全局，标签无法模块化 */
+ul li {
+  list-style: none;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* 定义全局样式 */
+:global(.btn) {
+  color: coral;
+  font-size: 20px;
+}
+
+:global(.other-class) {
+  border-radius: 10px;
+}

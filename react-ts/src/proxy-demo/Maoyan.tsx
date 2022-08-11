@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import style from './index.module.css';
+console.log(style); // 导出一个对象
 /*
  测试api 代理
 */
@@ -17,17 +19,17 @@ export default function Maoyan() {
       });
   }, []);
   return (
-    <div>
+    <div id={style['film-list-id']}>
       <h2>猫眼电影列表</h2>
-      <ul>
+      <ul className={style['maoyan-list']}>
         {list.map((item) => {
           return (
-            <li key={item.id}>
+            <li className={`${style['film-item']} other-class`} key={item.id}>
               <img src={item.img} style={{ width: '200px' }} alt="" />
               <p>{item.nm}</p>
               <p>{item.cat}</p>
               <p>{item.desc}</p>
-              <p>{item.showInfo}</p>
+              <p className="btn">{item.showInfo}</p>
               <p>{item.boxInfo}</p>
             </li>
           );
