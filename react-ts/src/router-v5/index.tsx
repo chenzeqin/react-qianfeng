@@ -31,7 +31,7 @@ function HomeRouter(props: HomeProps) {
         {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
         <Route path="/films" component={Films}></Route>
         <Route path="/cinemas" component={Cinemas}></Route>
-        {/* 路由拦截： react没有路由拦截的概念，TODO: 需要自己封装拦截逐渐 */}
+        {/* 路由拦截： react没有路由拦截的概念，TODO: 需要自己封装拦截组件 */}
         <Route
           path="/center"
           render={(props) => {
