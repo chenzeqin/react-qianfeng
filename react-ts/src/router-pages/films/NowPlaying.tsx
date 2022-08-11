@@ -33,10 +33,10 @@ export default function NowPlaying(props: RouteComponentProps & IProps) {
     console.log(id);
     // 1. 从match.params获取
     props.history.push(`/detail/${id}`);
-    // 2. 从location.query获取（存在内存中）
-    // props.history.push({ pathname: `/detail`, query: { id } }); // TODO: 类型检查报错
-    // 3. 从location.search获取，通过qs等库转换
+    // 2. 从location.search获取，通过qs等库转换
     // props.history.push({ pathname: `/detail?id=${id}` });
+    // 3. 从location.query获取（存在内存中）
+    // props.history.push({ pathname: `/detail`, query: { id } }); // TODO: 类型检查报错
     // 4. 从location.state获取（存在内存中）
     // props.history.push({ pathname: `/detail`, state: { id } });
   }
