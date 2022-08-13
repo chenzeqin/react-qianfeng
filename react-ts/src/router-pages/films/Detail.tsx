@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Result, FilmItem } from '../type';
 import { RouteComponentProps } from 'react-router-dom';
+import { store } from '../../redux';
 
 type IState = Partial<FilmItem>;
 export default class Detail extends Component<
@@ -9,6 +10,8 @@ export default class Detail extends Component<
 > {
   state: IState = {};
   componentDidMount() {
+    console.log('componentDidMount');
+    store.dispatch({ type: 'show', payload: { show: false } });
     const filmId = this.props.match.params.id;
     if (!filmId) {
       this.props.history.replace('/films');
@@ -28,6 +31,9 @@ export default class Detail extends Component<
         // console.log(res);
         this.setState(res.data.data.film);
       });
+  }
+  componentWillUnmount() {
+    store.dispatch({ type: 'hide', payload: { show: true } });
   }
   render() {
     console.log(this.props.match.params.id);

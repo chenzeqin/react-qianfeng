@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Demos from './demos';
 import HooksDemo from './demos/hooks-demo';
 import Maoyan from './proxy-demo/Maoyan';
 import Maizuo from './router-pages';
-
 
 function App() {
   return (
@@ -11,9 +10,9 @@ function App() {
       {/* <HooksDemo></HooksDemo> */}
       {/* <Demos></Demos> */}
       {/* react-router-dom v5 demo */}
-      {/* <Maizuo></Maizuo> */}
+      <Maizuo></Maizuo>
       {/* http proxy demo */}
-      <Maoyan></Maoyan>
+      {/* <Maoyan></Maoyan> */}
     </div>
   );
 }

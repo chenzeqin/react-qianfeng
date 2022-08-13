@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { store } from '../../redux';
 
 export default class Tabbar extends Component {
   render() {
