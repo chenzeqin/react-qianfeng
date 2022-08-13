@@ -12,6 +12,7 @@ import Center from '../router-pages/center';
 import NotFound from '../router-pages/404';
 import Detail from '../router-pages/films/Detail';
 import Login from '../router-pages/Login';
+import City from '../router-pages/City.ts';
 
 interface HomeProps {
   children: ReactNode;
@@ -47,6 +48,7 @@ function HomeRouter(props: HomeProps) {
         {/* <Route path="/detail" component={Detail}></Route> */}
 
         <Route path="/login" component={Login}></Route>
+        <Route path="/city" component={City}></Route>
         {/* 路由重定向 */}
         {/* exact： 精确匹配 */}
         <Redirect from="/" to="/films" exact></Redirect>

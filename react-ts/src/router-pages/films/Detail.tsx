@@ -10,7 +10,7 @@ export default class Detail extends Component<
 > {
   state: IState = {};
   componentDidMount() {
-    console.log('detail-componentDidMount step-2');
+    // 所有reducer都会触发
     store.dispatch({ type: 'show', payload: { show: false } });
     const filmId = this.props.match.params.id;
     if (!filmId) {
@@ -36,7 +36,6 @@ export default class Detail extends Component<
     store.dispatch({ type: 'hide', payload: { show: true } });
   }
   render() {
-    console.info('detail-render');
     // console.log(this.props.match.params.id);
     const { name, synopsis, poster } = this.state;
     return (

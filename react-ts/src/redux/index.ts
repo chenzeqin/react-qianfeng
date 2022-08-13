@@ -1,33 +1,13 @@
-import { createStore } from 'redux'
-import { createStore2 } from './MyRudex'
-/*
-    redux 基础用法
-*/
+import { combineReducers, createStore } from 'redux'
+// import { createStore2 } from './MyRudex'
 
-interface Action {
-  type: string,
-  payload?: Record<'show', boolean>
-}
+import cityRuducer from './reducers/cityReducer'
+import tabReducer from './reducers/tabReducer'
 
-const initialState = {
-  show: true
-}
-
-
-const reducer = (state = initialState, { type, payload }: Action) => {
-  // console.log(state, payload, type)
-  switch (type) {
-
-    case 'show':
-      return { ...state, ...payload }
-
-    case 'hide':
-      return { ...state, ...payload }
-
-    default:
-      return state
-  }
-}
+const reducer = combineReducers({
+  cityRuducer,
+  tabReducer
+})
 
 // export const store = createStore(reducer)
-export const store = createStore2(reducer)
+export const store = createStore(reducer)

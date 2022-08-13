@@ -17,6 +17,9 @@ export default class Tabbar extends Component {
           <NavLink to="/center" activeClassName="tab-active">
             我的
           </NavLink>
+          <NavLink to="/city" activeClassName="tab-active">
+            城市
+          </NavLink>
         </ul>
       </div>
     );

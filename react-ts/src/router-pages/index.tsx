@@ -9,7 +9,6 @@ export default class Maizuo extends Component {
     show: false,
   };
   componentDidMount() {
-    console.log('index-componentDidMount step-3');
     store.subscribe(() => {
       console.log('redux subscribe');
       // 手动触发组件更新
@@ -18,8 +17,7 @@ export default class Maizuo extends Component {
   }
 
   render() {
-    const { show } = store.getState();
-    console.log('index-render step-1', store.getState());
+    const { show } = store.getState().tabReducer;
     return <HomeRouter>{show && <Tabbar></Tabbar>}</HomeRouter>;
   }
 }
