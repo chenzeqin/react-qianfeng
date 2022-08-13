@@ -13,6 +13,7 @@ import NotFound from '../router-pages/404';
 import Detail from '../router-pages/films/Detail';
 import Login from '../router-pages/Login';
 import City from '../router-pages/City.ts';
+import Search from '../router-pages/cinemas/Search';
 
 interface HomeProps {
   children: ReactNode;
@@ -31,7 +32,8 @@ function HomeRouter(props: HomeProps) {
       <Switch>
         {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
         <Route path="/films" component={Films}></Route>
-        <Route path="/cinemas" component={Cinemas}></Route>
+        <Route path="/cinemas" component={Cinemas} exact></Route>
+        <Route path="/cinemas/search" component={Search}></Route>
         {/* 路由拦截： react没有路由拦截的概念，TODO: 需要自己封装拦截组件 */}
         <Route
           path="/center"

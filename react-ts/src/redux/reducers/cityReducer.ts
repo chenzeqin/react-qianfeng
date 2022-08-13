@@ -1,3 +1,8 @@
+
+/*
+  更改当前城市选择
+*/
+
 interface Action {
   type: string,
   payload?: string
