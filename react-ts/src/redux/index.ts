@@ -7,6 +7,9 @@ import cityRuducer from './reducers/cityReducer'
 import tabReducer from './reducers/tabReducer'
 import cinameReducer from './reducers/cinemaReducer'
 
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+
 const rootReducer = combineReducers({
   cityRuducer,
   tabReducer,
@@ -16,5 +19,9 @@ const rootReducer = combineReducers({
 // export const store = createStore(reducer)
 export const store = createStore(
   rootReducer,
-  applyMiddleware(ReduxThunk, ReduxPromise),
+  // 配置开发工具
+  composeWithDevTools(
+    applyMiddleware(ReduxThunk, ReduxPromise),
+    // other store enhancers if any
+  )
 )
