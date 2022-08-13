@@ -9,15 +9,17 @@ export default class Maizuo extends Component {
     show: false,
   };
   componentDidMount() {
+    console.log('index-componentDidMount step-3');
     store.subscribe(() => {
       console.log('redux subscribe');
       // 手动触发组件更新
-      this.setState({})
+      this.setState({});
     });
   }
 
   render() {
     const { show } = store.getState();
+    console.log('index-render step-1', store.getState());
     return <HomeRouter>{show && <Tabbar></Tabbar>}</HomeRouter>;
   }
 }

@@ -1,12 +1,12 @@
 import { createStore } from 'redux'
-
+import { createStore2 } from './MyRudex'
 /*
     redux 基础用法
 */
 
 interface Action {
-  type: 'hide' | 'show',
-  payload: Record<'show', boolean>
+  type: string,
+  payload?: Record<'show', boolean>
 }
 
 const initialState = {
@@ -15,7 +15,7 @@ const initialState = {
 
 
 const reducer = (state = initialState, { type, payload }: Action) => {
-  console.log(state, payload, type)
+  // console.log(state, payload, type)
   switch (type) {
 
     case 'show':
@@ -29,4 +29,5 @@ const reducer = (state = initialState, { type, payload }: Action) => {
   }
 }
 
-export const store = createStore(reducer)
+// export const store = createStore(reducer)
+export const store = createStore2(reducer)
