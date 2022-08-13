@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 // import { createStore2 } from './MyRudex'
 import ReduxThunk from 'redux-thunk'
+import ReduxPromise from 'redux-promise'
 
 import cityRuducer from './reducers/cityReducer'
 import tabReducer from './reducers/tabReducer'
@@ -15,5 +16,5 @@ const rootReducer = combineReducers({
 // export const store = createStore(reducer)
 export const store = createStore(
   rootReducer,
-  applyMiddleware(ReduxThunk)
+  applyMiddleware(ReduxThunk, ReduxPromise),
 )

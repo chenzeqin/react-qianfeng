@@ -15,10 +15,9 @@ export const useList = () => {
   const [list, setList] = useState<CinemaItem[]>(cinemaList) // 默认值
 
   useEffect(() => {
-    console.log('useEffect')
     const cinemaList = (store.getState().cinameReducer as any).list as CinemaItem[]
     if (cinemaList.length) {
-      console.log('get list from store')
+      console.info('get list from store')
       // setList(cinemaList) // 如果没有设置默认值， 加上这一行
     } else {
       store.dispatch(getCinemaListAction() as any)
