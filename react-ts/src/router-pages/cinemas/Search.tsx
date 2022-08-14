@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import { CinemaItem } from '../type';
 import { useList } from './useList';
 
 export default function Search() {

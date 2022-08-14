@@ -9,9 +9,13 @@ import { connect, ConnectedProps } from 'react-redux';
 // 该组件不需要state，可以在connect传入null
 const mapState = (state: RootState) => ({
   show: state.tabReducer.show,
+  // 也可以传入其他数据来源,例如
+  tip: '(热门)',
 });
 
+// 如果有写action creator,引入需要的即可
 const mapDispatch = {
+  // 返回 action 用于dispatch
   toggleOn: () => ({ type: 'show', payload: { show: true } }),
   toggleOff: () => ({ type: 'hide', payload: { show: false } }),
 };
@@ -57,9 +61,12 @@ class Detail extends Component<RouteComponentProps<{ id: string }> & Props> {
   render() {
     // console.log(this.props.match.params.id);
     const { name, synopsis, poster } = this.state;
+    const { tip } = this.props;
     return (
       <div>
-        <h4>{name}</h4>
+        <h4>
+          {name}-{tip}
+        </h4>
         {poster && <img src={poster} alt="" style={{ width: '400px' }} />}
         <p>{synopsis}</p>
       </div>
