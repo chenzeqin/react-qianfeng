@@ -2,12 +2,12 @@ import React, { useMemo, useState } from 'react';
 import { useList } from './useList';
 
 export default function Search() {
-  const { list } = useList();
+  const { cinemaList } = useList();
 
   const [text, setText] = useState('');
   const filterdList = useMemo(() => {
-    return list.filter((item) => item.name.includes(text));
-  }, [text, list]);
+    return cinemaList.filter((item) => item.name.includes(text));
+  }, [text, cinemaList]);
 
   return (
     <div>

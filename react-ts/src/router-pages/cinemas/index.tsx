@@ -4,7 +4,7 @@ import { store } from '../../redux';
 import { useList } from './useList';
 
 export default function Cinemas(props: RouteChildrenProps) {
-  const { list } = useList();
+  const { cinemaList } = useList();
   const { city } = store.getState().cityRuducer;
   return (
     <div>
@@ -24,7 +24,7 @@ export default function Cinemas(props: RouteChildrenProps) {
         搜索
       </button>
       <ul>
-        {list.map((item) => {
+        {cinemaList.map((item) => {
           return <li key={item.cinemaId}>{item.name}</li>;
         })}
       </ul>
