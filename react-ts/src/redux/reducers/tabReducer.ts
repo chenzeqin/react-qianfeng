@@ -2,8 +2,11 @@ interface Action {
   type: string,
   payload?: Record<'show', boolean>
 }
+export interface TabState {
+  show: boolean
+}
 
-const initialState = {
+const initialState: TabState = {
   show: true
 }
 

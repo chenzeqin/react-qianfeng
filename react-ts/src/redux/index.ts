@@ -3,9 +3,9 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import ReduxPromise from 'redux-promise'
 
-import cityRuducer from './reducers/cityReducer'
-import tabReducer from './reducers/tabReducer'
-import cinameReducer from './reducers/cinemaReducer'
+import cityRuducer, { CityState } from './reducers/cityReducer'
+import tabReducer, { TabState } from './reducers/tabReducer'
+import cinameReducer, { CinemaState } from './reducers/cinemaReducer'
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -25,3 +25,10 @@ export const store = createStore(
     // other store enhancers if any
   )
 )
+
+
+export interface RootState {
+  cityRuducer: CityState,
+  tabReducer: TabState,
+  cinameReducer: CinemaState
+}

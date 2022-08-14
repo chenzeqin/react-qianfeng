@@ -7,7 +7,9 @@ interface Action {
   type: string,
   payload?: string
 }
-
+export interface CityState {
+  city: string
+}
 const initialState = {
   city: ''
 }

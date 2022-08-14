@@ -2,16 +2,34 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { Result, FilmItem } from '../type';
 import { RouteComponentProps } from 'react-router-dom';
-import { store } from '../../redux';
+
+import { RootState } from '../../redux';
+import { connect, ConnectedProps } from 'react-redux';
+
+// 该组件不需要state，可以在connect传入null
+const mapState = (state: RootState) => ({
+  show: state.tabReducer.show,
+});
+
+const mapDispatch = {
+  toggleOn: () => ({ type: 'show', payload: { show: true } }),
+  toggleOff: () => ({ type: 'hide', payload: { show: false } }),
+};
+const connector = connect(mapState, mapDispatch);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+interface Props extends PropsFromRedux {
+  // 组件的其他属性 ...
+  // backgroundColor: string;
+}
 
 type IState = Partial<FilmItem>;
-export default class Detail extends Component<
-  RouteComponentProps<{ id: string }>
-> {
+class Detail extends Component<RouteComponentProps<{ id: string }> & Props> {
   state: IState = {};
   componentDidMount() {
     // 所有reducer都会触发
-    store.dispatch({ type: 'show', payload: { show: false } });
+    // store.dispatch({ type: 'show', payload: { show: false } });
+    this.props.toggleOff();
     const filmId = this.props.match.params.id;
     if (!filmId) {
       this.props.history.replace('/films');
@@ -33,7 +51,8 @@ export default class Detail extends Component<
       });
   }
   componentWillUnmount() {
-    store.dispatch({ type: 'hide', payload: { show: true } });
+    // store.dispatch({ type: 'hide', payload: { show: true } });
+    this.props.toggleOn();
   }
   render() {
     // console.log(this.props.match.params.id);
@@ -47,3 +66,5 @@ export default class Detail extends Component<
     );
   }
 }
+
+export default connector(Detail);

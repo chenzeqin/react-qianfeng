@@ -7,8 +7,11 @@ interface Action {
   type: string,
   payload?: CinemaItem[]
 }
+export interface CinemaState {
+  list: CinemaItem[]
+}
 
-const initialState = {
+const initialState: CinemaState = {
   list: []
 }
 
