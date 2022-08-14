@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react"
-import axios from 'axios'
-import type { Result, CinemaItem } from '../type'
+import { useEffect } from "react"
 import { store, RootState } from "../../redux"
 import { getCinemaListAction } from "../../redux/actionCreators/getCinemaListAction"
 import { useSelector, useDispatch } from 'react-redux'
