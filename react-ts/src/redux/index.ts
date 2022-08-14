@@ -27,19 +27,14 @@ const rootReducer = combineReducers({
 // 创建持久化的reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const store = createStore(persistedReducer,
+export const store = createStore(persistedReducer,
   // 配置开发工具
   composeWithDevTools(
     applyMiddleware(ReduxThunk, ReduxPromise),
     // other store enhancers if any
   ))
 
-const persistor = persistStore(store)
-
-export {
-  store,
-  persistor
-}
+export const persistor = persistStore(store)
 
 export interface RootState {
   cityRuducer: CityState,
