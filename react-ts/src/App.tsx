@@ -11,11 +11,11 @@ function App() {
       {/* <HooksDemo></HooksDemo> */}
       {/* <Demos></Demos> */}
       {/* react-router-dom v5 demo */}
-      {/* <Maizuo></Maizuo> */}
+      <Maizuo></Maizuo>
       {/* http proxy demo */}
       {/* <Maoyan></Maoyan> */}
       {/* Antd 组件库练习 */}
-      <AntdDemo></AntdDemo>
+      {/* <AntdDemo></AntdDemo> */}
     </div>
   );
 }
