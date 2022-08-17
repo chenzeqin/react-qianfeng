@@ -54,9 +54,13 @@ export default class Films extends Component {
           {items}
         </Swiper>
         <Switch>
-          <Route path="/films/nowplaying" component={NowPlaying}></Route>
-          <Route path="/films/comingsoon" component={ComingSoon}></Route>
-          <Redirect from="/films" to="/films/nowplaying" exact></Redirect>
+          <Route path="/maizuo/films/nowplaying" component={NowPlaying}></Route>
+          <Route path="/maizuo/films/comingsoon" component={ComingSoon}></Route>
+          <Redirect
+            from="/maizuo/films"
+            to="/maizuo/films/nowplaying"
+            exact
+          ></Redirect>
         </Switch>
       </div>
     );

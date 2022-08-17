@@ -7,7 +7,7 @@ function FilmListItem(props: FilmItem & RouteComponentProps) {
 
   function handleClick(filmId: number) {
     console.log(props);
-    props.history.push(`/detail/${filmId}`);
+    props.history.push(`/maizuo/detail/${filmId}`);
   }
   return (
     <li onClick={() => handleClick(filmId)}>

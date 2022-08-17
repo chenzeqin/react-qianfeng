@@ -11,14 +11,14 @@ export default function Cinemas(props: RouteChildrenProps) {
       <h2>Cinemas</h2>
       <p
         onClick={() => {
-          props.history.push('/city');
+          props.history.push('/maizuo/city');
         }}
       >
         当前城市：{city}
       </p>
       <button
         onClick={() => {
-          props.history.push('/cinemas/search');
+          props.history.push('/maizuo/cinemas/search');
         }}
       >
         搜索

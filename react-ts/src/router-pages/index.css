@@ -1,3 +1,6 @@
+.router-links {
+  display: flex;
+}
 .tab-active {
   color: red;
 }
