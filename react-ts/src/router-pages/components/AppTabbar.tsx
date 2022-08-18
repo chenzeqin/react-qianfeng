@@ -33,16 +33,14 @@ class AppTabbar extends Component<RouteComponentProps> {
       icon: <UserOutline />,
     },
   ];
-  state = {
-    activeKey: this.props.location.pathname,
-  };
+
   setActiveKey = (activeKey: string) => {
-    console.log(activeKey,this.props);
-    this.setState({ activeKey });
-    this.props.history.push(activeKey)
+    this.props.history.push(activeKey);
   };
+
   render() {
-    const { activeKey } = this.state;
+    const path = this.props.location.pathname.split('/');
+    const activeKey = `/${path[1]}/${path[2]}`;
     return (
       <div className="app-tabbar">
         <TabBar activeKey={activeKey} onChange={this.setActiveKey}>
