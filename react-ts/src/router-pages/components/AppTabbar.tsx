@@ -34,10 +34,10 @@ class AppTabbar extends Component<RouteComponentProps> {
     },
   ];
   state = {
-    activeKey: '/maizuo/films',
+    activeKey: this.props.location.pathname,
   };
   setActiveKey = (activeKey: string) => {
-    console.log(activeKey);
+    console.log(activeKey,this.props);
     this.setState({ activeKey });
     this.props.history.push(activeKey)
   };
