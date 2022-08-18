@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, RouteComponentProps } from 'react-router-dom';
 import NowPlaying from './NowPlaying';
 import ComingSoon from './ComingSoon';
 import { Space, Swiper } from 'antd-mobile';
 import styles from './index.module.css';
-export default class Films extends Component {
+import { Tabs } from 'antd-mobile';
+export default class Films extends Component<RouteComponentProps> {
   componentDidMount() {
     // 卖座新版接口没了
   }
+  state = {
+    activeKey: this.props.location.pathname,
+  };
+  setActiveKey = (activeKey: string) => {
+    console.log(activeKey, this.props);
+    this.setState({ activeKey });
+    this.props.history.push(activeKey);
+  };
   render() {
     const items = [
       <Swiper.Item key={1}>
@@ -47,12 +56,26 @@ export default class Films extends Component {
         </div>
       </Swiper.Item>,
     ];
+    const { activeKey } = this.state;
     return (
-      <div>
+      <div className='films'>
         {/* 轮播图 */}
-        <Swiper slideSize={80} trackOffset={10}>
+        <Swiper slideSize={40} trackOffset={10}>
           {items}
         </Swiper>
+        <div className="films-tabs">
+          <Tabs activeKey={activeKey} onChange={this.setActiveKey}>
+            <Tabs.Tab
+              title="正在热映"
+              key="/maizuo/films/nowplaying"
+            ></Tabs.Tab>
+            <Tabs.Tab
+              title="即将上映"
+              key="/maizuo/films/comingsoon"
+            ></Tabs.Tab>
+          </Tabs>
+        </div>
+
         <Switch>
           <Route path="/maizuo/films/nowplaying" component={NowPlaying}></Route>
           <Route path="/maizuo/films/comingsoon" component={ComingSoon}></Route>

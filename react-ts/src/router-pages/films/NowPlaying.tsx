@@ -44,7 +44,7 @@ export default function NowPlaying(props: RouteComponentProps & IProps) {
   return (
     <div>
       <h4>正在热映</h4>
-      <ul className="film-list">
+      <ul className="">
         {list.map((item) => {
           return (
             // 1. 非路由组件，可通过父组件（路由组件传入）

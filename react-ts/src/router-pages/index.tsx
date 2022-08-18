@@ -44,7 +44,6 @@ class Maizuo extends Component<Props> {
     return (
       <div className="maizuo">
         {this.props.children}
-        {show && <AppTabbar></AppTabbar>}
         <Switch>
           {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
           <Route path="/maizuo/films" component={Films}></Route>
@@ -73,6 +72,7 @@ class Maizuo extends Component<Props> {
           {/* 404 路由兜底页面 */}
           <Route component={NotFound}></Route>
         </Switch>
+        {show && <AppTabbar></AppTabbar>}
       </div>
     );
   }

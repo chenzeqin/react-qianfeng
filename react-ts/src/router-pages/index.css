@@ -6,6 +6,14 @@
 }
 
 .app-tabbar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+}
+.films-tabs {
+  background-color: #fff;
   position: sticky;
-  top: 10px;
+  top: 0;
+  z-index: 100;
 }
