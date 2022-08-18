@@ -4,3 +4,8 @@
 .tab-active {
   color: red;
 }
+
+.app-tabbar {
+  position: sticky;
+  top: 10px;
+}

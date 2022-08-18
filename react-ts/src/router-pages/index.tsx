@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import './index.css';
-import Tabbar from '../router-pages/components/Tabbar';
+import AppTabbar from '../router-pages/components/AppTabbar';
 // import { store } from '../redux';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../redux/index';
@@ -44,7 +44,7 @@ class Maizuo extends Component<Props> {
     return (
       <div className="maizuo">
         {this.props.children}
-        {show && <Tabbar></Tabbar>}
+        {show && <AppTabbar></AppTabbar>}
         <Switch>
           {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
           <Route path="/maizuo/films" component={Films}></Route>
