@@ -7,14 +7,10 @@ import styles from './index.module.css';
 import { Tabs } from 'antd-mobile';
 export default class Films extends Component<RouteComponentProps> {
   componentDidMount() {
-    // 卖座新版接口没了
+    console.warn(this.props.location)
   }
-  state = {
-    activeKey: this.props.location.pathname,
-  };
   setActiveKey = (activeKey: string) => {
     console.log(activeKey, this.props);
-    this.setState({ activeKey });
     this.props.history.push(activeKey);
   };
   render() {
@@ -56,7 +52,6 @@ export default class Films extends Component<RouteComponentProps> {
         </div>
       </Swiper.Item>,
     ];
-    const { activeKey } = this.state;
     return (
       <div className='films'>
         {/* 轮播图 */}
@@ -64,7 +59,7 @@ export default class Films extends Component<RouteComponentProps> {
           {items}
         </Swiper>
         <div className="films-tabs">
-          <Tabs activeKey={activeKey} onChange={this.setActiveKey}>
+          <Tabs activeKey={this.props.location.pathname} onChange={this.setActiveKey}>
             <Tabs.Tab
               title="正在热映"
               key="/maizuo/films/nowplaying"
