@@ -1,5 +1,11 @@
 .router-links {
   display: flex;
+  width:100%;
+  flex-wrap: wrap;
+}
+.router-links li{
+  padding: 0;
+  margin: 5px;
 }
 .tab-active {
   color: red;

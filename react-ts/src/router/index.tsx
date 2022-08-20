@@ -12,11 +12,17 @@ import Demo from '../demos';
 import HooksDemo from '../demos/hooks-demo';
 import Maoyan from '../proxy-demo/Maoyan';
 import AntdDemo from '../antd-demo';
+import ImmutableDemo from '../immutable';
 
 function HomeRouter() {
   return (
     <BrowserRouter>
       <ul className="router-links">
+        <li>
+          <NavLink to="/immutable" activeClassName="tab-active">
+            immutable.js
+          </NavLink>
+        </li>
         <li>
           <NavLink to="/maizuo" activeClassName="tab-active">
             卖座电影
@@ -44,6 +50,7 @@ function HomeRouter() {
         </li>
       </ul>
       <Switch>
+        <Route path="/immutable" component={ImmutableDemo}></Route>
         <Route path="/basic-demo" component={Demo}></Route>
         <Route path="/hooks-demo" component={HooksDemo}></Route>
         <Route path="/maoyan" component={Maoyan}></Route>
