@@ -1,8 +1,8 @@
 import React, { Component, PureComponent } from 'react';
 import { List, Map } from 'immutable';
 
-/* 
-1. 
+/*
+1. scu判断是否更新
 2. list
 
 
@@ -52,7 +52,7 @@ interface ChildProps {
 }
 
 class Child extends Component<ChildProps> {
-  // true
+  // false
   shouldComponentUpdate(nextProps: ChildProps, nextState: any) {
     return this.props.info !== nextProps.info;
   }
