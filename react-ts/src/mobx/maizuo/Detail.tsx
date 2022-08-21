@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { store } from '../mobx/store';
+import store from '../mobx/store';
 
 export default function Detail(props: RouteComponentProps) {
   useEffect(() => {

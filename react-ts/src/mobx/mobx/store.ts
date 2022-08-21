@@ -4,18 +4,20 @@ configure({
   enforceActions: 'always'
 })
 
-
-export const store = observable({
-  tabbarVisible: true,
-  city: '',
-  list: [],
-  setTabbarShow() {
+/* 
+  装饰器写法
+*/
+// 1. vscode 勾选experimentalDecorators
+class Store {
+  @observable tabbarVisible = false
+  @observable city = ''
+  @observable list = []
+  @action setTabbarShow() {
     this.tabbarVisible = true
-  },
-  setTabbarHide() {
+  }
+  @action setTabbarHide() {
     this.tabbarVisible = false
   }
-}, {
-  setTabbarShow: action,
-  setTabbarHide: action  // 标记方法是action， 专门修改mobx数据
-})
+}
+
+export default new Store()

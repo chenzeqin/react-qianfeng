@@ -4,7 +4,7 @@ import Films from './Films';
 import Detail from './Detail';
 import Tabbar from './Tabbar';
 import { autorun } from 'mobx';
-import { store } from '../mobx/store';
+import store from '../mobx/store';
 
 export default function Maizuo() {
   const [visible, setVisible] = useState(false);
