@@ -26,5 +26,5 @@ setTimeout(() => {
 }, 2000);
 
 export default function Demo01() {
-  return <div>Demo01</div>;
+  return <div>基本数据类型监听</div>;
 }
