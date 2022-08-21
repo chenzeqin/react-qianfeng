@@ -4,9 +4,11 @@ import { store } from '../mobx/store';
 
 export default function Detail(props: RouteComponentProps) {
   useEffect(() => {
-    store.tabbarVisible = false;
+    // store.tabbarVisible = false;
+    store.setTabbarHide();
     return () => {
-      store.tabbarVisible = true;
+      // store.tabbarVisible = true;
+      store.setTabbarShow();
     };
   }, []);
 
