@@ -15,7 +15,8 @@ import City from '../router-pages/City.ts';
 import Search from '../router-pages/cinemas/Search';
 
 const mapState = (state: RootState) => ({
-  show: state.tabReducer.show,
+  // show: state.tabReducer.show,
+  show: state.tabReducer.get('show'),
 });
 // 返回connector是一个函数
 const connector = connect(mapState);

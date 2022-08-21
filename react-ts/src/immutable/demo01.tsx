@@ -4,6 +4,7 @@ import { Map } from 'immutable';
 /*
   immutable.js  修改对象属性，生成新的immutable对象，其他属性不会修改
   why:
+   保持状态不可随意更改，导致隐藏问题。immutable对象只能通过对应api需修改数据
     1. 展开运算符复制复杂类型有隐患
     2. JSON.parse 丢失undefined属性
     3. 深拷贝性能不佳

@@ -13,11 +13,17 @@ import HooksDemo from '../demos/hooks-demo';
 import Maoyan from '../proxy-demo/Maoyan';
 import AntdDemo from '../antd-demo';
 import ImmutableDemo from '../immutable';
+import MobxDemo from '../mobx';
 
 function HomeRouter() {
   return (
     <BrowserRouter>
       <ul className="router-links">
+        <li>
+          <NavLink to="/mobx" activeClassName="tab-active">
+            mobx
+          </NavLink>
+        </li>
         <li>
           <NavLink to="/immutable" activeClassName="tab-active">
             immutable.js
@@ -50,6 +56,7 @@ function HomeRouter() {
         </li>
       </ul>
       <Switch>
+        <Route path="/mobx" component={MobxDemo}></Route>
         <Route path="/immutable" component={ImmutableDemo}></Route>
         <Route path="/basic-demo" component={Demo}></Route>
         <Route path="/hooks-demo" component={HooksDemo}></Route>
@@ -57,7 +64,7 @@ function HomeRouter() {
         <Route path="/antd-demo" component={AntdDemo}></Route>
         {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
         <Route path="/maizuo" component={Maizuo}></Route>
-        <Redirect from="/" to="/maizuo" exact></Redirect>
+        <Redirect from="/" to="/mobx" exact></Redirect>
         {/* 404 路由兜底页面 */}
         <Route component={NotFound}></Route>
       </Switch>

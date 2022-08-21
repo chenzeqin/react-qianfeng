@@ -4,8 +4,6 @@ import { List, Map } from 'immutable';
 /*
 1. scu判断是否更新
 2. list
-
-
 */
 export default class ImmutableDemo extends Component {
   state = {
