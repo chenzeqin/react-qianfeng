@@ -6,6 +6,8 @@ export default function Detail(props: RouteComponentProps) {
   useEffect(() => {
     // store.tabbarVisible = false;
     store.setTabbarHide();
+    // console.log('setTabbarHide');
+
     return () => {
       // store.tabbarVisible = true;
       store.setTabbarShow();

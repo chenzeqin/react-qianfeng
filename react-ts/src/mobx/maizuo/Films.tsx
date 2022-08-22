@@ -10,15 +10,14 @@ export default function Films(props: RouteComponentProps) {
   function handleClick() {
     props.history.push('/mobx/detail');
   }
+
   return (
-    <div>
-      <ul>
-        {films.map((item) => (
-          <li key={item.id} onClick={handleClick}>
-            {item.name}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="films">
+      {films.map((item) => (
+        <li key={item.id} onClick={handleClick}>
+          {item.name}
+        </li>
+      ))}
+    </ul>
   );
 }

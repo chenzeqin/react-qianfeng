@@ -10,6 +10,11 @@ class AppTabbar extends Component<RouteComponentProps> {
       title: '电影',
       icon: <AppOutline />,
     },
+    {
+      key: '/mobx/cinemas',
+      title: '影院',
+      icon: <AppOutline />,
+    },
   ];
 
   setActiveKey = (activeKey: string) => {
