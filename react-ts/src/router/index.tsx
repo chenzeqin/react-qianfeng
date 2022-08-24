@@ -14,11 +14,17 @@ import Maoyan from '../proxy-demo/Maoyan';
 import AntdDemo from '../antd-demo';
 import ImmutableDemo from '../immutable';
 import MobxDemo from '../mobx';
+import StyledComponents from '../styled-components';
 
 function HomeRouter() {
   return (
     <BrowserRouter>
       <ul className="router-links">
+        <li>
+          <NavLink to="/styled-components" activeClassName="tab-active">
+            styled-components
+          </NavLink>
+        </li>
         <li>
           <NavLink to="/mobx" activeClassName="tab-active">
             mobx
@@ -56,6 +62,7 @@ function HomeRouter() {
         </li>
       </ul>
       <Switch>
+        <Route path="/styled-components" component={StyledComponents}></Route>
         <Route path="/mobx" component={MobxDemo}></Route>
         <Route path="/immutable" component={ImmutableDemo}></Route>
         <Route path="/basic-demo" component={Demo}></Route>
