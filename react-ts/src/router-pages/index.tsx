@@ -16,7 +16,6 @@ import Search from '../router-pages/cinemas/Search';
 
 const mapState = (state: RootState) => ({
   // show: state.tabReducer.show,
-  // 获取immutable数据
   show: state.tabReducer.get('show'),
 });
 // 返回connector是一个函数
@@ -41,7 +40,7 @@ class Maizuo extends Component<Props> {
 
   render() {
     console.log('index props', this.props);
-    // const {show} = store.getState.tabReducer
+    // const {show} = store.getState().tabReducer
     const show = this.props.show;
     return (
       <div className="maizuo">
