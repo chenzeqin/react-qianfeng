@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Demo01 from './Demo01';
 import Demo02 from './Demo02';
 import Demo03 from './Demo03';
+import Demo04 from './Demo04';
 
 export default function StyledComponents() {
   const [color, setColor] = useState('pink');
@@ -23,6 +24,7 @@ export default function StyledComponents() {
       <Demo01 color={color}></Demo01>
       <Demo02></Demo02>
       <Demo03></Demo03>
+      <Demo04></Demo04>
     </div>
   );
 }
