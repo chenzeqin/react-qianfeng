@@ -1,5 +1,6 @@
 import React from 'react';
-import './generator/index';
+// import './generator/index';
+import './generator/run'
 
 export default function ReduxSaga() {
   return (
