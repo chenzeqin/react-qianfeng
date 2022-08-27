@@ -15,11 +15,17 @@ import AntdDemo from '../antd-demo';
 import ImmutableDemo from '../immutable';
 import MobxDemo from '../mobx';
 import StyledComponents from '../styled-components';
+import ReduxSagaDemo from '../redux-saga';
 
 function HomeRouter() {
   return (
     <BrowserRouter>
       <ul className="router-links">
+        <li>
+          <NavLink to="/redux-saga" activeClassName="tab-active">
+            redux-saga
+          </NavLink>
+        </li>
         <li>
           <NavLink to="/styled-components" activeClassName="tab-active">
             styled-components
@@ -62,6 +68,7 @@ function HomeRouter() {
         </li>
       </ul>
       <Switch>
+        <Route path="/redux-saga" component={ReduxSagaDemo}></Route>
         <Route path="/styled-components" component={StyledComponents}></Route>
         <Route path="/mobx" component={MobxDemo}></Route>
         <Route path="/immutable" component={ImmutableDemo}></Route>
@@ -71,7 +78,7 @@ function HomeRouter() {
         <Route path="/antd-demo" component={AntdDemo}></Route>
         {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
         <Route path="/maizuo" component={Maizuo}></Route>
-        <Redirect from="/" to="/mobx" exact></Redirect>
+        <Redirect from="/" to="/redux-saga" exact></Redirect>
         {/* 404 路由兜底页面 */}
         <Route component={NotFound}></Route>
       </Switch>
