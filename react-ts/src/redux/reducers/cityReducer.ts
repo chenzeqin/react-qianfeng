@@ -16,8 +16,8 @@ const initialState = {
 
 
 const cityRuducer = (state = initialState, { type, payload }: Action) => {
-  console.log(state, payload, type)
-  console.log('cityRuducer 执行')
+  // console.log(state, payload, type)
+  // console.log('cityRuducer 执行')
   switch (type) {
 
     case 'change-city':

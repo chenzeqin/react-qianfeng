@@ -14,7 +14,7 @@ const initialState = {
 
 // 需要保持state一直是immutable数据
 const tabReducer = (state = Map(initialState), { type, payload }: Action) => {
-  console.log('tabReducer 执行', state)
+  // console.log('tabReducer 执行', state)
   // console.log(state, payload, type)
   switch (type) {
 

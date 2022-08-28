@@ -17,8 +17,8 @@ const initialState: CinemaState = {
 
 
 const cinameReducer = (state = initialState, { type, payload }: Action) => {
-  console.log('cinameReducer 执行')
-  console.log(state, payload, type)
+  // console.log('cinameReducer 执行')
+  // console.log(state, payload, type)
   switch (type) {
 
     case 'set-ciname-list':
