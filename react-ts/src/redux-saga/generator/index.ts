@@ -10,7 +10,8 @@ export function* test() {
 
 const g = test();
 // 执行一次就会产生一个状态值
-const res1 = g.next('第一个无效'); // 1
+// next 参数表示下一次yield表达式接收到的值。第一次调用，没有值可以接收。
+const res1 = g.next('第一次调用next传入参数没有用'); // 1
 console.log('res1', res1) // {done: false, value: "a"}
 const res2 = g.next('A'); // 2
 console.log('res2', res2) // {done: false, value: "b"}
