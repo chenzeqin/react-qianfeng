@@ -9,9 +9,19 @@ const initState: State = {
 
 interface Action {
   type: string,
-  payload: any[]
+  payload?: any[]
 }
 
 export const reducer = (prevState = initState, action: Action) => {
-  return prevState
+  console.log(action)
+  switch (action.type) {
+    case 'change-list':
+      return {
+        ...prevState,
+        list: action.payload || []
+      }
+
+    default:
+      return prevState
+  }
 }
