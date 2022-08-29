@@ -9,10 +9,10 @@ export function* watchSaga1() {
   //   yield fork(getList)
   // }
   //  以上写法 替换为
-  yield takeEvery('get-list1', getList)
+  yield takeEvery('get-list1', getList1)
 }
 
-function* getList() {
+export function* getList1() {
   // call：  函数发异步请求
   const res: string[] = yield call(getListPromise)
 

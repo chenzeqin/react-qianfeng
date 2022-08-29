@@ -1,16 +1,17 @@
 
 import { call, fork, put, take } from 'redux-saga/effects'
 
+// 使用takeEvery,替换该写法
 export function* watchSaga2() {
   while (true) {
     // take： 监听组件发来的action
     yield take('get-list2')
     // fork： 立即执行异步处理函数
-    yield fork(getList)
+    yield fork(getList2)
   }
 }
 
-function* getList() {
+export function* getList2() {
   // call：  函数发异步请求
   const res1: string[] = yield call(getListPromise1)
   const res2: string[] = yield call(getListPromise2, res1)
