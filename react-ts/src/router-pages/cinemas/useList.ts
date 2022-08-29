@@ -21,7 +21,7 @@ export const useList = () => {
       // setList(cinemaList) // 如果没有设置默认值， 加上这一行
     } else {
       // dispatch(getCinemaListAction() as any)
-      dispatch(getCinemaListAction() as any)
+      dispatch({ type: 'get-cinema-list' })
     }
 
     // const unsubscribe = store.subscribe(() => {

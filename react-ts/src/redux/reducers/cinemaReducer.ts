@@ -24,6 +24,10 @@ const cinameReducer = (state = initialState, { type, payload }: Action) => {
     case 'set-ciname-list':
       return { ...state, list: payload }
 
+    // action from saga
+    case 'change-cinema-list':
+      return { ...state, list: payload }
+
     default:
       return state
   }
