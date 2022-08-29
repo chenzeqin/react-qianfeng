@@ -1,11 +1,10 @@
 
 import { call, fork, put, take } from 'redux-saga/effects'
 
-export function* watchSaga() {
+export function* watchSaga1() {
   while (true) {
-    console.log('watchsaga')
     // take： 监听组件发来的action
-    yield take('get-list')
+    yield take('get-list1')
     // fork： 立即执行异步处理函数
     yield fork(getList)
   }
@@ -16,7 +15,7 @@ function* getList() {
   const res: string[] = yield call(getListPromise)
 
   yield put({
-    type: 'change-list',
+    type: 'change-list1',
     payload: res
   })
 }

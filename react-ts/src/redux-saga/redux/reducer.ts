@@ -1,10 +1,12 @@
 
 interface State {
-  list: any[]
+  list1: any[]
+  list2: any[]
 }
 
 const initState: State = {
-  list: []
+  list1: [],
+  list2: []
 }
 
 interface Action {
@@ -15,10 +17,15 @@ interface Action {
 export const reducer = (prevState = initState, action: Action) => {
   console.log(action)
   switch (action.type) {
-    case 'change-list':
+    case 'change-list1':
       return {
         ...prevState,
-        list: action.payload || []
+        list1: action.payload || []
+      }
+    case 'change-list2':
+      return {
+        ...prevState,
+        list2: action.payload || []
       }
 
     default:
