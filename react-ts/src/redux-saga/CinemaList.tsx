@@ -27,12 +27,35 @@ export default class CinemaList extends Component {
       console.log('数据来自缓存-list2 ', list);
     }
   };
+  componentDidMount() {
+    (this as any).unsubscribe = store.subscribe(() => {
+      this.setState({});
+    });
+
+    const cinemaList = store.getState().cinemaList;
+    if (!cinemaList.length) {
+      store.dispatch({
+        type: 'get-cinema-list',
+      });
+    } else {
+      console.log('get-cinema-list', cinemaList);
+    }
+  }
+  componentWillUnmount() {
+    (this as any).unsubscribe();
+  }
   render() {
+    const cinemaList = store.getState().cinemaList;
     return (
       <div>
         <h3>CinemaList</h3>
         <button onClick={this.handleClick}>获取数据1</button>
         <button onClick={this.handleClick2}>获取数据2</button>
+        <ul>
+          {cinemaList.map((item) => {
+            return <li key={item.cinemaId}>{item.name}</li>;
+          })}
+        </ul>
       </div>
     );
   }
