@@ -47,12 +47,7 @@ var root = {
 
   // 传参  定义是传入一个id，实参其实是obj
   getFilm({ id }) {
-    return filmModel.find({ _id: id }).then((res) => {
-      if (res.length) {
-        return res[0];
-      }
-      return null;
-    });
+    return filmModel.findOne({ _id: id });
   },
 
   addFilm({ input }) {
@@ -74,17 +69,14 @@ var root = {
   },
 
   updateFilm({ id, input }) {
-    filmModel
+    return filmModel
       .updateOne(
         {
           _id: id,
         },
         { ...input }
       )
-      .then((res) => {
-        console.log(res);
-        return res;
-      });
+      .then((res) => filmModel.findOne({ _id: id }));
   },
 };
 
@@ -97,4 +89,5 @@ app.use(
     graphiql: true, // 开启调试器
   })
 );
+app.use(express.static('../public'));
 app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));

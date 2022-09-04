@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="addFilm()">增</button>
+  <button onclick="deleteFilm()">删</button>
+  <button onclick="updateFilm()">改</button>
+  <button onclick="getList()">查</button>
+  <script>
+    function addFilm() {
+      // 写法和graphql调试工具不用，需要类型函数传参写法，并且需要和schema对应
+      const query = `
+        mutation($input:FilmInput){
+          addFilm(input: $input) {
+            id,
+            name,
+          }
+        }
+        `
+
+      const data = {
+        query,
+        // 用variables 表示传入数据
+        variables: {
+          input: {
+            name: '泰坦尼克号',
+            price: 10,
+            date: Date.now()
+          }
+        }
+      }
+      fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('data:', data)
+          return data
+        })
+    }
+
+    function deleteFilm() {
+      const query = `
+        mutation($id:String!){
+          deleteFilm(id: $id)
+        }
+        `
+      const data = {
+        query,
+        // 用variables 表示传入数据
+        variables: {
+          id: '631454ba6f5c859778c02053'
+        }
+      }
+      fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('data:', data)
+          return data
+        })
+    }
+
+    function updateFilm() {
+      // 写法和graphql调试工具不用，需要类型函数传参写法，并且需要和schema对应
+      const query = `
+        mutation($id:String!, $input: FilmInput){
+          updateFilm(id: $id, input: $input) {
+            id,
+            name,
+            price
+          }
+        }
+        `
+
+      const data = {
+        query,
+        // 用variables 表示传入数据
+        variables: {
+          id: '631415663bfd3f3f9edc5fdf',
+          input: {
+            name: '城南旧事',
+            price: 10,
+            date: Date.now()
+          }
+        }
+      }
+      fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('data:', data)
+          return data
+        })
+    }
+
+    function getList() {
+      const query = `
+        query{
+          getFilmList{
+            id,
+            name
+          }
+        }`
+      const data = {
+        query
+      }
+      fetch('/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log('data:', data)
+          return data
+        })
+    }
+  </script>
+</body>
+
+</html>
