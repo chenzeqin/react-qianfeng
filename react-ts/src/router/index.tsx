@@ -17,11 +17,17 @@ import MobxDemo from '../mobx';
 import StyledComponents from '../styled-components';
 import ReduxSagaDemo from '../redux-saga';
 import MoreReactDemos from '../more-react-demos';
+import TodoListWithGraphql from '../todolist-with-graphql';
 
 function HomeRouter() {
   return (
     <BrowserRouter>
       <ul className="router-links">
+        <li>
+          <NavLink to="/todolist-with-graphql" activeClassName="tab-active">
+            todolist-with-graphql
+          </NavLink>
+        </li>
         <li>
           <NavLink to="/more-react-demos" activeClassName="tab-active">
             react补充
@@ -74,6 +80,7 @@ function HomeRouter() {
         </li>
       </ul>
       <Switch>
+        <Route path="/todolist-with-graphql" component={TodoListWithGraphql}></Route>
         <Route path="/more-react-demos" component={MoreReactDemos}></Route>
         <Route path="/redux-saga" component={ReduxSagaDemo}></Route>
         <Route path="/styled-components" component={StyledComponents}></Route>
@@ -85,7 +92,7 @@ function HomeRouter() {
         <Route path="/antd-demo" component={AntdDemo}></Route>
         {/* 注意： 嵌套路由，不要写 exact 精确匹配 */}
         <Route path="/maizuo" component={Maizuo}></Route>
-        <Redirect from="/" to="/more-react-demos" exact></Redirect>
+        <Redirect from="/" to="/todolist-with-graphql" exact></Redirect>
         {/* 404 路由兜底页面 */}
         <Route component={NotFound}></Route>
       </Switch>
