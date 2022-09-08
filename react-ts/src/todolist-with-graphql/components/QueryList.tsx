@@ -3,7 +3,7 @@ import { Query, QueryResult } from 'react-apollo';
 import gql from 'graphql-tag';
 import type { Data } from '../type';
 
-export default class TQuery extends Component {
+export default class QueryList extends Component {
   query = gql`
     query {
       getFilmList {
