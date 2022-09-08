@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Query, QueryResult } from 'react-apollo';
 import gql from 'graphql-tag';
 import type { Data } from '../type';
-
-/*
- 查询列表
+/* 
+  查询单条数据
 */
-export default class QueryList extends Component {
+export default class QueryDetail extends Component<{ id: string }> {
   query = gql`
-    query {
-      getFilmList {
+    query ($id: String!) {
+      getFilm(id: $id) {
         id
         name
       }
@@ -19,18 +18,12 @@ export default class QueryList extends Component {
     return (
       <div>
         <h4>query 查询：</h4>
-        <Query query={this.query}>
-          {(res: QueryResult<Record<'getFilmList', Data[]>>) => {
+        <Query query={this.query} variables={{ id: this.props.id }}>
+          {(res: QueryResult<Record<'getFilm', Data>>) => {
             const { loading, data } = res;
             // console.log(data);
             if (loading) return <div>loading...</div>;
-            return (
-              <div>
-                {data?.getFilmList.map((item) => {
-                  return <div key={item.id}>{item.name}</div>;
-                })}
-              </div>
-            );
+            return <div>{data?.getFilm.name}</div>;
           }}
         </Query>
       </div>
