@@ -17,7 +17,7 @@ export default class QueryDetail extends Component<{ id: string }> {
   render() {
     return (
       <div>
-        <h4>query 查询：</h4>
+        <h4>query 查询详情：</h4>
         <Query query={this.query} variables={{ id: this.props.id }}>
           {(res: QueryResult<Record<'getFilm', Data>>) => {
             const { loading, data } = res;
