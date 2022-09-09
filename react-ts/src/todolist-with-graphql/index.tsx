@@ -5,6 +5,7 @@ import QueryList from './components/QueryList';
 import QueryDetail from './components/QueryDetail';
 import AddMutation from './components/AddMutation';
 import DeleteMutation from './components/DeleteMutation';
+import UpdateMutation from './components/UpdateMutation';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -20,6 +21,7 @@ export default function TodoListWithGraphql() {
         <QueryDetail id="631454cd6f5c859778c02055"></QueryDetail>
         <AddMutation></AddMutation>
         <DeleteMutation></DeleteMutation>
+        <UpdateMutation></UpdateMutation>
       </ApolloProvider>
     </div>
   );
