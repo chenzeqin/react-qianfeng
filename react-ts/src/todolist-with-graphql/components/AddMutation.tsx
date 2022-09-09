@@ -13,7 +13,6 @@ export default class AddMutation extends Component {
     }
   `;
 
-  handleAdd() {}
   render() {
     return (
       <div>

@@ -9,7 +9,6 @@ export default class DeleteMutation extends Component {
     }
   `;
 
-  handleAdd() {}
   render() {
     return (
       <div>
