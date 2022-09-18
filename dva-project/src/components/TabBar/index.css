@@ -1,0 +1,18 @@
+.tabbar {
+  display: flex;
+  /* position: absolute; */
+  /* bottom: 0;
+  left: 0; */
+  width: 100%;
+  height: 30px;
+  list-style: none;
+}
+
+.tabbarItem {
+  flex: 1;
+  text-align: center;
+  line-height: 30px;
+}
+.active {
+  color: #ff5f16;
+}

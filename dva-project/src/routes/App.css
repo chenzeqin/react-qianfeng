@@ -1,0 +1,16 @@
+.app {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.main {
+  height: 100%;
+  overflow: auto;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
