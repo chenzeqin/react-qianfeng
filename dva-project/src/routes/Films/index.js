@@ -26,13 +26,15 @@ export default function Films(props) {
         {list.map((item) => (
           <li
             key={item.filmId}
+            style={{ display: "flex", flexWrap: "no-wrap", padding: "5px" }}
             onClick={() => {
               // 查看详情
               console.log(props);
               props.history.push(`/film-detail/${item.filmId}`);
             }}
           >
-            <p>{item.name}</p>
+            <img style={{ width: "40px" }} src={item.poster} alt="" />
+            <span>{item.name}</span>
           </li>
         ))}
       </ul>
