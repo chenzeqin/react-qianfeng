@@ -1,8 +1,18 @@
 export default {
-  'GET /user': (request, response) => {
+  "GET /user": (request, response) => {
     console.log(request);
     response.send({
-      msg: '登陆成功'
-    })
-  }
-}
+      msg: "success",
+      user: {
+        name: "kobe",
+        id: "1",
+      },
+    });
+  },
+  "POST /user/login": (request, response) => {
+    response.send({
+      msg: "success",
+      token: "auth-token-ok",
+    });
+  },
+};
