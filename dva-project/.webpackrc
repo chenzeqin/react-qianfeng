@@ -1,2 +1,8 @@
 {
+  "proxy": {
+    "/api": {
+      "target": "https://i.maoyan.com",
+      "changeOrigin": true
+    }
+  }
 }
