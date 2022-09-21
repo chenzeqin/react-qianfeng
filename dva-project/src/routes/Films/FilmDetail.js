@@ -1,12 +1,16 @@
+import { connect } from "dva";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import request from "../../utils/request";
 
-export default function FilmDetail(props) {
+function FilmDetail(props) {
   const [detail, setDetail] = useState({});
   useEffect(() => {
     console.log(props);
+    props.toggleTab(false);
+    // props.dispatch({ type: "maizuo/toggleTab", payload: { visible: false } });
+
     const id = props.match.params.id;
     request(`https://m.maizuo.com/gateway?filmId=${id}&k=8190260`, {
       headers: {
@@ -14,9 +18,13 @@ export default function FilmDetail(props) {
         "X-Host": `mall.film-ticket.film.info`,
       },
     }).then((res) => {
-      console.log(res);
       setDetail(res.data.data.film);
     });
+
+    return () => {
+      props.toggleTab(true);
+      // props.dispatch({ type: "maizuo/toggleTab", payload: { visible: true } });
+    };
   }, []);
   return (
     <div style={{ padding: "10px" }}>
@@ -26,3 +34,13 @@ export default function FilmDetail(props) {
     </div>
   );
 }
+
+// 使用一个对象
+const mapDispatchToProps = {
+  toggleTab: (visible) => ({
+    type: "maizuo/toggleTab",
+    payload: { visible },
+  }),
+};
+
+export default connect(null, mapDispatchToProps)(FilmDetail);
