@@ -19,5 +19,11 @@ export default defineConfig({
   fastRefresh: {},
   history: {
     type: 'hash'  // 默认browser
+  },
+  proxy:{
+    '/api':{
+      target: 'https://i.maoyan.com',
+      changeOrigin: true
+    }
   }
 });
