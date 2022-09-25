@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react'
+import React, { ReactChild, useMemo } from 'react'
 import { NavLink, Redirect, useHistory, useLocation } from 'umi'
 import styles from './index.less'
 
@@ -9,8 +9,22 @@ interface Props {
 
 export default function Layouts(props: Props) {
   const location = useLocation()
+
+  // /films重定向
   if (location.pathname === '/films') {
     return <Redirect to="/films/ComingSoon"></Redirect>
+  }
+
+  // tabBar 是否可见
+  const tabBarVisible = useMemo(() => {
+    return ['/films', '/cinemas', '/center'].some(item => {
+      return location.pathname.includes(item)
+    })
+  }, [location.pathname])
+
+
+  if (!tabBarVisible) {
+    return <div>{props.children}</div>
   }
   return (
     <div>
