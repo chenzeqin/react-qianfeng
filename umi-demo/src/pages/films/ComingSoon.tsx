@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'umi'
 import styles from './index.less'
-
-interface FilmProps {
-  name: string
-  filmId: string
-  poster: string
-}
+import type { FilmProps } from './type'
 
 export default function ComingSoon() {
   const [list, setList] = useState<FilmProps[]>([])
@@ -20,13 +16,18 @@ export default function ComingSoon() {
       setList(res.data.films)
     })
   }, [])
+
+  const history = useHistory()
+
   return (
     <div>
       <h3>即将上映</h3>
       <ul>
         {
           list.map(item => {
-            return <li className={styles.filmItem} key={item.filmId}>
+            return <li className={styles.filmItem} key={item.filmId} onClick={() => {
+              history.push(`/FilmDetail/${item.filmId}`)
+            }}>
               <img src={item.poster} alt="" />
               <span>{item.name}</span>
             </li>
