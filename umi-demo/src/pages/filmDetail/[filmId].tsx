@@ -13,7 +13,6 @@ export default function FilmDetail() {
       }
     }).then(res => res.json())
       .then(res => {
-        console.log(res.data)
         setFilm(res.data.film)
       })
   }, [params.filmId])

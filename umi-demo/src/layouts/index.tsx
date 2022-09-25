@@ -9,7 +9,6 @@ interface Props {
 
 export default function Layouts(props: Props) {
   const location = useLocation()
-  console.log(props, location)
   if (location.pathname === '/films') {
     return <Redirect to="/films/ComingSoon"></Redirect>
   }

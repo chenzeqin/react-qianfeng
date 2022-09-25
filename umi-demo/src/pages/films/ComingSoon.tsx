@@ -12,7 +12,6 @@ export default function ComingSoon() {
         "X-Host": `mall.film-ticket.film.list`
       }
     }).then(res => res.json()).then(res => {
-      console.log(res)
       setList(res.data.films)
     })
   }, [])
