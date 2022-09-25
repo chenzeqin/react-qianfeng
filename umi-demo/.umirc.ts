@@ -20,10 +20,14 @@ export default defineConfig({
   history: {
     type: 'hash'  // 默认browser
   },
-  proxy:{
-    '/api':{
+  proxy: {
+    '/api': {
       target: 'https://i.maoyan.com',
       changeOrigin: true
     }
+  },
+  // 注意： 由于新版不兼容，需要关掉，使用自己安装的antd-mobile,
+  antd: {
+    mobile: false
   }
 });
