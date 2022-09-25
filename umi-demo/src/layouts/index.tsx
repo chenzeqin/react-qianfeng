@@ -1,5 +1,5 @@
 import React, { ReactChild } from 'react'
-import { NavLink, Redirect, useLocation } from 'umi'
+import { NavLink, Redirect, useHistory, useLocation } from 'umi'
 import styles from './index.less'
 
 
@@ -9,11 +9,21 @@ interface Props {
 
 export default function Layouts(props: Props) {
   const location = useLocation()
+  const history = useHistory()
   if (location.pathname === '/films') {
     return <Redirect to="/films/ComingSoon"></Redirect>
   }
   return (
     <div>
+      <button
+        onClick={() => {
+          console.log(props);
+          localStorage.removeItem("token");
+          history.push("/login");
+        }}
+      >
+        退出登陆
+      </button>
       <ul className={styles.navBar}>
         <li className={styles.navBar.item}>
           <NavLink to='/films' activeClassName={styles.active}>电影</NavLink>
