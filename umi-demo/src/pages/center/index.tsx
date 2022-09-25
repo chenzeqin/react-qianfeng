@@ -1,8 +1,19 @@
 import React from 'react'
+import { useHistory } from 'umi';
 
- function Center() {
+function Center() {
+  const history = useHistory()
   return (
-    <div>Center</div>
+    <div>
+      <button
+        onClick={() => {
+          localStorage.removeItem("token");
+          history.push("/login");
+        }}
+      >
+        退出登陆
+      </button>
+    </div>
   )
 }
 

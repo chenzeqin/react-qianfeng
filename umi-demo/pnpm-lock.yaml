@@ -8,6 +8,7 @@ specifiers:
   '@umijs/preset-react': 1.x
   '@umijs/test': ^3.5.34
   antd-mobile: ^5.24.0
+  antd-mobile-icons: ^0.3.0
   lint-staged: ^10.0.7
   prettier: ^2.2.0
   react: 17.x
@@ -19,6 +20,7 @@ specifiers:
 dependencies:
   '@ant-design/pro-layout': registry.npmmirror.com/@ant-design/pro-layout/6.38.22_sfoxds7t5ydpegc3knd667wn6m
   antd-mobile: registry.npmmirror.com/antd-mobile/5.24.0_sfoxds7t5ydpegc3knd667wn6m
+  antd-mobile-icons: registry.npmmirror.com/antd-mobile-icons/0.3.0
   react: registry.npmmirror.com/react/17.0.2
   react-dom: registry.npmmirror.com/react-dom/17.0.2_react@17.0.2
   umi: registry.npmmirror.com/umi/3.5.34
