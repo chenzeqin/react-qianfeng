@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function Center() {
+ function Center() {
   return (
     <div>Center</div>
   )
 }
+Center.wrappers = ['@/wrappers/Auth']
+export default Center
