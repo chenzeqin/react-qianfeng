@@ -13,7 +13,7 @@ function Cinemas(props: Props) {
   const history = useHistory()
   const back = () => {
     // history.goBack()
-     history.push('/city')
+     history.push('/cinemas')
   }
   const { name, cityId } = props.cityModel
   return (

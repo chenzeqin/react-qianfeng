@@ -14,8 +14,7 @@ export default {
   state: initialCityModel,
   reducers: {
     // 设置城市数据
-    setCity(preState: ICity, action: Action) {
-      console.log('preState------------->', preState)
+    setCity(preState: ICity, action: Action): ICity {
       // 缓存
       if (action.payload) {
         localStorage.setItem('cityModel', JSON.stringify(action.payload))
