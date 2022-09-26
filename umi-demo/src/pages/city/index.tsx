@@ -9,6 +9,7 @@ export interface ICity {
 }
 interface Props {
   setCity: (city: ICity) => void
+  clearCinemaList: () => void
 }
 
 function City(props: Props) {
@@ -44,6 +45,7 @@ function City(props: Props) {
   const history = useHistory()
   const handleItemClick = (item: ICity) => {
     console.log(item)
+    props.clearCinemaList()
     props.setCity(item)
     history.push('/cinemas')
   }
@@ -73,7 +75,8 @@ function City(props: Props) {
 }
 
 const mapDispatchToProps = {
-  setCity: (city: ICity) => ({ type: 'cityModel/setCity', payload: city })
+  setCity: (city: ICity) => ({ type: 'cityModel/setCity', payload: city }),
+  clearCinemaList: () => ({ type: 'cinemaModel/changeList', payload: [] })
 }
 
 export default connect(null, mapDispatchToProps)(City)
