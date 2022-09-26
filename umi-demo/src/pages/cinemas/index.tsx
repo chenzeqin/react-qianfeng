@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { List, NavBar, Space, Toast } from 'antd-mobile'
+import { DotLoading, List, NavBar, Space, Toast } from 'antd-mobile'
 import { SearchOutline } from 'antd-mobile-icons'
 import { connect, useHistory, useLocation } from 'umi'
 import { RootModel } from '@/models/type'
 import { ICity } from '../city'
 
 interface Props {
+  loading: boolean
   cityModel: ICity,
   cinemaList: ICinema[],
   setCinemaList: (cityId: number) => void
@@ -40,6 +41,7 @@ function Cinemas(props: Props) {
       } >
         影院
       </NavBar>
+      {props.loading && <DotLoading color='primary' />}
       <List>
         {props.cinemaList.map((item) => (
           <List.Item key={item.cinemaId}>{item.name}</List.Item>
@@ -49,10 +51,12 @@ function Cinemas(props: Props) {
   )
 }
 
-const mapStateToProps = (models: RootModel) => {
+const mapStateToProps = (models: RootModel & any) => {
+  console.log(models)
   return {
     cityModel: models.cityModel,
-    cinemaList: models.cinemaModel.list
+    cinemaList: models.cinemaModel.list,
+    loading: models.loading.models.cinemaModel
   }
 }
 
