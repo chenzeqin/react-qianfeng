@@ -1,15 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { IndexBar, List } from 'antd-mobile'
-import { useHistory } from 'umi'
-interface CityModel {
+import { connect, useHistory } from 'umi'
+export interface ICity {
   name: string
   pinyin: string
   cityId: number,
   isHot: 0 | 1
 }
+interface Props {
+  setCity: (city: ICity) => void
+}
 
-export default function City() {
-  const [cityList, setCityList] = useState<CityModel[]>([])
+function City(props: Props) {
+  const [cityList, setCityList] = useState<ICity[]>([])
 
   useEffect(() => {
     fetch('https://m.maizuo.com/gateway?k=1592441', {
@@ -39,8 +42,9 @@ export default function City() {
   }, [cityList])
 
   const history = useHistory()
-  const handleItemClick = (item: CityModel) => {
+  const handleItemClick = (item: ICity) => {
     console.log(item)
+    props.setCity(item)
     history.push('/cinemas')
   }
 
@@ -67,3 +71,9 @@ export default function City() {
     </div>
   )
 }
+
+const mapDispatchToProps = {
+  setCity: (city: ICity) => ({ type: 'cityModel/setCity', payload: city })
+}
+
+export default connect(null, mapDispatchToProps)(City)
