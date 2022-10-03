@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { IFilm } from './type'
-
-
+import withRouter from '../../components/withRouter'
 /* 
 useParams
 */
 
-export default function FilmDetail() {
+function FilmDetail(props: any) {
+  console.log(props)
   console.log('FilmDetail')
   const [film, setFilm] = useState<IFilm>({
     name: '',
@@ -33,3 +33,5 @@ export default function FilmDetail() {
     </div>
   )
 }
+
+export default withRouter(FilmDetail)
