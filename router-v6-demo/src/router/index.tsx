@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes, useRoutes } from 'react-router-dom';
 import Films from '../views/Films';
 import Cinemas from '../views/Cinemas';
 import Center from '../views/Center';
@@ -13,35 +13,54 @@ import Auth from '../components/Auth';
 import Login from '../views/Login';
 import { lazyLoad } from '../components/lazyLoad';
 
-export default function index() {
-  // {/* 使用Routes替代v5 Switch */ }
-  return (
-    <Routes>
-      <Route path='/login' element={<Login></Login>}></Route>
-      {/* 使用element属性替代v5 component */}
-      <Route path='/films' element={<Films></Films>}>
-        {/* index 指定匹配不到路由，指定默认路由 */}
-        <Route index element={<NowPlaying></NowPlaying>}></Route>
-        {/* 相对路径写法(推荐) */}
-        <Route path='NowPlaying' element={<NowPlaying></NowPlaying>}></Route>
-        {/* 全路径写法 */}
-        <Route path='/films/ComingSoon' element={<ComingSoon></ComingSoon>}></Route>
-      </Route>
-      <Route path="filmDetail/:id" element={<FilmDetail></FilmDetail>}></Route>
-      <Route path="filmDetail" element={<FilmDetail2></FilmDetail2>}></Route>
-      <Route path='/cinemas' element={lazyLoad('Cinemas/index')}></Route>
-      <Route path='/center'
-        element={
-          <Auth>
-            <Center></Center>
-          </Auth>}>
-      </Route>
-      {/* 使用Navigate替代Redirect */}
-      {/* 重定向方式1 */}
-      {/* <Route path="/" element={<Navigate to="/films"></Navigate>}></Route> */}
-      {/* 重定向方式2 自定义重定向组件 */}
-      <Route path="/" element={<MyRedirect to="/films"></MyRedirect>}></Route>
-      <Route path="*" element={<NotFound></NotFound>}></Route>
-    </Routes>
-  )
+export default function MRouter() {
+  const element = useRoutes([
+    {
+      path: '/login',
+      element: lazyLoad('Login/index')
+    },
+    {
+      path: '/films',
+      element: <Films></Films>,
+      children: [
+        {
+          path: '',
+          element: <Navigate to="/films/NowPlaying"></Navigate>
+        },
+        {
+          path: 'NowPlaying',
+          element: <NowPlaying></NowPlaying>
+        },
+        {
+          path: 'ComingSoon',
+          element: <ComingSoon></ComingSoon>
+        },
+      ]
+    },
+    {
+      path: '/filmDetail/:id',
+      element: <FilmDetail></FilmDetail>
+    },
+    {
+      path: '/filmDetail',
+      element: <FilmDetail2></FilmDetail2>
+    },
+    {
+      path: '/cinemas',
+      element: lazyLoad('Cinemas/index')
+    },
+    {
+      path: '/center',
+      element: <Auth><Center></Center></Auth>
+    },
+    {
+      path: '/',
+      element: <Films></Films>,
+    },
+    {
+      path: '*',
+      element: <NotFound></NotFound>,
+    },
+  ])
+  return element
 }
