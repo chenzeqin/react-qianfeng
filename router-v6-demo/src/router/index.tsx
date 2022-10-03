@@ -9,11 +9,14 @@ import ComingSoon from '../views/Films/ComingSoon';
 import NowPlaying from '../views/Films/NowPlaying';
 import FilmDetail from '../views/Films/FilmDetail';
 import FilmDetail2 from '../views/Films/FilmDetail2';
+import Auth from '../components/Auth';
+import Login from '../views/Login';
 
 export default function index() {
   // {/* 使用Routes替代v5 Switch */ }
   return (
     <Routes>
+      <Route path='/login' element={<Login></Login>}></Route>
       {/* 使用element属性替代v5 component */}
       <Route path='/films' element={<Films></Films>}>
         {/* index 指定匹配不到路由，指定默认路由 */}
@@ -26,7 +29,12 @@ export default function index() {
       <Route path="filmDetail/:id" element={<FilmDetail></FilmDetail>}></Route>
       <Route path="filmDetail" element={<FilmDetail2></FilmDetail2>}></Route>
       <Route path='/cinemas' element={<Cinemas></Cinemas>}></Route>
-      <Route path='/center' element={<Center></Center>}></Route>
+      <Route path='/center'
+        element={
+          <Auth>
+            <Center></Center>
+          </Auth>}>
+      </Route>
       {/* 使用Navigate替代Redirect */}
       {/* 重定向方式1 */}
       {/* <Route path="/" element={<Navigate to="/films"></Navigate>}></Route> */}

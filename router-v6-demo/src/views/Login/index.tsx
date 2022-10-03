@@ -1,15 +1,14 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function Center() {
+export default function Login() {
   const navigate = useNavigate()
   return (
     <div>
-      <h2>Center</h2>
       <button onClick={() => {
-        localStorage.removeItem('access-token')
+        localStorage.setItem('access-token', 'access-token-xxx')
         navigate('/')
-      }}>退出登陆</button>
+      }}>一键登陆</button>
     </div>
   )
 }
