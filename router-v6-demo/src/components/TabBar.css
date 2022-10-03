@@ -1,0 +1,15 @@
+.TabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.TabBar li {
+  flex: 1;
+  text-align: center;
+}
