@@ -20,7 +20,6 @@ export default function FilmDetail() {
         'X-Host': `mall.film-ticket.film.info`
       }
     }).then(res => {
-      console.warn('get detail')
       setFilm(res.data.data.film)
     })
   }, [id])
