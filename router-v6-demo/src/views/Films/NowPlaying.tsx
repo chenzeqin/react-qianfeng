@@ -21,8 +21,8 @@ export default function NowPlaying() {
   const navigate = useNavigate()
   const handleClick = (item: IFilm) => {
     console.log(item)
-    // navigate(`/filmDetail/${item.filmId}`)
-    navigate(`/filmDetail?id=${item.filmId}`)
+    navigate(`/filmDetail/${item.filmId}`)
+    // navigate(`/filmDetail?id=${item.filmId}`)
   }
 
   return (

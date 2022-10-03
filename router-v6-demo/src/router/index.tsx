@@ -8,6 +8,7 @@ import NotFound from '../views/404';
 import ComingSoon from '../views/Films/ComingSoon';
 import NowPlaying from '../views/Films/NowPlaying';
 import FilmDetail from '../views/Films/FilmDetail';
+import FilmDetail2 from '../views/Films/FilmDetail2';
 
 export default function index() {
   // {/* 使用Routes替代v5 Switch */ }
@@ -23,7 +24,7 @@ export default function index() {
         <Route path='/films/ComingSoon' element={<ComingSoon></ComingSoon>}></Route>
       </Route>
       <Route path="filmDetail/:id" element={<FilmDetail></FilmDetail>}></Route>
-      <Route path="filmDetail" element={<FilmDetail></FilmDetail>}></Route>
+      <Route path="filmDetail" element={<FilmDetail2></FilmDetail2>}></Route>
       <Route path='/cinemas' element={<Cinemas></Cinemas>}></Route>
       <Route path='/center' element={<Center></Center>}></Route>
       {/* 使用Navigate替代Redirect */}
