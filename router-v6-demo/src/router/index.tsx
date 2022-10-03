@@ -23,6 +23,7 @@ export default function index() {
         <Route path='/films/ComingSoon' element={<ComingSoon></ComingSoon>}></Route>
       </Route>
       <Route path="filmDetail/:id" element={<FilmDetail></FilmDetail>}></Route>
+      <Route path="filmDetail" element={<FilmDetail></FilmDetail>}></Route>
       <Route path='/cinemas' element={<Cinemas></Cinemas>}></Route>
       <Route path='/center' element={<Center></Center>}></Route>
       {/* 使用Navigate替代Redirect */}

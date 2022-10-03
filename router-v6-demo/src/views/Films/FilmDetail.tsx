@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useMatch, useParams } from 'react-router-dom'
+import { useMatch, useParams, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 import { IFilm } from './type'
 export default function FilmDetail() {
@@ -7,21 +7,28 @@ export default function FilmDetail() {
     name: '',
     filmId: ''
   })
-  const params = useParams()
-  console.log(params)
+  // const params = useParams()
+  // console.log(params)
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  const id = searchParams.get('id')
+
   useEffect(() => {
-    axios.get(`https://m.maizuo.com/gateway?filmId=${params.id}&k=52428`, {
+    axios.get(`https://m.maizuo.com/gateway?filmId=${id}&k=52428`, {
       headers: {
         'X-Client-Info': `{"a":"3000","ch":"1002","v":"5.2.1","e":"16592753012062937216778241"}`,
         'X-Host': `mall.film-ticket.film.info`
       }
     }).then(res => {
+      console.warn('get detail')
       setFilm(res.data.data.film)
     })
-  }, [params.id])
+  }, [id])
   return (
     <div>FilmDetail
       <h4>{film.name}</h4>
+      {/* setSearchParams可直接修改url参数 */}
+      <button onClick={() => setSearchParams({ id: '6015' })}>猜你喜欢</button>
     </div>
   )
 }
