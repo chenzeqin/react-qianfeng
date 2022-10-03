@@ -11,6 +11,7 @@ import FilmDetail from '../views/Films/FilmDetail';
 import FilmDetail2 from '../views/Films/FilmDetail2';
 import Auth from '../components/Auth';
 import Login from '../views/Login';
+import { lazyLoad } from '../components/lazyLoad';
 
 export default function index() {
   // {/* 使用Routes替代v5 Switch */ }
@@ -28,7 +29,7 @@ export default function index() {
       </Route>
       <Route path="filmDetail/:id" element={<FilmDetail></FilmDetail>}></Route>
       <Route path="filmDetail" element={<FilmDetail2></FilmDetail2>}></Route>
-      <Route path='/cinemas' element={<Cinemas></Cinemas>}></Route>
+      <Route path='/cinemas' element={lazyLoad('Cinemas/index')}></Route>
       <Route path='/center'
         element={
           <Auth>
