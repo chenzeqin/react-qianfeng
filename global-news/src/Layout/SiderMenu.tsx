@@ -4,13 +4,19 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import React from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, MenuProps } from 'antd';
+import { useNavigate } from 'react-router-dom'
 const { Sider } = Layout;
 
 interface SiderMenuProps {
   collapsed: boolean
 }
 export default function SiderMenu(props: SiderMenuProps) {
+  const navigate = useNavigate()
+  const handleClick: MenuProps['onClick'] = ({ item, key, keyPath, domEvent }) => {
+    navigate(key)
+  }
+
   const { collapsed } = props
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -19,21 +25,28 @@ export default function SiderMenu(props: SiderMenuProps) {
         theme="dark"
         mode="inline"
         defaultSelectedKeys={['1']}
+        onClick={handleClick}
         items={[
           {
-            key: '1',
+            key: '/home',
             icon: <UserOutlined />,
-            label: 'nav 1',
+            label: '首页'
           },
           {
-            key: '2',
+            key: '/user',
             icon: <VideoCameraOutlined />,
-            label: 'nav 2',
+            label: '用户管理',
+            children: [
+              {
+                key: '/user/list',
+                label: '用户列表',
+              }
+            ]
           },
           {
             key: '3',
             icon: <UploadOutlined />,
-            label: 'nav 3',
+            label: '权限管理',
           },
         ]}
       />
