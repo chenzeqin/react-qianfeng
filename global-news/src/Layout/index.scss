@@ -17,6 +17,9 @@
     .ant-layout-header {
       padding: 0;
       background: #fff;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
       .trigger {
         padding: 0 24px;
         font-size: 18px;
@@ -26,6 +29,9 @@
         &:hover {
           color: #1890ff;
         }
+      }
+      .profile {
+        margin-right: 20px;
       }
     }
     .ant-layout-content {
