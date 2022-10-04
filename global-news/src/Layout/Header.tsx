@@ -14,9 +14,17 @@ interface HeaderProps {
 export default function AppHeader(props: HeaderProps) {
   const { collapsed, setCollapsed } = props
   const menu = (
-    <Menu>
-      <Menu.Item>超级管理员</Menu.Item>
-      <Menu.Item danger>退出</Menu.Item>
+    <Menu items={[
+      {
+        key: '1',
+        label: '超级管理员',
+      },
+      {
+        key: '2',
+        label: '退出',
+        danger: true
+      },
+    ]}>
     </Menu>
   );
   return (
