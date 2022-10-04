@@ -1,0 +1,36 @@
+.ant-layout.main-layout {
+  height: 100vh;
+  .ant-layout-sider {
+    .logo {
+      height: 32px;
+      line-height: 32px;
+      margin: 16px;
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      text-align: center;
+    }
+  }
+
+  /* 右侧 layout */
+  .ant-layout.right-layout {
+    background: #fff;
+    .ant-layout-header {
+      padding: 0;
+      background: #fff;
+      .trigger {
+        padding: 0 24px;
+        font-size: 18px;
+        line-height: 64px;
+        cursor: pointer;
+        transition: color 0.3s;
+        &:hover {
+          color: #1890ff;
+        }
+      }
+    }
+    .ant-layout-content {
+      background-color: pink;
+      overflow: auto;
+    }
+  }
+}

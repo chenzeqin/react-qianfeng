@@ -1,11 +1,22 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Layout } from 'antd';
+import React, { useState } from 'react';
+import APPContent from './Content';
+import AppHeader from './Header';
+import './index.scss'
+import SiderMenu from './SiderMenu';
 
-export default function Layout() {
+const AppLayout: React.FC = () => {
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
-    <div>
-      Layout
-      <Outlet></Outlet>
-    </div>
-  )
-}
+    <Layout className="main-layout" >
+      <SiderMenu collapsed={collapsed}></SiderMenu>
+      <Layout className="right-layout">
+        <AppHeader collapsed={collapsed} setCollapsed={setCollapsed}></AppHeader>
+        <APPContent></APPContent>
+      </Layout>
+    </Layout >
+  );
+};
+
+export default AppLayout;

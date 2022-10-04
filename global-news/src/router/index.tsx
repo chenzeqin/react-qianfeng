@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, useRoutes, Navigate } from 'react-router-dom'
+import { useRoutes, Navigate } from 'react-router-dom'
 import Auth from '../components/Auth'
 import Layout from '../Layout'
 import Home from '../views/Home'
@@ -9,9 +9,7 @@ export default function AppRouter() {
   const element = useRoutes([
     {
       path: '/',
-      element: <Auth>
-        <Layout></Layout>
-      </Auth>,
+      element: <Layout></Layout>,
       children: [
         {
           path: '',
