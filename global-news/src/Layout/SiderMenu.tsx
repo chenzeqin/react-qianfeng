@@ -3,9 +3,9 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu, MenuProps } from 'antd';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 const { Sider } = Layout;
 
 interface SiderMenuProps {
@@ -13,6 +13,7 @@ interface SiderMenuProps {
 }
 export default function SiderMenu(props: SiderMenuProps) {
   const navigate = useNavigate()
+
   const handleClick: MenuProps['onClick'] = ({ item, key, keyPath, domEvent }) => {
     navigate(key)
   }
@@ -24,7 +25,7 @@ export default function SiderMenu(props: SiderMenuProps) {
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={[]}
         onClick={handleClick}
         items={[
           {
@@ -44,9 +45,15 @@ export default function SiderMenu(props: SiderMenuProps) {
             ]
           },
           {
-            key: '3',
+            key: '/permission',
             icon: <UploadOutlined />,
             label: '权限管理',
+            children: [
+              {
+                key: '/permission/list',
+                label: '权限列表',
+              }
+            ]
           },
         ]}
       />

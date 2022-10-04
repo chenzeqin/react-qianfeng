@@ -5,6 +5,8 @@ import Layout from '../Layout'
 import NotFound from '../views/404'
 import Home from '../views/Home'
 import Login from '../views/Login'
+import PermissionList from '../views/Permission/List'
+import UserList from '../views/User/List'
 
 export default function AppRouter() {
   const element = useRoutes([
@@ -19,6 +21,14 @@ export default function AppRouter() {
         {
           path: 'home',
           element: <Home></Home>
+        },
+        {
+          path: '/user/list',
+          element: <UserList></UserList>
+        },
+        {
+          path: '/permission/list',
+          element: <PermissionList></PermissionList>
         },
         {
           path: '/404',
