@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import { Layout, Menu, MenuProps } from 'antd';
 import { useNavigate, useLocation, useMatch } from 'react-router-dom'
 import { getPermissionTree } from '../api/user';
-import { PermissionTreeData } from '../views/Permission/type';
+import { Right } from '../views/Permission/type';
 console.log(iconMap)
 const { Sider } = Layout;
 
@@ -56,7 +56,7 @@ export default function SiderMenu(props: Props) {
 }
 
 // 后端数据处理为符合菜单格式的数据
-function generateMenu(data: PermissionTreeData): MenuProps['items'] {
+function generateMenu(data: Right[]): MenuProps['items'] {
   const menu = data.map((item) => {
     const { key, title, id, pagepermisson, icon } = item
     // 通过数据，动态渲染菜单

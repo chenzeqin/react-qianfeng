@@ -8,5 +8,3 @@ export interface Right {
   children?: Right[];
   icon?: string;
 }
-
-export type PermissionTreeData = Array<Right>;
