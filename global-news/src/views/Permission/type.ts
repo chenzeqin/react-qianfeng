@@ -6,6 +6,7 @@ export interface Right {
   pagepermisson?: number;
   rightId?: number;
   children?: Right[];
+  icon?: string;
 }
 
 export type PermissionTreeData = Array<Right>;
