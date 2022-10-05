@@ -23,11 +23,15 @@ export default function AppRouter() {
           element: <Home></Home>
         },
         {
-          path: '/user/list',
+          path: '/user-manage/list',
           element: <UserList></UserList>
         },
         {
-          path: '/permission/list',
+          path: '/right-manage/role/list',
+          element: <PermissionList></PermissionList>
+        },
+        {
+          path: '/right-manage/right/list',
           element: <PermissionList></PermissionList>
         },
         {
