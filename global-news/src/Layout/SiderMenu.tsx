@@ -5,7 +5,7 @@ import {
 } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { Layout, Menu, MenuProps } from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useMatch } from 'react-router-dom'
 import { getPermissionTree } from '../api/user';
 import { PermissionTreeData } from '../views/Permission/type';
 const { Sider } = Layout;
@@ -24,12 +24,16 @@ export default function SiderMenu(props: Props) {
   // fetch menu data
   useEffect(() => {
     getPermissionTree().then(res => {
-      console.log(res)
       setMenu(generateMenu(res))
     }).catch(err => {
       console.error(err)
     })
   }, [])
+
+  // 默认选中，默认展开
+  const location = useLocation()
+  const { pathname } = location
+  const openKey = pathname.split('/')[1]
 
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -38,7 +42,8 @@ export default function SiderMenu(props: Props) {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={[]}
+          selectedKeys={[pathname]}
+          defaultOpenKeys={[`/${openKey}`]}
           onClick={handleClick}
           items={menu}
         />
