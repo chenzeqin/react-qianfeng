@@ -34,13 +34,15 @@ export default function SiderMenu(props: Props) {
   return (
     <Sider trigger={null} collapsible collapsed={collapsed}>
       <div className="logo" >全球新闻发布系统</div>
-      <Menu
-        theme="dark"
-        mode="inline"
-        defaultSelectedKeys={[]}
-        onClick={handleClick}
-        items={menu}
-      />
+      <div className="ant-menu-wrapper">
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={[]}
+          onClick={handleClick}
+          items={menu}
+        />
+      </div>
     </Sider>
   )
 }
