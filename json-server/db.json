@@ -534,15 +534,6 @@
     },
     {
       "default": false,
-      "id": 5,
-      "password": "123",
-      "region": "南极洲",
-      "roleId": 3,
-      "roleState": true,
-      "username": "西门吹灯"
-    },
-    {
-      "default": false,
       "id": 6,
       "password": "123",
       "region": "南极洲",

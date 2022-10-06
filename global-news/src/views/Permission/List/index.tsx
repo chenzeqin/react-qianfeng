@@ -57,9 +57,7 @@ const PermissionList: React.FC = () => {
     {
       title: '操作',
       width: '30%',
-      key: 'address',
       render(row: Right) {
-        console.log(row)
         return (
           <div>
             <Switch checked={row.pagepermisson === 1} onChange={(checked: boolean) => {
