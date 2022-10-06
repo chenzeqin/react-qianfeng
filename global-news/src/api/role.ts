@@ -6,9 +6,9 @@ import { Role } from '../views/Role/type';
 export function getRoleList() {
   return request.get<Role[]>(`/roles`).then((res) => res.data);
 }
-// 更新状态
-export function updateStatus(id: number, pagepermisson: number) {
-  return request.patch(`/roles/${id}`, { pagepermisson }).then((res) => res.data);
+// 部分更新role
+export function patchRole(id: number, partialRole: Partial<Role>) {
+  return request.patch(`/roles/${id}`, partialRole).then((res) => res.data);
 }
 // 删除
 export function deleteRole(id: number) {
