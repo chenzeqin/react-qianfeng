@@ -6,6 +6,7 @@ import NotFound from '../views/404'
 import Home from '../views/Home'
 import Login from '../views/Login'
 import PermissionList from '../views/Permission/List'
+import RoleList from '../views/Role/List'
 import UserList from '../views/User/List'
 
 export default function AppRouter() {
@@ -28,7 +29,7 @@ export default function AppRouter() {
         },
         {
           path: '/right-manage/role/list',
-          element: <PermissionList></PermissionList>
+          element: <RoleList></RoleList>
         },
         {
           path: '/right-manage/right/list',

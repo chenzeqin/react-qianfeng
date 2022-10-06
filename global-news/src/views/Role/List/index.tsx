@@ -3,17 +3,16 @@ import type { ColumnsType } from 'antd/es/table';
 import type { TableRowSelection } from 'antd/es/table/interface';
 import React, { useEffect, useState } from 'react';
 import { deletePermission, getPermissionTree, updateStatus } from '../../../api/permission';
-import { Right } from '../type';
-import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { Role } from '../type';
+import { DeleteOutlined, ExclamationCircleOutlined, FormOutlined } from '@ant-design/icons';
+import { deleteRole, getRoleList } from '../../../api/role';
 
 
 
 
-const PermissionList: React.FC = () => {
-  const handleChange = (id: number, pagepermisson: number) => {
-    updateStatus(id, pagepermisson).then(res => {
-      initList()
-    })
+const RoleList: React.FC = () => {
+  const handleEdit = () => {
+
   }
   const handleDelete = (id: number) => {
     Modal.confirm({
@@ -23,7 +22,7 @@ const PermissionList: React.FC = () => {
       okText: '确认',
       cancelText: '取消',
       onOk() {
-        deletePermission(id).then(res => {
+        deleteRole(id).then(res => {
           initList()
         })
       }
@@ -31,7 +30,7 @@ const PermissionList: React.FC = () => {
 
   }
   // TODO: 优化 useMemo useCallback
-  const columns: ColumnsType<Right> = [
+  const columns: ColumnsType<Role> = [
     {
       title: 'id',
       dataIndex: 'id',
@@ -39,29 +38,23 @@ const PermissionList: React.FC = () => {
     },
     {
       title: '名称',
-      dataIndex: 'title',
-      key: 'name',
+      dataIndex: 'roleName',
+      key: 'roleName',
     },
     {
-      title: 'key',
-      dataIndex: 'key',
-      key: 'key',
-      render: (value: string) => {
-        return <Tag color='green'>{value}</Tag>
-      }
+      title: '类型',
+      dataIndex: 'roleType',
+      key: 'roleType',
     },
     {
       title: '操作',
       width: '30%',
       key: 'address',
-      render(row: Right) {
+      render(row: Role) {
         console.log(row)
         return (
           <div>
-            <Switch checked={row.pagepermisson === 1} onChange={(checked: boolean) => {
-              let pagepermisson = checked ? 1 : 0
-              handleChange(row.id, pagepermisson)
-            }}></Switch>
+            <Button type="primary" icon={<FormOutlined />} onClick={() => handleDelete(row.id)}>编辑</Button>
             <Button danger icon={<DeleteOutlined />} onClick={() => handleDelete(row.id)}>删除</Button>
           </div>
         )
@@ -69,21 +62,15 @@ const PermissionList: React.FC = () => {
     },
   ];
 
-  const [data, setData] = useState<Right[]>([])
+  const [data, setData] = useState<Role[]>([])
   useEffect(() => {
     initList()
   }, [])
 
   // 获取数据
   const initList = () => {
-    getPermissionTree().then(res => {
-      const list = res.map(item => {
-        return {
-          ...item,
-          children: item.children && item.children.length > 0 ? item.children : undefined
-        }
-      })
-      setData(list)
+    getRoleList().then(res => {
+      setData(res)
     })
   }
   return (
@@ -91,10 +78,11 @@ const PermissionList: React.FC = () => {
       <Table
         columns={columns}
         dataSource={data}
+        rowKey={(row) => row.id}
         pagination={{ pageSize: 5 }}
       />
     </>
   );
 };
 
-export default PermissionList;
+export default RoleList;

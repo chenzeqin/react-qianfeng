@@ -6,7 +6,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { Layout, Menu, MenuProps } from 'antd';
 import { useNavigate, useLocation, useMatch } from 'react-router-dom'
-import { getPermissionTree } from '../api/user';
+import { getPermissionTree } from '../api/permission';
 import { Right } from '../views/Permission/type';
 console.log(iconMap)
 const { Sider } = Layout;
