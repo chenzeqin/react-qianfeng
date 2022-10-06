@@ -2,7 +2,6 @@ import { Button, Modal, Switch, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { TableRowSelection } from 'antd/es/table/interface';
 import React, { useEffect, useState } from 'react';
-import { deletePermission, getPermissionTree, updateStatus } from '../../../api/permission';
 import { Role } from '../type';
 import { DeleteOutlined, ExclamationCircleOutlined, FormOutlined } from '@ant-design/icons';
 import { deleteRole, getRoleList } from '../../../api/role';
@@ -53,7 +52,7 @@ const RoleList: React.FC = () => {
       render(row: Role) {
         console.log(row)
         return (
-          <div>
+          <div style={{ minWidth: '200px' }}>
             <Button type="primary" icon={<FormOutlined />} onClick={() => handleDelete(row.id)}>编辑</Button>
             <Button danger icon={<DeleteOutlined />} onClick={() => handleDelete(row.id)}>删除</Button>
           </div>

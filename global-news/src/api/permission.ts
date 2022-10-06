@@ -10,7 +10,15 @@ export function getPermissionTree() {
 export function updateStatus(id: number, pagepermisson: number) {
   return request.patch(`/rights/${id}`, { pagepermisson }).then((res) => res.data);
 }
+// 更新状态
+export function updateChildStatus(id: number, pagepermisson: number) {
+  return request.patch(`/children/${id}`, { pagepermisson }).then((res) => res.data);
+}
 // 删除
 export function deletePermission(id: number) {
   return request.delete(`/rights/${id}`).then((res) => res.data);
+}
+// 删除
+export function deleteChildPermission(id: number) {
+  return request.delete(`/children/${id}`).then((res) => res.data);
 }
