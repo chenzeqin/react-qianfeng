@@ -14,3 +14,11 @@ export function patchUser(id: number, partialUser: Partial<User>) {
 export function deleteUser(id: number) {
   return request.delete(`/users/${id}`).then((res) => res.data);
 }
+// 新增
+export function addUser(user: User) {
+  return request.post(`/users`, user).then((res) => res.data);
+}
+// 编辑
+export function updateUser(id: number, user: User) {
+  return request.put(`/users/${id}`, user).then((res) => res.data);
+}
