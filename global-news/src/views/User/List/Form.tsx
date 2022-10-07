@@ -60,11 +60,11 @@ export default function UserForm(props: Props) {
   // 打开 关闭
   useEffect(() => {
     if (!visible) {
-      setDisabled(false)
+      setRegionDisabled(false)
       form?.resetFields()
     } else {
       user && form?.setFieldsValue(user)
-      setDisabled(user?.roleId === 1)
+      setRegionDisabled(user?.roleId === 1)
     }
   }, [visible, form, user])
 
@@ -76,13 +76,14 @@ export default function UserForm(props: Props) {
     getRegionList().then(res => setRegionList(res))
   }, [])
 
-  const [disabled, setDisabled] = useState(false)
+  // 区域是否可选
+  const [regionDisabled, setRegionDisabled] = useState(false)
   // 超级管理员1 自动选中 全球
   const handleRoleChange = (roleId: number) => {
     if (roleId === 1) {
       form?.setFieldValue('region', 0)
     }
-    setDisabled(roleId === 1)
+    setRegionDisabled(roleId === 1)
   }
   return (
     <Modal
@@ -130,7 +131,7 @@ export default function UserForm(props: Props) {
           name="region"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          <Select disabled={disabled}>
+          <Select disabled={regionDisabled}>
             {
               regionList.map(item => <Option key={item.id} value={item.id}>{item.title}</Option>)
             }
