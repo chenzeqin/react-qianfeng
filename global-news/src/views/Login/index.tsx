@@ -1,12 +1,26 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import React from 'react';
 import styles from './index.module.scss'
 import ParticlesBackground from './ParticlesBackground'
+import { login } from '../../api/user';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  const navigate = useNavigate()
+
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    login(values.username, values.password).then(res => {
+      if (res.success) {
+        message.success('登陆成功')
+        localStorage.setItem('token', 'token-xxx')
+        localStorage.setItem('user', JSON.stringify(res.user))
+        navigate('/')
+      } else {
+        message.warning('登陆失败')
+      }
+    })
   };
 
   const onFinishFailed = (errorInfo: any) => {
