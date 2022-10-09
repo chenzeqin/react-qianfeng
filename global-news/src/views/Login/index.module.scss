@@ -1,0 +1,24 @@
+.loginPage {
+  position: relative;
+  height: 100vh;
+  background-color: #1f233d;
+  h1 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  form {
+    width: 500px;
+    height: 300px;
+    background-color: #0a0b14;
+    padding: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.loginBtn {
+  // width: 80%;
+}
