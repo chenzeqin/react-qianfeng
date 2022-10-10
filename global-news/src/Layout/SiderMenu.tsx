@@ -8,6 +8,8 @@ import { Layout, Menu, MenuProps } from 'antd';
 import { useNavigate, useLocation, useMatch } from 'react-router-dom'
 import { getPermissionTree } from '../api/permission';
 import { Right } from '../views/Permission/type';
+import { User } from '../views/User/type';
+import { Role } from '../views/Role/type';
 console.log(iconMap)
 const { Sider } = Layout;
 
@@ -21,12 +23,17 @@ export default function SiderMenu(props: Props) {
   const handleClick: MenuProps['onClick'] = ({ item, key, keyPath, domEvent }) => {
     navigate(key)
   }
-
+  const jsonStr = localStorage.getItem('user')
+  let user: Partial<User> = {
+    username: '',
+    role: {}
+  }
+  if (jsonStr) user = JSON.parse(jsonStr)
   const [menu, setMenu] = useState<MenuProps['items']>([])
   // fetch menu data
   useEffect(() => {
     getPermissionTree().then(res => {
-      setMenu(generateMenu(res))
+      setMenu(generateMenu(res, user.role!))
     }).catch(err => {
       console.error(err)
     })
@@ -55,15 +62,16 @@ export default function SiderMenu(props: Props) {
   )
 }
 
+
 // 后端数据处理为符合菜单格式的数据
-function generateMenu(data: Right[]): MenuProps['items'] {
+function generateMenu(data: Right[], role: Partial<Role>): MenuProps['items'] {
   const menu = data.map((item) => {
-    const { key, title, id, pagepermisson, icon } = item
+    const { key, title, id, pagepermisson, icon, } = item
     // 通过数据，动态渲染菜单
     const iconEle = icon && (iconMap as any)[icon] ? React.createElement((iconMap as any)[icon]) : undefined
-
+    const rights = role.rights || []
     // pagepermisson = 1 才渲染菜单项
-    if (pagepermisson !== 1) {
+    if (pagepermisson !== 1 || !rights.includes(key)) {
       return undefined
     }
     if (item.children && item.children.length) {
@@ -72,7 +80,7 @@ function generateMenu(data: Right[]): MenuProps['items'] {
         label: title,
         id,
         icon: iconEle,
-        children: generateMenu(item.children)
+        children: generateMenu(item.children, role)
       }
     } else {
       return {

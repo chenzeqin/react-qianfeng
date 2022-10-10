@@ -1,3 +1,5 @@
+import { Role } from '../Role/type';
+
 export interface User {
   default: boolean;
   id: number;
@@ -6,4 +8,5 @@ export interface User {
   roleId: number;
   roleState: boolean;
   username: string;
+  role?: Partial<Role>;
 }
