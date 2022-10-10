@@ -517,6 +517,15 @@
       "region": "亚洲",
       "roleId": 2,
       "roleState": true,
+      "username": "chenzq"
+    },
+    {
+      "default": false,
+      "id": 2,
+      "password": "123",
+      "region": "亚洲",
+      "roleId": 2,
+      "roleState": true,
       "username": "铁锤"
     },
     {

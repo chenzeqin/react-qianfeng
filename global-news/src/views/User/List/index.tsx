@@ -5,10 +5,16 @@ import React, { useEffect, useState } from 'react';
 import { User } from '../type';
 import { DeleteOutlined, ExclamationCircleOutlined, FormOutlined } from '@ant-design/icons';
 import { deleteUser, getUserList, patchUser } from '../../../api/user';
-import { Role } from '../../Role/type';
+import { Role, RoleMap } from '../../Role/type';
 import UserForm from './Form';
 
 const UserList: React.FC = () => {
+  // TODO: 当前用户，后面保存再redux中后，在redux中取出
+  const jsonStr = localStorage.getItem('user')
+  let currentUser: Partial<User> = {
+    username: '',
+  }
+  if (jsonStr) currentUser = JSON.parse(jsonStr)
 
   // TODO: 优化 useMemo useCallback
   const columns: ColumnsType<User> = [
@@ -78,7 +84,16 @@ const UserList: React.FC = () => {
   // 获取数据
   const initList = () => {
     getUserList().then(res => {
-      setData(res)
+      // 超级管理员展示全部
+      if(currentUser.roleId === RoleMap.SUPER_ADMIN){
+        setData(res)
+      }else{
+        // 只展示当前区域下的用户和自己
+        const data = res.filter(item=>{
+          return item.id === currentUser.id || item.region === currentUser.region
+        })
+        setData(data)
+      }
     })
   }
 
