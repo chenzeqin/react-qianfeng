@@ -102,6 +102,7 @@ const UserList: React.FC = () => {
   const [user, setUser] = useState<User>()
 
   const handleAdd = () => {
+    setUser(undefined)
     setVisible(true)
   }
   const handleEdit = (user: User) => {

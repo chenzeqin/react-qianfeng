@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Button, Checkbox, Select, Form, Input, Modal, message } from 'antd';
 import { User } from '../type';
-import { Role } from '../../Role/type';
+import { Role, RoleMap } from '../../Role/type';
 import { getRoleList } from '../../../api/role';
 import { Region } from '../../Region/type';
 import { getRegionList } from '../../../api/region';
@@ -16,6 +16,12 @@ interface Props {
 
 export default function UserForm(props: Props) {
   const { visible, close, user } = props
+   // TODO: 当前用户，后面保存再redux中后，在redux中取出
+   const jsonStr = localStorage.getItem('user')
+   let currentUser: Partial<User> = {
+     username: '',
+   }
+   if (jsonStr) currentUser = JSON.parse(jsonStr)
 
   const handleOk = () => {
     form?.validateFields().then(() => {
@@ -64,7 +70,7 @@ export default function UserForm(props: Props) {
       form?.resetFields()
     } else {
       user && form?.setFieldsValue(user)
-      setRegionDisabled(user?.roleId === 1)
+      setRegionDisabled(user?.roleId === RoleMap.SUPER_ADMIN)
     }
   }, [visible, form, user])
 
@@ -80,11 +86,25 @@ export default function UserForm(props: Props) {
   const [regionDisabled, setRegionDisabled] = useState(false)
   // 超级管理员1 自动选中 全球
   const handleRoleChange = (roleId: number) => {
-    if (roleId === 1) {
+    if (roleId === RoleMap.SUPER_ADMIN) {
       form?.setFieldValue('region', 0)
     }
-    setRegionDisabled(roleId === 1)
+    setRegionDisabled(roleId === RoleMap.SUPER_ADMIN)
   }
+
+  const roleItemDisabled = (roleId:number) => {
+    // 超管
+    if(currentUser.roleId === RoleMap.SUPER_ADMIN) return false
+    // 区域管理员只能修改区域下的成员
+    return roleId === RoleMap.SUPER_ADMIN || roleId === RoleMap.AREA_ADMIN
+  }
+  const regionItemDisabled = (region:string) => {
+    // 超管
+    if(currentUser.roleId === RoleMap.SUPER_ADMIN) return false
+    // 区域管理员只能修改区域下的成员
+    return currentUser.region !== region
+  }
+
   return (
     <Modal
       title={title}
@@ -122,7 +142,7 @@ export default function UserForm(props: Props) {
         >
           <Select onChange={handleRoleChange}>
             {
-              roleList.map(item => <Option key={item.id} value={item.id}>{item.roleName}</Option>)
+              roleList.map(item => <Option key={item.id} value={item.id} disabled={roleItemDisabled(item.id)}>{item.roleName}</Option>)
             }
           </Select>
         </Form.Item>
@@ -133,7 +153,7 @@ export default function UserForm(props: Props) {
         >
           <Select disabled={regionDisabled}>
             {
-              regionList.map(item => <Option key={item.id} value={item.id}>{item.title}</Option>)
+              regionList.map(item => <Option key={item.id} value={item.id} disabled={regionItemDisabled(item.title)}>{item.title}</Option>)
             }
           </Select>
         </Form.Item>

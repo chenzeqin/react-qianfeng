@@ -505,14 +505,14 @@
       "default": true,
       "id": 1,
       "password": 123456,
-      "region": "",
+      "region": "全球",
       "roleId": 1,
       "roleState": true,
       "username": "admin"
     },
     {
       "default": false,
-      "id": 2,
+      "id": 88,
       "password": "123",
       "region": "亚洲",
       "roleId": 2,
@@ -521,7 +521,7 @@
     },
     {
       "default": false,
-      "id": 2,
+      "id": 66,
       "password": "123",
       "region": "亚洲",
       "roleId": 2,
@@ -541,7 +541,7 @@
       "default": false,
       "id": 4,
       "password": "123",
-      "region": "",
+      "region": "全球",
       "roleId": 1,
       "roleState": true,
       "username": "诸葛山珍"
