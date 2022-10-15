@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function ProtectedRoute({ children }: Props) {
-  const { token, rightTree } = useAuth()
+  const { token, rightTree, loading } = useAuth()
 
   if (!token || !rightTree.length) {
     return <div style={{ color: 'red', fontSize: '40px' }}>no permission</div>
@@ -14,8 +14,7 @@ export default function ProtectedRoute({ children }: Props) {
 
   return (
     <>
-      {token}
-      {children}
+      {loading ? <div>用户信息查询中...</div> : children}
     </>
   )
 }

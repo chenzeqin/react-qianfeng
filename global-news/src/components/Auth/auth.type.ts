@@ -7,4 +7,5 @@ export interface AuthProviderValue {
   handleLogout: () => void;
   user: Partial<User>;
   rightTree: Right[];
+  loading: boolean
 }

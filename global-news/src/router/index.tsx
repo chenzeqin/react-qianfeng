@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRoutes, Navigate } from 'react-router-dom'
 import ProtectedRoute from '../components/Auth/ProtectedRoute'
 import Layout from '../Layout'
@@ -8,8 +8,17 @@ import Login from '../views/Login'
 import PermissionList from '../views/Permission/List'
 import RoleList from '../views/Role/List'
 import UserList from '../views/User/List'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css' // progress bar style
 
 export default function AppRouter() {
+
+  NProgress.start()
+  useEffect(() => {
+    console.log('router -config')
+    NProgress.done()
+  })
+
   const element = useRoutes([
     {
       path: '/',

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { getToken } from '../../utils/auth';
 import { createContext } from "react";
 import { AuthProviderValue } from "./auth.type";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getUser, login } from '../../api/user';
 import { message } from 'antd';
 import { User } from '../../views/User/type';
@@ -14,7 +14,8 @@ export const AuthContext = createContext<AuthProviderValue>({
   handleLogin: () => { },
   handleLogout: () => { },
   user: { role: { rights: [] } },
-  rightTree: []
+  rightTree: [],
+  loading: false
 })
 
 interface Props {
@@ -22,6 +23,8 @@ interface Props {
 }
 
 export default function AuthProvider(props: Props) {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [loading, setLoading] = useState(false)
   const [token, setToken] = useState<string | null>(getToken());
   const jsonStr = localStorage.getItem('user')
@@ -33,10 +36,15 @@ export default function AuthProvider(props: Props) {
   if (jsonStr) _user = JSON.parse(jsonStr)
   const [user, setUser] = useState<Partial<User>>(_user)
   const [rightTree, setRightTree] = useState<Right[]>([])
-  const navigate = useNavigate()
+
 
   // token 更新时重新获取用户信息
   useEffect(() => {
+    if (!token) {
+      if (location.pathname !== '/login') {
+        navigate('/login')
+      }
+    }
     if (user.id) {
       setLoading(true)
       Promise.all([getUser(user.id), getPermissionTree()]).then(([user, rightTree]) => {
@@ -84,12 +92,13 @@ export default function AuthProvider(props: Props) {
       handleLogout,
       rightTree,
       user,
+      loading
     }
   }, [token, handleLogin, handleLogout, rightTree, user])
 
   return (
     <AuthContext.Provider value={value}>
-      {loading ? <div>用户信息查询中...</div> : props.children}
+      {props.children}
     </AuthContext.Provider>
   )
 }
