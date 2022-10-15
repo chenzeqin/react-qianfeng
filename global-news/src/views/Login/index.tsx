@@ -5,22 +5,15 @@ import styles from './index.module.scss'
 import ParticlesBackground from './ParticlesBackground'
 import { login } from '../../api/user';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../components/Auth/hooks/useAuth';
 
 export default function Login() {
   const navigate = useNavigate()
+  const { handleLogin } = useAuth()
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    login(values.username, values.password).then(res => {
-      if (res.success) {
-        message.success('登陆成功')
-        localStorage.setItem('token', 'token-xxx')
-        localStorage.setItem('user', JSON.stringify(res.user))
-        navigate('/')
-      } else {
-        message.warning('登陆失败')
-      }
-    })
+    handleLogin!(values.username, values.password)
   };
 
   const onFinishFailed = (errorInfo: any) => {

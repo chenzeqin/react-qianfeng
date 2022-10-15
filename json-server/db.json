@@ -504,7 +504,7 @@
     {
       "default": true,
       "id": 1,
-      "password": 123456,
+      "password": 123,
       "region": "全球",
       "roleId": 1,
       "roleState": true,

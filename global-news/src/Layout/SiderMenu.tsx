@@ -10,6 +10,7 @@ import { getPermissionTree } from '../api/permission';
 import { Right } from '../views/Permission/type';
 import { User } from '../views/User/type';
 import { Role } from '../views/Role/type';
+import { useAuth } from '../components/Auth/hooks/useAuth';
 console.log(iconMap)
 const { Sider } = Layout;
 
@@ -18,26 +19,17 @@ interface Props {
   collapsed: boolean
 }
 export default function SiderMenu(props: Props) {
+  const { rightTree, user } = useAuth()
   const { collapsed } = props
   const navigate = useNavigate()
   const handleClick: MenuProps['onClick'] = ({ item, key, keyPath, domEvent }) => {
     navigate(key)
   }
-  const jsonStr = localStorage.getItem('user')
-  let user: Partial<User> = {
-    username: '',
-    role: {}
-  }
-  if (jsonStr) user = JSON.parse(jsonStr)
   const [menu, setMenu] = useState<MenuProps['items']>([])
-  // fetch menu data
+
   useEffect(() => {
-    getPermissionTree().then(res => {
-      setMenu(generateMenu(res, user.role!))
-    }).catch(err => {
-      console.error(err)
-    })
-  }, [])
+    setMenu(generateMenu(rightTree, user.role!))
+  }, [rightTree, user])
 
   // 默认选中，默认展开
   // defaultSelectedKeys 不是可控属性， 需要设置selectedKeys，数据修改才会重新设置状态

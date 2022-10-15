@@ -40,3 +40,8 @@ export function login(username: string, password: string) {
       };
     });
 }
+
+// 查看用户
+export function getUser(id: number) {
+  return request.get<User>(`/users/${id}?_expand=role`).then((res) => res.data);
+}

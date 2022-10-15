@@ -8,6 +8,7 @@ import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import type { MenuProps } from 'antd'
 import { logout } from '../utils/auth';
 import { User } from '../views/User/type';
+import { useAuth } from '../components/Auth/hooks/useAuth';
 const { Header } = Layout;
 
 interface HeaderProps {
@@ -23,10 +24,11 @@ export default function AppHeader(props: HeaderProps) {
   }
   if (jsonStr) user = JSON.parse(jsonStr)
 
+  const { token, handleLogout } = useAuth()
   const handleClick: MenuProps['onClick'] = ({ item, key, keyPath, domEvent }) => {
     console.log(item, key, keyPath, domEvent)
     if (key === '2') {
-      logout()
+      if (token) handleLogout!()
     }
   }
   const menu = (

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRoutes, Navigate } from 'react-router-dom'
-import Auth from '../components/Auth'
+import ProtectedRoute from '../components/Auth/ProtectedRoute'
 import Layout from '../Layout'
 import NotFound from '../views/404'
 import Home from '../views/Home'
@@ -20,20 +20,20 @@ export default function AppRouter() {
           element: <Navigate to="/home"></Navigate>
         },
         {
-          path: 'home',
+          path: '/home',
           element: <Home></Home>
         },
         {
           path: '/user-manage/list',
-          element: <UserList></UserList>
+          element: <ProtectedRoute><UserList></UserList></ProtectedRoute>
         },
         {
           path: '/right-manage/role/list',
-          element: <RoleList></RoleList>
+          element: <ProtectedRoute><RoleList></RoleList></ProtectedRoute>
         },
         {
           path: '/right-manage/right/list',
-          element: <PermissionList></PermissionList>
+          element: <ProtectedRoute><PermissionList></PermissionList></ProtectedRoute>
         },
         {
           path: '/404',

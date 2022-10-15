@@ -11,7 +11,7 @@ export default function DemoUseCallback() {
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      console.log(text); // 如果依赖项为[], text永远都是空字符串 ''
+      console.log(text); // 如果依赖项为[], text永远都是空字符串 '', 因为 text 缓存了初始值
       setText(e.target.value);
     },
     [text] // text改变时，函数相关重新生成一次，重新获取最新状态，不相关时，使用缓存
