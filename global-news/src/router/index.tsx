@@ -10,6 +10,7 @@ import RoleList from '../views/Role/List'
 import UserList from '../views/User/List'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
+import AddNews from '../views/News/Add'
 
 export default function AppRouter() {
 
@@ -43,6 +44,10 @@ export default function AppRouter() {
         {
           path: '/right-manage/right/list',
           element: <ProtectedRoute><PermissionList></PermissionList></ProtectedRoute>
+        },
+        {
+          path: '/news-manage/add',
+          element: <ProtectedRoute><AddNews></AddNews></ProtectedRoute>
         },
         {
           path: '/404',

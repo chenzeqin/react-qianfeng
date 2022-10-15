@@ -1,0 +1,16 @@
+.content {
+  padding: 10px;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+
+.pageFooter {
+  margin-top: 30px;
+  :global(.ant-btn) {
+    margin: 5px;
+  }
+}

@@ -52,12 +52,12 @@ export default function AuthProvider(props: Props) {
       setLoading(true)
       Promise.all([getUser(user.id), getPermissionTree()]).then(([user, rightTree]) => {
         console.log('userInfo', user)
-        // 模拟网络延迟3s
+        // 模拟网络延迟
         setTimeout(() => {
           setUser(user)
           setRightTree(rightTree)
           setLoading(false)
-        }, 3 * 1000)
+        }, 1 * 1000)
       }).catch(e => setLoading(false))
     }
   }, [token, user.id])
