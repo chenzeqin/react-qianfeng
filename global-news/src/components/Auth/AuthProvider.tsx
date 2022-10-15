@@ -40,11 +40,14 @@ export default function AuthProvider(props: Props) {
 
   // token 更新时重新获取用户信息
   useEffect(() => {
+    // 路由拦截
     if (!token) {
       if (location.pathname !== '/login') {
         navigate('/login')
       }
+      return
     }
+
     if (user.id) {
       setLoading(true)
       Promise.all([getUser(user.id), getPermissionTree()]).then(([user, rightTree]) => {
