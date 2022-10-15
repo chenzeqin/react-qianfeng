@@ -97,7 +97,7 @@ export default function AuthProvider(props: Props) {
       user,
       loading
     }
-  }, [token, handleLogin, handleLogout, rightTree, user])
+  }, [token, handleLogin, handleLogout, rightTree, user, loading])
 
   return (
     <AuthContext.Provider value={value}>

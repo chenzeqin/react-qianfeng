@@ -1,20 +1,30 @@
 import React from 'react'
 import { useAuth } from './hooks/useAuth'
+import { Spin } from 'antd';
+import NoPermission from '../../views/401';
+import { useLocation } from 'react-router-dom';
 
 interface Props {
   children: React.ReactNode
 }
 
 export default function ProtectedRoute({ children }: Props) {
-  const { token, rightTree, loading } = useAuth()
+  const { token, loading, user } = useAuth()
+  const { pathname } = useLocation()
+  const rights = user.role?.rights || []
 
-  if (!token || !rightTree.length) {
-    return <div style={{ color: 'red', fontSize: '40px' }}>no permission</div>
+  const notNeedPermissionRoute = ['/', '/login', '/404']
+
+  const isNoPermission = !notNeedPermissionRoute.includes(pathname) && !rights.includes(pathname)
+
+
+  if (!loading && (!token || isNoPermission)) {
+    return <NoPermission></NoPermission>
   }
 
   return (
     <>
-      {loading ? <div>用户信息查询中...</div> : children}
+      {loading ? <Spin tip="用户信息查询中..."></Spin> : children}
     </>
   )
 }
