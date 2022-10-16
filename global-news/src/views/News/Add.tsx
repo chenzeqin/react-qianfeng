@@ -3,8 +3,10 @@ import { Steps, PageHeader, Button, Form, Input, Select } from 'antd';
 import styles from './index.module.scss'
 import { Category, News } from './news.type';
 import { initNews } from './data';
-import { getCategories } from '../../api/news';
+import { addNews, getCategories } from '../../api/news';
 import DraftEditor, { EditorRef } from '../../components/DraftEditor';
+import { useAuth } from '../../components/Auth/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 const { Step } = Steps;
 const { Option } = Select
 
@@ -12,6 +14,10 @@ export default function AddNews() {
   const [currentStep, setCurrentStep] = useState(0)
   const [categories, setCategories] = useState<Category[]>([])
   const [form] = Form.useForm(); // 基本信息
+  const [news, setNews] = useState<Partial<News>>({})
+  const [content, setContent] = useState<string>('')
+  const { user } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     getCategories().then(res => setCategories(res))
@@ -32,6 +38,7 @@ export default function AddNews() {
     form?.validateFields().then(() => {
       const data = form?.getFieldsValue()
       console.log(data)
+      setNews(data)
       setCurrentStep(currentStep + 1)
     })
   }
@@ -42,20 +49,42 @@ export default function AddNews() {
     if (editorRef && editorRef.current) {
       const html = editorRef.current.getHtml()
       console.log(html)
+      if (html.trim() && html.trim() !== '<p></p>') {
+        setContent(html)
+        setCurrentStep(currentStep + 1)
+      }
     }
-
   }
-  // 保存草稿
-  const saveAsDraft = () => { }
-  // 提交审核
-  const submitReview = () => { }
+  // 0:草稿，1： 提交审核
+  const save = (auditState: number) => {
+    const data: Partial<News> = {
+      categoryId: news.categoryId,
+      title: news.title,
+      auditState, // 0 未审核 1 审核中 3 审核ok 4 审核 rejected
+      content: content,
+      createTime: Date.now(),
+      id: undefined,
+      publishState: undefined, // 0 未发布 1 已发布
+      publishTime: undefined,
+      author: user.username,
+      region: user.region,
+      roleId: user.role!.id,
+      star: 0,
+      view: 0,
+    }
+    addNews(data).then(res => {
+      if (auditState === 0) {
+        navigate('/news-manage/draft')
+      }
+      if (auditState === 1) {
+        navigate('/audit-manage/list')
+      }
+    })
+  }
 
   const contentClassName = (step: number) => {
     return currentStep === step ? styles.show : styles.hide
   }
-
-
-
 
   return (
     <div>
@@ -104,11 +133,11 @@ export default function AddNews() {
           <DraftEditor ref={editorRef}></DraftEditor>
         </div>
         {/* 新闻提交 */}
-        <div className={contentClassName(2)}>2222</div>
+        {/* <div className={contentClassName(2)}>2222</div> */}
       </div>
       <div className={styles.pageFooter}>
-        {currentStep === 2 ? <Button type="primary" onClick={saveAsDraft}>保存草稿</Button> : null}
-        {currentStep === 2 ? <Button type="primary" danger onClick={submitReview}>提交审核</Button> : null}
+        {currentStep === 2 ? <Button type="primary" onClick={() => save(0)}>保存草稿</Button> : null}
+        {currentStep === 2 ? <Button type="primary" danger onClick={() => save(1)}>提交审核</Button> : null}
         {currentStep > 0 ? <Button type="primary" onClick={prevStep}>上一步</Button> : null}
         {currentStep < 2 ? <Button type="primary" onClick={nextStep}>下一步</Button> : null}
       </div>

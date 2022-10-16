@@ -11,6 +11,8 @@ import UserList from '../views/User/List'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 import AddNews from '../views/News/Add'
+import Draft from '../views/News/Draft'
+import AuditList from '../views/Audit/List'
 
 export default function AppRouter() {
 
@@ -48,6 +50,16 @@ export default function AppRouter() {
         {
           path: '/news-manage/add',
           element: <ProtectedRoute><AddNews></AddNews></ProtectedRoute>
+        },
+        // 草稿箱
+        {
+          path: '/news-manage/draft',
+          element: <ProtectedRoute><Draft></Draft></ProtectedRoute>
+        },
+        // 审核列表
+        {
+          path: '/audit-manage/list',
+          element: <ProtectedRoute><AuditList></AuditList></ProtectedRoute>
         },
         {
           path: '/404',
