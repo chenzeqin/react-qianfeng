@@ -11,7 +11,7 @@ import UserList from '../views/User/List'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 import AddNews from '../views/News/Add'
-import Draft from '../views/News/Draft'
+import Draft from '../views/News/Draft/List'
 import AuditList from '../views/Audit/List'
 
 export default function AppRouter() {

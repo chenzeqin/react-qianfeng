@@ -1,5 +1,5 @@
 export interface News {
-  auditState: number; // 0 未审核 1 审核中 3 审核ok 4 审核 rejected
+  auditState: number; // 0 未审核(草稿) 1 审核中 3 审核ok 4 审核 rejected
   author: string;
   categoryId: number;
   content: string;
@@ -12,6 +12,7 @@ export interface News {
   star: number;
   title: string;
   view: number;
+  category?: Category;
 }
 
 export interface Category {

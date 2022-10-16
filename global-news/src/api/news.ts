@@ -10,3 +10,13 @@ export function getCategories() {
 export function addNews(news: Partial<News>) {
   return request.post(`/news`, news).then((res) => res.data);
 }
+// 草稿列表
+export function getDraftList(userId: number) {
+  return request
+    .get<News[]>(`/news?_expand=category&createName=${userId}&auditState=0`)
+    .then((res) => res.data);
+}
+// 草稿列表
+export function deleteDraft(id: number) {
+  return request.delete(`/news/${id}`).then((res) => res.data);
+}

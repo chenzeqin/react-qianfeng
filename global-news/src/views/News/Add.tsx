@@ -121,7 +121,7 @@ export default function AddNews() {
             >
               <Select>
                 {
-                  categories.map(item => <Option key={item.id} value={item.value} >{item.title}</Option>)
+                  categories.map(item => <Option key={item.id} value={item.id} >{item.title}</Option>)
                 }
               </Select>
             </Form.Item>
