@@ -20,3 +20,8 @@ export interface Category {
   title: string;
   value: string;
 }
+
+export interface Option {
+  value: number;
+  name: string;
+}

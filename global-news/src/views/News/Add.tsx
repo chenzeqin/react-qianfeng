@@ -64,7 +64,7 @@ export default function AddNews() {
       content: content,
       createTime: Date.now(),
       id: undefined,
-      publishState: undefined, // 0 未发布 1 已发布
+      publishState: 0, // 0 未发布 1 已发布
       publishTime: undefined,
       author: user.username,
       region: user.region,

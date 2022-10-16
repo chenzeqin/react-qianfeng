@@ -5,6 +5,7 @@ import { Category, News } from '../news.type';
 import { DeleteOutlined, ExclamationCircleOutlined, FormOutlined } from '@ant-design/icons';
 import { getDraftList, deleteDraft } from '../../../api/news';
 import { useAuth } from '../../../components/Auth/hooks/useAuth';
+import { NavLink } from 'react-router-dom';
 
 const UserList: React.FC = () => {
   // TODO: 优化 useMemo useCallback
@@ -18,6 +19,9 @@ const UserList: React.FC = () => {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
+      render(value: string, row: News) {
+        return <NavLink to={`/news-manage/preview/${row.id}`}>{value}</NavLink>
+      }
     },
     {
       title: '分类',
