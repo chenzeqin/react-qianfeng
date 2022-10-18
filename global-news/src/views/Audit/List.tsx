@@ -69,12 +69,12 @@ const AuditList: React.FC = () => {
   const navigate = useNavigate()
   useEffect(() => {
     initList()
-  }, [user.id])
+  }, [user.username])
 
   // 获取数据
   const initList = () => {
     if (!user.id) return
-    getAuditList(user.id).then(res => {
+    getAuditList(user.username!).then(res => {
       setList(res)
     })
   }

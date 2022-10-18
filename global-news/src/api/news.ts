@@ -30,8 +30,14 @@ export function deleteDraft(id: number) {
 }
 
 // 审核列表
-export function getAuditList(userId: number) {
+export function getAuditList(userName: string) {
   return request
-    .get<News[]>(`/news?_expand=category&auditState_ne=0&publishState_lte=2`)
+    .get<News[]>(`/news?_expand=category&author=${userName}&auditState_ne=0&publishState_lte=1`)
     .then((res) => res.data);
+}
+// 审核新闻 审核中 - 未发布
+export function getMyAuditList(userName: string) {
+  return request
+  .get<News[]>(`/news?_expand=category&auditState=1&publishState_lte=1`)
+  .then((res) => res.data);
 }
