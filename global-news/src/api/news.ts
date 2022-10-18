@@ -28,3 +28,10 @@ export function getDraftList(userId: number) {
 export function deleteDraft(id: number) {
   return request.delete(`/news/${id}`).then((res) => res.data);
 }
+
+// 审核列表
+export function getAuditList(userId: number) {
+  return request
+    .get<News[]>(`/news?_expand=category&auditState_ne=0&publishState_lte=2`)
+    .then((res) => res.data);
+}

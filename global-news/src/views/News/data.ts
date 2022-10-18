@@ -37,10 +37,18 @@ export const auditStateOptions: Option[] = [
 export const publishStateOptions: Option[] = [
   {
     value: 0,
-    name: '未发布',
+    name: '待发布',
   },
   {
     value: 1,
+    name: '待发布',
+  },
+  {
+    value: 2,
     name: '已发布',
+  },
+  {
+    value: 3,
+    name: '已下线',
   },
 ];
