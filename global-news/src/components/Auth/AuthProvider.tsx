@@ -25,7 +25,7 @@ interface Props {
 export default function AuthProvider(props: Props) {
   const navigate = useNavigate()
   const location = useLocation()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [token, setToken] = useState<string | null>(getToken());
   const jsonStr = localStorage.getItem('user')
   let _user: Partial<User> = {

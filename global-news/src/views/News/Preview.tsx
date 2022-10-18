@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button, Descriptions, PageHeader, Space } from 'antd';
-import { getNews } from '../../../api/news';
-import { News, Option } from '../news.type';
-import { auditStateOptions, initNews, publishStateOptions } from '../data';
-import styles from '../index.module.scss'
+import { getNews } from '../../api/news';
+import { News, Option } from './news.type';
+import { auditStateOptions, initNews, publishStateOptions } from './data';
+import styles from './index.module.scss'
 
 export default function DraftPreview() {
   const { id } = useParams()

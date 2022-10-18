@@ -1,13 +1,13 @@
 import { Button, message, Modal, Space, Switch, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
-import { Category, News } from '../news.type';
+import { Category, News } from './news.type';
 import { DeleteOutlined, ExclamationCircleOutlined, FormOutlined } from '@ant-design/icons';
-import { getDraftList, deleteDraft } from '../../../api/news';
-import { useAuth } from '../../../components/Auth/hooks/useAuth';
-import { NavLink } from 'react-router-dom';
+import { getDraftList, deleteDraft } from '../../api/news';
+import { useAuth } from '../../components/Auth/hooks/useAuth';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-const UserList: React.FC = () => {
+const DraftList: React.FC = () => {
   // TODO: 优化 useMemo useCallback
   const columns: ColumnsType<News> = [
     {
@@ -68,6 +68,7 @@ const UserList: React.FC = () => {
 
   const [list, setList] = useState<News[]>([])
   const { user } = useAuth()
+  const navigate = useNavigate()
   useEffect(() => {
     initList()
   }, [user.id])
@@ -80,7 +81,9 @@ const UserList: React.FC = () => {
     })
   }
 
-  const handleEdit = (row: News) => { }
+  const handleEdit = (row: News) => { 
+    navigate(`/news-manage/update/${row.id}`)
+  }
   // 删除
   const handleDelete = (row: News) => {
     const { id } = row
@@ -109,4 +112,4 @@ const UserList: React.FC = () => {
   );
 };
 
-export default UserList;
+export default DraftList;

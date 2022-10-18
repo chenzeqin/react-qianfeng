@@ -10,6 +10,10 @@ export function getCategories() {
 export function addNews(news: Partial<News>) {
   return request.post(`/news`, news).then((res) => res.data);
 }
+// 更新新闻
+export function updateNews(id:string, news: Partial<News>) {
+  return request.patch(`/news/${id}`, news).then((res) => res.data);
+}
 // 查看新闻
 export function getNews(id: string) {
   return request.get<News>(`/news/${id}?_expand=category&_expand=role`).then((res) => res.data);

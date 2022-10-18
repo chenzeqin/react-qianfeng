@@ -11,9 +11,10 @@ import UserList from '../views/User/List'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 import AddNews from '../views/News/Add'
-import Draft from '../views/News/Draft/List'
+import DraftList from '../views/News/DraftList'
 import AuditList from '../views/Audit/List'
-import DraftPreview from '../views/News/Draft/Preview'
+import DraftPreview from '../views/News/Preview'
+import UpdateNews from '../views/News/Update'
 
 export default function AppRouter() {
 
@@ -48,14 +49,20 @@ export default function AppRouter() {
           path: '/right-manage/right/list',
           element: <ProtectedRoute><PermissionList></PermissionList></ProtectedRoute>
         },
+        // 草稿箱列表
+        {
+          path: '/news-manage/draft',
+          element: <ProtectedRoute><DraftList></DraftList></ProtectedRoute>
+        },
+        // 新增文章
         {
           path: '/news-manage/add',
           element: <ProtectedRoute><AddNews></AddNews></ProtectedRoute>
         },
-        // 草稿箱
+        // 编辑文章文章
         {
-          path: '/news-manage/draft',
-          element: <ProtectedRoute><Draft></Draft></ProtectedRoute>
+          path: '/news-manage/update/:id',
+          element: <ProtectedRoute authPath='/news-manage/update/:id'><UpdateNews></UpdateNews></ProtectedRoute>
         },
         // 预览
         {
