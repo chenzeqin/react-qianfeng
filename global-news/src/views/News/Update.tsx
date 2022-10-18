@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Steps, PageHeader, Button, Form, Input, Select } from 'antd';
+import { Steps, PageHeader, Button, Form, Input, Select, notification } from 'antd';
 import styles from './index.module.scss'
 import { Category, News } from './news.type';
 import { initNews } from './data';
@@ -92,6 +92,11 @@ export default function UpdateNews() {
       if (auditState === 1) {
         navigate('/audit-manage/list')
       }
+      notification.info({
+        message: '通知',
+        description: `您可以到${auditState === 0 ? '草稿' : '审核'}列表查看`,
+        placement: 'bottomRight'
+      })
     })
   }
 
