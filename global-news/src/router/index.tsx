@@ -16,6 +16,7 @@ import AuditList from '../views/Audit/List'
 import Audit from '../views/Audit/Audit'
 import DraftPreview from '../views/News/Preview'
 import UpdateNews from '../views/News/Update'
+import PublishList from '../views/Publish/List'
 
 export default function AppRouter() {
 
@@ -79,6 +80,21 @@ export default function AppRouter() {
         {
           path: '/audit-manage/list',
           element: <ProtectedRoute><AuditList></AuditList></ProtectedRoute>
+        },
+        // 新闻列表-待发布
+        {
+          path: '/publish-manage/unpublished',
+          element: <ProtectedRoute><PublishList></PublishList></ProtectedRoute>
+        },
+         // 新闻列表-已发布
+        {
+          path: '/publish-manage/published',
+          element: <ProtectedRoute><PublishList></PublishList></ProtectedRoute>
+        },
+         // 新闻列表-已下线
+        {
+          path: '/publish-manage/sunset',
+          element: <ProtectedRoute><PublishList></PublishList></ProtectedRoute>
         },
         {
           path: '/404',

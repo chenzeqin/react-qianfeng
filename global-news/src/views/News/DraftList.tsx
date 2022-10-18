@@ -71,12 +71,12 @@ const DraftList: React.FC = () => {
   const navigate = useNavigate()
   useEffect(() => {
     initList()
-  }, [user.id])
+  }, [user.username])
 
   // 获取数据
   const initList = () => {
-    if (!user.id) return
-    getDraftList(user.id).then(res => {
+    if (!user.username) return
+    getDraftList(user.username).then(res => {
       setList(res)
     })
   }

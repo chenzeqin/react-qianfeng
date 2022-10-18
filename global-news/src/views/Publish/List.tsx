@@ -3,19 +3,14 @@ import type { ColumnsType } from 'antd/es/table';
 import React, { useEffect, useState } from 'react';
 import { Category, News } from '../News/news.type';
 import { DeleteOutlined, ExclamationCircleOutlined, FormOutlined } from '@ant-design/icons';
-import { getDraftList, deleteDraft, updateNews, getAuditList } from '../../api/news';
+import { getDraftList, deleteDraft, updateNews, getAuditList, getPublishList } from '../../api/news';
 import { useAuth } from '../../components/Auth/hooks/useAuth';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { auditStateOptions } from '../News/data';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { auditStateOptions, publishStateOptions } from '../News/data';
 
-const AuditList: React.FC = () => {
+const PublishList: React.FC = () => {
   // TODO: 优化 useMemo useCallback
   const columns: ColumnsType<News> = [
-    {
-      title: '作者',
-      dataIndex: 'author',
-      key: 'author',
-    },
     {
       title: '标题',
       dataIndex: 'title',
@@ -25,12 +20,12 @@ const AuditList: React.FC = () => {
       }
     },
     {
-      title: '审核状态',
-      dataIndex: 'auditState',
-      key: 'auditState',
+      title: '发布状态',
+      dataIndex: 'publishState',
+      key: 'publishState',
       render(value: number) {
-        const stateOption = auditStateOptions.find(item => item.value === value)
-        if (stateOption) return stateOption.name
+        const option = publishStateOptions.find(item => item.value === value)
+        if (option) return option.name
         return '未知状态'
       }
     },
@@ -55,7 +50,7 @@ const AuditList: React.FC = () => {
               type="primary"
               icon={<FormOutlined />}
               onClick={() => handleEdit(row)}>
-              {buttonText(row.auditState)}
+              {buttonText(row.publishState)}
             </Button>
           </div>
         )
@@ -66,40 +61,39 @@ const AuditList: React.FC = () => {
 
   const [list, setList] = useState<News[]>([])
   const { user } = useAuth()
-  const navigate = useNavigate()
+  const { pathname } = useLocation()
+  let publishState = 1 // 待发布
+  if (pathname.includes('/published')) publishState = 2 // 已经发布
+  if (pathname.includes('/sunset')) publishState = 3 // 已经下线
+
   useEffect(() => {
     initList()
-  }, [user.username])
+  }, [user.username, pathname])
 
   // 获取数据
   const initList = () => {
     if (!user.username) return
-    getAuditList(user.username).then(res => {
+    getPublishList(user.username, publishState).then(res => {
       setList(res)
     })
   }
-  const buttonText = (auditState: number) => {
-    if (auditState === 1) {
-      return '撤销'
-    }
-    if (auditState === 2) {
+  const buttonText = (publishState: number) => {
+    // 待发布
+    if (publishState === 1) {
       return '发布'
     }
-    return '修改'
+    // 已发布
+    if (publishState === 2) {
+      return '下线'
+    }
+    // 已下线
+    if (publishState === 3) {
+      return '发布'
+    }
   }
   const handleEdit = (row: News) => {
-    const { auditState } = row
-    // 撤销，退回草稿箱
-    if (auditState === 1) {
-      updateNews(row.id + '', {
-        auditState: 0
-      }).then(() => {
-        initList()
-        message.success('撤销成功')
-      })
-    }
-    // 审核通过->发布
-    if (auditState === 2) {
+    const { publishState } = row
+    if (publishState === 1) {
       updateNews(row.id + '', {
         publishState: 2,
         publishTime: Date.now()
@@ -108,8 +102,21 @@ const AuditList: React.FC = () => {
         message.success('发布成功')
       })
     }
-    if (auditState === 3) {
-      navigate(`/news-manage/update/${row.id}`)
+    if (publishState === 2) {
+      updateNews(row.id + '', {
+        publishState: 3,
+      }).then(() => {
+        initList()
+        message.success('下线成功')
+      })
+    }
+    if (publishState === 3) {
+      updateNews(row.id + '', {
+        publishState: 2,
+      }).then(() => {
+        initList()
+        message.success('发布成功')
+      })
     }
   }
 
@@ -125,4 +132,4 @@ const AuditList: React.FC = () => {
   );
 };
 
-export default AuditList;
+export default PublishList;

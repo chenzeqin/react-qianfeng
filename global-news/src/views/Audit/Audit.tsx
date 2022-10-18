@@ -70,35 +70,19 @@ const Audit: React.FC = () => {
 
   // 获取数据
   const initList = () => {
-    if (!user.id) return
-    getMyAuditList(user.username!).then(res => {
+    if (!user.username) return
+    getMyAuditList(user.username).then(res => {
       setList(res)
     })
   }
   const handleEdit = (row: News, newAuditState: number) => {
-    const { auditState } = row
-    // 撤销，退回草稿箱
-    if (newAuditState) {
-      updateNews(row.id + '', {
-        auditState: newAuditState
-      }).then(() => {
-        initList()
-        message.success('撤销成功')
-      })
-    }
-    // 审核通过->发布
-    if (auditState === 2) {
-      updateNews(row.id + '', {
-        publishState: 2,
-        publishTime: Date.now()
-      }).then(() => {
-        initList()
-        message.success('发布成功')
-      })
-    }
-    if (auditState === 3) {
-      navigate(`/news-manage/update/${row.id}`)
-    }
+    updateNews(row.id + '', {
+      publishState: 1,
+      auditState: newAuditState
+    }).then(() => {
+      initList()
+      message.success('撤销成功')
+    })
   }
 
   return (
