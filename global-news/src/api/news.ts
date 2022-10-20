@@ -1,9 +1,13 @@
 import request from '../utils/request';
 import { Category, News } from '../views/News/news.type';
 
-// 获取权限树
+// 获取分类列表
 export function getCategories() {
   return request.get<Category[]>(`/categories`).then((res) => res.data);
+}
+// 修改分类
+export function updateCategory(id:number, category: Partial<Category>) {
+  return request.patch<any>(`/categories/${id}`,category).then((res) => res.data);
 }
 
 // 添加新闻

@@ -17,6 +17,7 @@ import Audit from '../views/Audit/Audit'
 import DraftPreview from '../views/News/Preview'
 import UpdateNews from '../views/News/Update'
 import PublishList from '../views/Publish/List'
+import Category from '../views/News/Category'
 
 export default function AppRouter() {
 
@@ -60,6 +61,11 @@ export default function AppRouter() {
         {
           path: '/news-manage/add',
           element: <ProtectedRoute><AddNews></AddNews></ProtectedRoute>
+        },
+        // 新增文章
+        {
+          path: '/news-manage/category',
+          element: <ProtectedRoute><Category></Category></ProtectedRoute>
         },
         // 编辑文章文章
         {
