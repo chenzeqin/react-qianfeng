@@ -8,6 +8,8 @@ import { message } from 'antd';
 import { User } from '../../views/User/type';
 import { getPermissionTree } from '../../api/permission';
 import { Right } from '../../views/Permission/type';
+import { useAppDispatch } from '../../store/hooks';
+import { tokenAction } from '../../store/actions/useActions';
 
 export const AuthContext = createContext<AuthProviderValue>({
   token: '',
@@ -63,10 +65,16 @@ export default function AuthProvider(props: Props) {
   }, [token, user.id])
 
 
+  const dispatch = useAppDispatch()
+
   const handleLogin = useCallback((username: string, password: string) => {
     login(username, password).then(res => {
 
       if (res.success) {
+        // redux+持久化版本需要设置token
+        dispatch(tokenAction('token-abcd'))
+
+
         setToken('token-xxx')
         localStorage.setItem('token', 'token-xxx')
         localStorage.setItem('user', JSON.stringify(res.user))
