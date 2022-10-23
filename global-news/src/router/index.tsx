@@ -21,6 +21,8 @@ import Category from '../views/News/Category'
 import Profile from '../views/User/Profile'
 import { Spin } from 'antd'
 import { useAppSelector } from '../store/hooks'
+import News from '../views/ClientPage/News'
+import NewsDetail from '../views/ClientPage/NewsDetail'
 
 export default function AppRouter() {
   // 进度条
@@ -29,6 +31,14 @@ export default function AppRouter() {
     NProgress.done()
   })
   const element = useRoutes([
+    {
+      path: '/news',
+      element: <News></News>
+    },
+    {
+      path: '/news-detail',
+      element: <NewsDetail></NewsDetail>
+    },
     {
       path: '/',
       element: <Layout></Layout>,

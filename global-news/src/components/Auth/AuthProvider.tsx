@@ -10,6 +10,9 @@ import { getPermissionTree } from '../../api/permission';
 import { Right } from '../../views/Permission/type';
 import { useAppDispatch } from '../../store/hooks';
 import { tokenAction } from '../../store/actions/useActions';
+/* redux版本auth组件 */
+const whiteList = ['/login', '/news',"/news-detail"]
+
 
 export const AuthContext = createContext<AuthProviderValue>({
   token: '',
@@ -42,6 +45,10 @@ export default function AuthProvider(props: Props) {
 
   // token 更新时重新获取用户信息
   useEffect(() => {
+    if (whiteList.some(item => item.indexOf(location.pathname) > -1)) {
+      return
+    }
+
     // 路由拦截
     if (!token) {
       if (location.pathname !== '/login') {
@@ -50,7 +57,7 @@ export default function AuthProvider(props: Props) {
       return
     }
 
-    if (user.id) {
+    if (user.id && !loading && !rightTree.length) {
       setLoading(true)
       Promise.all([getUser(user.id), getPermissionTree()]).then(([user, rightTree]) => {
         console.log('userInfo', user)
@@ -62,7 +69,7 @@ export default function AuthProvider(props: Props) {
         }, 1 * 1000)
       }).catch(e => setLoading(false))
     }
-  }, [token, user.id])
+  }, [token, user.id, location.pathname, loading, navigate, rightTree.length])
 
 
   const dispatch = useAppDispatch()

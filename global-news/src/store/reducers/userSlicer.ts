@@ -19,7 +19,7 @@ interface UserState {
   rightTree: Right[];
 }
 const initialState: UserState = {
-  loading: false,
+  loading: true,
   token: getToken(),
   userInfo: _user
     ? _user

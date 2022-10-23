@@ -16,7 +16,7 @@ export default function PieChart() {
       // 绘制图表
       myChart.current?.setOption({
         title: {
-          text: 'Referer of a Website',
+          text: '新闻分类统计',
           subtext: 'Fake Data',
           left: 'center'
         },
