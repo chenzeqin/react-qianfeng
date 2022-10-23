@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useRoutes, Navigate } from 'react-router-dom'
 import ProtectedRoute from '../components/Auth/ProtectedRoute'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css' // progress bar style
 import Layout from '../Layout'
 import NotFound from '../views/404'
 import Home from '../views/Home'
@@ -8,8 +10,6 @@ import Login from '../views/Login'
 import PermissionList from '../views/Permission/List'
 import RoleList from '../views/Role/List'
 import UserList from '../views/User/List'
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css' // progress bar style
 import AddNews from '../views/News/Add'
 import DraftList from '../views/News/DraftList'
 import AuditList from '../views/Audit/List'
@@ -19,10 +19,7 @@ import UpdateNews from '../views/News/Update'
 import PublishList from '../views/Publish/List'
 import Category from '../views/News/Category'
 import Profile from '../views/User/Profile'
-import { Spin } from 'antd'
-import { useAppSelector } from '../store/hooks'
-import News from '../views/ClientPage/News'
-import NewsDetail from '../views/ClientPage/NewsDetail'
+import ClientPage from '../views/ClientPage'
 
 export default function AppRouter() {
   // 进度条
@@ -33,11 +30,11 @@ export default function AppRouter() {
   const element = useRoutes([
     {
       path: '/news',
-      element: <News></News>
+      element: <ClientPage></ClientPage>
     },
     {
-      path: '/news-detail',
-      element: <NewsDetail></NewsDetail>
+      path: '/news-detail/:id',
+      element: <DraftPreview></DraftPreview>
     },
     {
       path: '/',

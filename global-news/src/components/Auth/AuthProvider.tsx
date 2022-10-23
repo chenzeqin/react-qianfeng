@@ -45,7 +45,7 @@ export default function AuthProvider(props: Props) {
 
   // token 更新时重新获取用户信息
   useEffect(() => {
-    if (whiteList.some(item => item.indexOf(location.pathname) > -1)) {
+    if (whiteList.some(item => location.pathname.indexOf(item) > -1)) {
       return
     }
 

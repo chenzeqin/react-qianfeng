@@ -103,3 +103,9 @@ export function getPieChartData() {
     return data;
   });
 }
+
+
+// 客户端新闻列表
+export function getNewsList() {
+  return request.get<News[]>(`/news?_expand=category&publishState=2&_order=desc`).then((res) => res.data);
+}
