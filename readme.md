@@ -16,9 +16,7 @@
 
 ```
 
-具体内容查看代码提交记录和练习 [笔记](https://www.yuque.com/chenzq/ou6cy9)
-[b站千峰react课程练习笔记]
-
+具体内容查看代码提交记录和练习[笔记](https://www.yuque.com/chenzq/ou6cy9)
 
 ```ssh
 
