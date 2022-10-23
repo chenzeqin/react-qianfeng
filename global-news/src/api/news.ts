@@ -6,8 +6,8 @@ export function getCategories() {
   return request.get<Category[]>(`/categories`).then((res) => res.data);
 }
 // 修改分类
-export function updateCategory(id:number, category: Partial<Category>) {
-  return request.patch<any>(`/categories/${id}`,category).then((res) => res.data);
+export function updateCategory(id: number, category: Partial<Category>) {
+  return request.patch<any>(`/categories/${id}`, category).then((res) => res.data);
 }
 
 // 添加新闻
@@ -53,5 +53,17 @@ export function getPublishList(userName: string, publishState: number) {
     .get<News[]>(
       `/news?_expand=category&author=${userName}&auditState_gte=1&publishState=${publishState}`
     )
+    .then((res) => res.data);
+}
+// 最常浏览
+export function getMostViewNews() {
+  return request
+    .get<News[]>(`/news?_expand=category&publishState=2&_sort=view&_order=desc&_limit=6`)
+    .then((res) => res.data);
+}
+// 最多点赞
+export function getMostStarNews() {
+  return request
+    .get<News[]>(`/news?_expand=category&publishState=2&_sort=star&_order=desc&_limit=6`)
     .then((res) => res.data);
 }

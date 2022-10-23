@@ -25,8 +25,6 @@ function App() {
             </AuthRedux>
           </HistoryRouter>
         </PersistGate>
-
-
       </Provider>
     </div>
   );
