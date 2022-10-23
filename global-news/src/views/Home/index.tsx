@@ -5,6 +5,7 @@ import { useAuth } from '../../components/Auth/hooks/useAuth';
 import { getMostStarNews, getMostViewNews } from '../../api/news';
 import { News } from '../News/news.type';
 import { NavLink } from 'react-router-dom';
+import LineChart from './LineChart';
 const { Meta } = Card;
 
 export default function Home() {
@@ -56,6 +57,11 @@ export default function Home() {
               description={<span>{user.region}-{user.role?.roleName}</span>}
             />
           </Card>
+        </Col>
+      </Row>
+      <Row >
+        <Col className="gutter-row" span={24}>
+          <LineChart></LineChart>
         </Col>
       </Row>
     </div>

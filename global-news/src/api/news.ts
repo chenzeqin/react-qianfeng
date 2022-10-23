@@ -1,6 +1,6 @@
 import request from '../utils/request';
 import { Category, News } from '../views/News/news.type';
-
+import { groupBy } from 'lodash';
 // 获取分类列表
 export function getCategories() {
   return request.get<Category[]>(`/categories`).then((res) => res.data);
@@ -66,4 +66,25 @@ export function getMostStarNews() {
   return request
     .get<News[]>(`/news?_expand=category&publishState=2&_sort=star&_order=desc&_limit=6`)
     .then((res) => res.data);
+}
+
+// 分类统计
+export function getLineChartData() {
+  return request.get<News[]>(`/news?_expand=category&publishState=2&_order=desc`).then((res) => {
+    const dataGroup = groupBy(res.data, (item) => item.category?.title);
+
+    const data: {
+      xAxis: string[];
+      yAxis: number[];
+    } = {
+      xAxis: [],
+      yAxis: [],
+    };
+    for (let key in dataGroup) {
+      data.xAxis.push(key);
+      data.yAxis.push(dataGroup[key].length);
+    }
+
+    return data;
+  });
 }
