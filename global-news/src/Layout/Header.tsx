@@ -9,6 +9,7 @@ import type { MenuProps } from 'antd'
 import { logout } from '../utils/auth';
 import { User } from '../views/User/type';
 import { useAuth } from '../components/Auth/hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 const { Header } = Layout;
 
 interface HeaderProps {
@@ -17,8 +18,10 @@ interface HeaderProps {
 }
 
 export default function AppHeader(props: HeaderProps) {
+  const navigate = useNavigate()
   const { collapsed, setCollapsed } = props
   const jsonStr = localStorage.getItem('user')
+
   let user: Partial<User> = {
     username: '',
   }
@@ -27,6 +30,9 @@ export default function AppHeader(props: HeaderProps) {
   const { token, handleLogout } = useAuth()
   const handleClick: MenuProps['onClick'] = ({ item, key, keyPath, domEvent }) => {
     console.log(item, key, keyPath, domEvent)
+    if (key === '1') {
+      navigate('/profile')
+    }
     if (key === '2') {
       if (token) handleLogout!()
     }
@@ -35,7 +41,8 @@ export default function AppHeader(props: HeaderProps) {
     <Menu onClick={handleClick} items={[
       {
         key: '1',
-        label: '超级管理员',
+        label: user.username || '未登录',
+        disabled: !user.id
       },
       {
         key: '2',

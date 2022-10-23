@@ -18,6 +18,7 @@ import DraftPreview from '../views/News/Preview'
 import UpdateNews from '../views/News/Update'
 import PublishList from '../views/Publish/List'
 import Category from '../views/News/Category'
+import Profile from '../views/User/Profile'
 
 export default function AppRouter() {
 
@@ -92,15 +93,20 @@ export default function AppRouter() {
           path: '/publish-manage/unpublished',
           element: <ProtectedRoute><PublishList></PublishList></ProtectedRoute>
         },
-         // 新闻列表-已发布
+        // 新闻列表-已发布
         {
           path: '/publish-manage/published',
           element: <ProtectedRoute><PublishList></PublishList></ProtectedRoute>
         },
-         // 新闻列表-已下线
+        // 新闻列表-已下线
         {
           path: '/publish-manage/sunset',
           element: <ProtectedRoute><PublishList></PublishList></ProtectedRoute>
+        },
+        // 个人中心： 练习 react-redux
+        {
+          path: '/profile',
+          element: <Profile></Profile>
         },
         {
           path: '/404',
