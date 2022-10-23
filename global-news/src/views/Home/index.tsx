@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Card, List, Avatar } from 'antd'
+import { Row, Col, Card, List, Avatar, Drawer } from 'antd'
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons'
 import { useAuth } from '../../components/Auth/hooks/useAuth';
 import { getMostStarNews, getMostViewNews } from '../../api/news';
 import { News } from '../News/news.type';
 import { NavLink } from 'react-router-dom';
 import LineChart from './LineChart';
+import PieChart from './PieChart';
 const { Meta } = Card;
 
 export default function Home() {
@@ -16,6 +17,12 @@ export default function Home() {
     getMostViewNews().then(res => setMostViewList(res))
     getMostStarNews().then(res => setMostStarList(res))
   }, [])
+
+  const [open, setOpen] = useState(false)
+  const handleClick = () => {
+    setOpen(!open)
+  }
+
   return (
     <div>
       <Row gutter={16}>
@@ -46,7 +53,7 @@ export default function Home() {
               />
             }
             actions={[
-              <SettingOutlined key="setting" />,
+              <SettingOutlined key="setting" onClick={handleClick} />,
               <EditOutlined key="edit" />,
               <EllipsisOutlined key="ellipsis" />,
             ]}
@@ -64,6 +71,9 @@ export default function Home() {
           <LineChart></LineChart>
         </Col>
       </Row>
+      <Drawer width={500} title="Basic Drawer" placement="right" onClose={() => setOpen(false)} open={open}>
+        <PieChart></PieChart>
+      </Drawer>
     </div>
   )
 }

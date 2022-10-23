@@ -68,7 +68,7 @@ export function getMostStarNews() {
     .then((res) => res.data);
 }
 
-// 分类统计
+// 分类统计-柱状图
 export function getLineChartData() {
   return request.get<News[]>(`/news?_expand=category&publishState=2&_order=desc`).then((res) => {
     const dataGroup = groupBy(res.data, (item) => item.category?.title);
@@ -84,6 +84,21 @@ export function getLineChartData() {
       data.xAxis.push(key);
       data.yAxis.push(dataGroup[key].length);
     }
+
+    return data;
+  });
+}
+// 分类统计-饼状图
+export function getPieChartData() {
+  return request.get<News[]>(`/news?_expand=category&publishState=2&_order=desc`).then((res) => {
+    const dataGroup = groupBy(res.data, (item) => item.category?.title);
+
+    const data = Object.keys(dataGroup).map((item) => {
+      return {
+        name: item,
+        value: dataGroup[item].length
+      };
+    });
 
     return data;
   });
