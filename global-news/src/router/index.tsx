@@ -19,15 +19,15 @@ import UpdateNews from '../views/News/Update'
 import PublishList from '../views/Publish/List'
 import Category from '../views/News/Category'
 import Profile from '../views/User/Profile'
+import { Spin } from 'antd'
+import { useAppSelector } from '../store/hooks'
 
 export default function AppRouter() {
-
+  // 进度条
   NProgress.start()
   useEffect(() => {
-    console.log('router -config')
     NProgress.done()
   })
-
   const element = useRoutes([
     {
       path: '/',

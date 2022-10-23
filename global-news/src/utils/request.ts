@@ -3,6 +3,8 @@ import axios from 'axios';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getToken, logout } from './auth';
 import { message } from 'antd';
+import store from '../store';
+import { loadingAction } from '../store/actions/useActions';
 
 // jnpf 后台接口数据
 export interface IResult<T> {
@@ -20,6 +22,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    store.dispatch(loadingAction(true))
     const token = getToken();
     if (token) {
       config.headers!.Authorization = 'Bearer ' + token;
@@ -34,6 +37,7 @@ service.interceptors.request.use(
 // response interceptor 拦截器
 service.interceptors.response.use(
   (response: AxiosResponse) => {
+    store.dispatch(loadingAction(false))
     // console.log(response)
     // let data = response.data;
     // blob
@@ -58,6 +62,7 @@ service.interceptors.response.use(
     return Promise.resolve(response);
   },
   (error: any) => {
+    store.dispatch(loadingAction(false))
     message.error(error.message);
     return Promise.reject(error);
   }

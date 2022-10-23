@@ -17,6 +17,7 @@ export const loadingAction = (loading: boolean) => {
 };
 
 export const userAction = (id?: number) => {
+  console.error('userAction')
   if (!id) {
     return {
       type: 'user/setUser',
@@ -29,7 +30,6 @@ export const userAction = (id?: number) => {
   }
 
   return (dispatch: AppDispatch) => {
-    dispatch(loadingAction(true));
     // 模拟网络延迟
     setTimeout(() => {
       getUser(id)
@@ -38,11 +38,7 @@ export const userAction = (id?: number) => {
             type: 'user/setUser',
             payload: res,
           });
-          dispatch(loadingAction(false));
         })
-        .catch(() => {
-          dispatch(loadingAction(false));
-        });
     }, 1200);
   };
 };

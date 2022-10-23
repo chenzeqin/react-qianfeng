@@ -1,12 +1,16 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
+import { useAppSelector } from '../store/hooks';
 const { Content } = Layout;
 
 export default function APPContent() {
+  const loading = useAppSelector(state => state.user.loading)
   return (
     <Content>
-      <Outlet></Outlet>
+      <Spin size='large' spinning={loading}>
+        <Outlet></Outlet>
+      </Spin>
     </Content>
   )
 }

@@ -34,7 +34,7 @@ export default function AuthRedux(props: Props) {
 
     dispatch(userAction(userInfo.id))
     dispatch(rightTreeAction())
-  }, [token, userInfo.id])
+  }, [token, userInfo.id, location.pathname, dispatch, navigate])
 
 
   // const handleLogin = useCallback((username: string, password: string) => {
